@@ -13,18 +13,6 @@
       <span class="mx-4 align-baseline text-light h5">ZPI Assistant</span>
     </a>
     <!-- ------------------------------------------- LINKS ------------------------------------------- -->
-    <button
-      class="navbar-toggler"
-      type="button"
-      data-toggle="collapse"
-      data-target="#navbarSupportedContent"
-      aria-controls="navbarSupportedContent"
-      aria-expanded="false"
-      aria-label="Toggle navigation"
-    >
-      <span class="navbar-toggler-icon"></span>
-    </button>
-
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item active">
@@ -37,11 +25,28 @@
           <a class="nav-link" routerLink="/home">Studenci</a>
         </li>
       </ul>
-      <!-- ------------------------------------------- SEARCHBAR ------------------------------------------- -->
-      <form class="form-inline my-2 my-lg-0">
-        <input class="form-control mr-sm-2 bg-light" type="search" placeholder="Wpisz szukaną frazę" aria-label="Search" />
-        <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Szukaj</button>
-      </form>
+      <!-- ------------------------------------------- ACCOUNT ------------------------------------------- -->
+      <!-- ----------------------- LOGGED ---------------------- -->
+      <div *ngIf="isLogged; else signInTemplate" class="btn-group" role="group">
+        <div class="btn-group" dropdown #accountDropdown="bs-dropdown" [autoClose]="true">
+          <button
+            id="account-info"
+            type="button"
+            class="btn btn-outline-light dropdown-toggle"
+            (mouseenter)="accountDropdown.show()"
+            (mouseleave)="accountDropdown.hide()"
+          >
+            Łukasz Gajerski <span class="caret"></span>
+          </button>
+          <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="button-basic">
+            <li role="menuitem"><a class="dropdown-item" href="#">Student</a></li>
+            <li role="menuitem"><a class="dropdown-item" href="#">246703</a></li>
+          </ul>
+        </div>
+        <button class="btn btn-outline-danger" (click)="isLogged = false">Sign out</button>
+      </div>
+      <!-- ----------------------- NOT LOGGED ---------------------- -->
+      <ng-template #signInTemplate> <button class="btn btn-outline-light" (click)="isLogged = true">Sign in</button> </ng-template>
     </div>
   </div>
 </nav>
