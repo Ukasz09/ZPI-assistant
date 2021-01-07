@@ -56,11 +56,20 @@ export class TeachersComponent implements OnInit {
   }
 
   private isInFilter(filterBy: string, teacher: TeacherSchema): boolean {
-    for (const field of this.fieldsUsedInFilter) {
-      if (teacher[field].toLowerCase().indexOf(filterBy) !== -1) {
-        return true;
+    const phrases = filterBy.split(/[ ,]+/);
+    for (const p of phrases) {
+      if (p) {
+        let contain = false;
+        for (const field of this.fieldsUsedInFilter) {
+          if (teacher[field].toLowerCase().indexOf(p) !== -1) {
+            contain = true;
+          }
+        }
+        if (contain === false) {
+          return false;
+        }
       }
     }
-    return false;
+    return true;
   }
 }
