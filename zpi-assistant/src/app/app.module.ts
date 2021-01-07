@@ -11,8 +11,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { TypeaheadModule } from 'ngx-bootstrap/typeahead';
 import { TeamsComponent } from './pages/teams/teams.component';
+import { TeamsListPanelComponent } from './pages/teams/teams-list-panel/teams-list-panel.component';
 @NgModule({
-  declarations: [AppComponent, NavbarComponent, HomeComponent, TeamsComponent],
+  declarations: [AppComponent, NavbarComponent, HomeComponent, TeamsComponent, TeamsListPanelComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

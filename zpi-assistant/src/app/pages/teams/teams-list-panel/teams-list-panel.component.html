@@ -1,0 +1,34 @@
+<div class="d-flex flex-column bg-light border border-secondary rounded overflow-auto h-100">
+  <label class="bg-dark rounded text-light py-2 text-center sticky-top">Utworzone zespoły</label>
+  <ng-container *ngIf="dataReady; else dataNotFetchedTemplate">
+    <div *ngFor="let team of teams">
+      <button type="button" class="btn btn-light btn-category w-100">
+        <div class="text-left">
+          <span class="mx-4 font-weight-bold">{{ team.id }}</span
+          ><span>{{ team.subject | titlecase }}</span>
+        </div>
+      </button>
+    </div>
+  </ng-container>
+</div>
+
+<!-- TEMPLATES -->
+<ng-template #dataNotFetchedTemplate>
+  <!-- <ng-container *ngIf="httpError !== undefined; else dataLoadingTemplate">
+    <div class="preferences-panel">
+      <div class="w-75 mx-auto">
+        <app-error-response
+          [errorCode]="httpError.statusCode"
+          [errorText]="httpError.msg"
+          errorCodeFontSize="3em"
+          errorTextFontSize="1em"
+        >
+        </app-error-response>
+      </div>
+    </div>
+  </ng-container> -->
+</ng-template>
+
+<ng-template #dataLoadingTemplate>
+  <!-- <app-data-loading text="Loading data"></app-data-loading> -->
+</ng-template>
