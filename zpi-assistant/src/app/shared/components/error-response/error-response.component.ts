@@ -8,8 +8,9 @@ import { Component, Input } from '@angular/core';
 export class ErrorResponseComponent {
   @Input() errorCode: string;
   @Input() errorText: string;
-  @Input() errorTextFontSize: string = '1.4em';
-  @Input() errorCodeFontSize: string = '5em';
+  @Input() errorTextFontSize = '1.4em';
+  @Input() errorCodeFontSize = '5em';
+  @Input() errorTextClass = 'text-danger';
 
   constructor() {}
 }

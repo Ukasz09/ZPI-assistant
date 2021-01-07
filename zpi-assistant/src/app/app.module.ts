@@ -16,8 +16,9 @@ import { ErrorResponseComponent } from './shared/components/error-response/error
 import { HttpClientModule } from '@angular/common/http';
 import { DataLoadingComponent } from './shared/components/data-loading/data-loading.component';
 import { TeachersComponent } from './pages/teachers/teachers.component';
+import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
 @NgModule({
-  declarations: [AppComponent, NavbarComponent, HomeComponent, TeamsComponent, TeamsListPanelComponent, ErrorResponseComponent, DataLoadingComponent, TeachersComponent],
+  declarations: [AppComponent, NavbarComponent, HomeComponent, TeamsComponent, TeamsListPanelComponent, ErrorResponseComponent, DataLoadingComponent, TeachersComponent, PageNotFoundComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

@@ -5,7 +5,7 @@
   <div class="text-center font-weight-bold pt-5 pb-2 text-danger">
     <span class="mx-auto" [style.font-size]="errorCodeFontSize">{{ errorCode }}</span>
   </div>
-  <div class="text-center text-danger text-capitalize w-100 pb-2" [style.font-size]="errorTextFontSize">
+  <div class="text-center text-capitalize w-100 pb-2" [ngClass]="errorTextClass" [style.font-size]="errorTextFontSize">
     {{ errorText }}
   </div>
 </div>
