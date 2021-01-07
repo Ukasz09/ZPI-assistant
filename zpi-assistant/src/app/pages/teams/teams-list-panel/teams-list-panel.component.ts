@@ -1,6 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { Team } from 'src/app/data/schema/team';
+import { TeamSchema } from 'src/app/data/schema/team';
 import { TeamsService } from 'src/app/data/services/teams.service';
 
 @Component({
@@ -11,7 +11,7 @@ import { TeamsService } from 'src/app/data/services/teams.service';
 export class TeamsListPanelComponent implements OnInit {
   dataReady = false;
   httpError: { statusCode: number; msg: string };
-  teams: Team[];
+  teams: TeamSchema[];
   actualDisplayedTeamId: string;
 
   constructor(private teamsService: TeamsService) {}
@@ -22,7 +22,7 @@ export class TeamsListPanelComponent implements OnInit {
 
   private fetchTeams() {
     this.teamsService.getTeams().subscribe(
-      (data: Team[]) => {
+      (data: TeamSchema[]) => {
         this.teams = data;
         this.dataReady = true;
         if (this.teams.length > 0) this.actualDisplayedTeamId = this.teams[0].id;

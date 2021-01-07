@@ -1,14 +1,19 @@
-<div class="d-flex flex-column bg-light rounded overflow-auto h-100">
+<div class="d-flex flex-column bg-light rounded h-100">
   <label class="bg-dark rounded text-light py-2 text-center sticky-top">Utworzone zespoły</label>
   <ng-container *ngIf="dataReady; else dataNotYetFetchedTemplate">
-    <div *ngFor="let team of teams">
-      <button type="button" class="btn w-100" [ngClass]="teamListRowClass(team.id)" (click)="actualDisplayedTeamId = team.id">
-        <div class="text-left">
-          <span class="mx-4 font-weight-bold">{{ team.id }}</span
-          ><span>{{ team.subject | titlecase }}</span>
-        </div>
-      </button>
-    </div>
+    <ng-container *ngIf="teams.length > 0; else resultsEmpty">
+      <div *ngFor="let team of teams">
+        <button type="button" class="btn w-100" [ngClass]="teamListRowClass(team.id)" (click)="actualDisplayedTeamId = team.id">
+          <div class="text-left">
+            <span class="mx-4 font-weight-bold">{{ team.id }}</span
+            ><span>{{ team.subject | titlecase }}</span>
+          </div>
+        </button>
+      </div>
+    </ng-container>
+    <ng-template #resultsEmpty>
+      <div class="py-2 text-secondary text-center">Not found any teams</div>
+    </ng-template>
   </ng-container>
 </div>
 

@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Teacher } from '../schema/teacher';
+import { TeacherSchema } from '../schema/teacher';
 
 @Injectable({
   providedIn: 'root',
@@ -9,9 +9,9 @@ import { Teacher } from '../schema/teacher';
 export class TeachersService {
   constructor(private http: HttpClient) {}
 
-  getTeachers(): Observable<Teacher[]> {
+  getTeachers(): Observable<TeacherSchema[]> {
     // const URL = environment.API_URL + Slugs.TEACHERS;
     const URL = 'assets/mocks/teachers.json';
-    return this.http.get<Teacher[]>(URL);
+    return this.http.get<TeacherSchema[]>(URL);
   }
 }

@@ -1,6 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { Teacher as TeacherSchema } from 'src/app/data/schema/teacher';
+import { TeacherSchema } from 'src/app/data/schema/teacher';
 import { TeachersService } from 'src/app/data/services/teachers.service';
 
 @Component({
