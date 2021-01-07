@@ -2,4 +2,13 @@
 
 body {
   background-color: variables.$color-darker-light;
+  ::-moz-selection {
+    color: white;
+    background: variables.$color-accent;
+  }
+
+  ::selection {
+    color: white;
+    background: variables.$color-accent;
+  }
 }

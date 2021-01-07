@@ -1,6 +1,6 @@
 <div class="d-flex flex-column bg-light border border-secondary rounded overflow-auto h-100">
   <label class="bg-dark rounded text-light py-2 text-center sticky-top">Utworzone zespoły</label>
-  <ng-container *ngIf="dataReady; else dataNotFetchedTemplate">
+  <ng-container *ngIf="dataReady; else dataNotYetFetchedTemplate">
     <div *ngFor="let team of teams">
       <button
         type="button"
@@ -18,7 +18,7 @@
 </div>
 
 <!-- TEMPLATES -->
-<ng-template #dataNotFetchedTemplate>
+<ng-template #dataNotYetFetchedTemplate>
   <ng-container *ngIf="httpError !== undefined; else dataLoadingTemplate">
     <div class="preferences-panel align-items-center d-flex h-100">
       <div class="mx-auto w-75">
@@ -35,5 +35,5 @@
 </ng-template>
 
 <ng-template #dataLoadingTemplate>
-  <!-- <app-data-loading text="Loading data"></app-data-loading> -->
+  <app-data-loading text="Loading data"></app-data-loading>
 </ng-template>

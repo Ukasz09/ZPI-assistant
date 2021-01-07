@@ -14,8 +14,9 @@ import { TeamsComponent } from './pages/teams/teams.component';
 import { TeamsListPanelComponent } from './pages/teams/teams-list-panel/teams-list-panel.component';
 import { ErrorResponseComponent } from './shared/components/error-response/error-response.component';
 import { HttpClientModule } from '@angular/common/http';
+import { DataLoadingComponent } from './shared/components/data-loading/data-loading.component';
 @NgModule({
-  declarations: [AppComponent, NavbarComponent, HomeComponent, TeamsComponent, TeamsListPanelComponent, ErrorResponseComponent],
+  declarations: [AppComponent, NavbarComponent, HomeComponent, TeamsComponent, TeamsListPanelComponent, ErrorResponseComponent, DataLoadingComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
