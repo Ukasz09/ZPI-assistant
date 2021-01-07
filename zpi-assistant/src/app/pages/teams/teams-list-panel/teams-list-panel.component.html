@@ -1,13 +1,8 @@
-<div class="d-flex flex-column bg-light border border-secondary rounded overflow-auto h-100">
+<div class="d-flex flex-column bg-light rounded overflow-auto h-100">
   <label class="bg-dark rounded text-light py-2 text-center sticky-top">Utworzone zespoły</label>
   <ng-container *ngIf="dataReady; else dataNotYetFetchedTemplate">
     <div *ngFor="let team of teams">
-      <button
-        type="button"
-        class="btn btn-category w-100"
-        [ngClass]="teamListRowClass(team.id)"
-        (click)="actualDisplayedTeamId = team.id"
-      >
+      <button type="button" class="btn w-100" [ngClass]="teamListRowClass(team.id)" (click)="actualDisplayedTeamId = team.id">
         <div class="text-left">
           <span class="mx-4 font-weight-bold">{{ team.id }}</span
           ><span>{{ team.subject | titlecase }}</span>

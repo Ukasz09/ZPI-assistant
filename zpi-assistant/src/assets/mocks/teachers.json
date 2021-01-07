@@ -1,0 +1,9 @@
+[
+  { "name": "Janusz", "surname": "Kowalski", "title": "dr. inż" },
+  { "name": "Anna", "surname": "Jawor", "title": "dr. inż" },
+  { "name": "Tomasz", "surname": "Paliowoda", "title": "inż" },
+  { "name": "Anna", "surname": "Struś", "title": "prof." },
+  { "name": "Paweł", "surname": "Piotrowski", "title": "prof. dr hab inż" },
+  { "name": "Maciej", "surname": "Marcinek", "title": "mgr" },
+  { "name": "Urszula", "surname": "Dębkowska", "title": "mgr. inż" }
+]

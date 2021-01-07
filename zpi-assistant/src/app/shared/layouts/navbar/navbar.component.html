@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top" style="z-index: 1021">
   <div class="container">
     <!-- ------------------------------------------- BRAND ------------------------------------------- -->
-    <a class="navbar-brand" routerLink="/home">
+    <a class="navbar-brand" routerLink="/teams">
       <img
         src="assets/images/brand-logo-white.png"
         width="65"
@@ -15,14 +15,14 @@
     <!-- ------------------------------------------- LINKS ------------------------------------------- -->
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
-          <a class="nav-link" routerLink="/teams">Zespoły <span class="sr-only">(current)</span></a>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/teams" [routerLinkActive]="['active']">Zespoły <span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="/home">Opiekunowie</a>
+          <a class="nav-link" routerLink="/teachers" [routerLinkActive]="['active']">Opiekunowie</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="/home">Studenci</a>
+          <a class="nav-link" routerLink="/teams" [routerLinkActive]="['active']">Studenci</a>
         </li>
       </ul>
       <!-- ------------------------------------------- ACCOUNT ------------------------------------------- -->
@@ -46,7 +46,7 @@
         <button class="btn btn-outline-danger" (click)="isLogged = false">Sign out</button>
       </div>
       <!-- ----------------------- NOT LOGGED ---------------------- -->
-      <ng-template #signInTemplate> <button class="btn btn-outline-light" (click)="isLogged = true">Sign in</button> </ng-template>
+      <ng-template #signInTemplate> <button class="btn btn-outline-success" (click)="isLogged = true">Sign in</button> </ng-template>
     </div>
   </div>
 </nav>

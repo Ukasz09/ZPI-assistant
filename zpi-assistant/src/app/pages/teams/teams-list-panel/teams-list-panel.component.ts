@@ -10,8 +10,8 @@ import { TeamsService } from 'src/app/data/services/teams.service';
 })
 export class TeamsListPanelComponent implements OnInit {
   dataReady = false;
-  teams: Team[];
   httpError: { statusCode: number; msg: string };
+  teams: Team[];
   actualDisplayedTeamId: string;
 
   constructor(private teamsService: TeamsService) {}
