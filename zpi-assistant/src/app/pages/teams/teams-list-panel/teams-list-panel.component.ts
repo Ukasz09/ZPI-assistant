@@ -1,4 +1,7 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { Team } from 'src/app/data/schema/team';
+import { TeamsService } from 'src/app/data/services/teams.service';
 
 @Component({
   selector: 'app-teams-list-panel',
@@ -6,41 +9,27 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./teams-list-panel.component.scss'],
 })
 export class TeamsListPanelComponent implements OnInit {
-  dataReady = true;
-  teams = [
-    { id: 'Z01', subject: '<brak tematu>' },
-    { id: 'Z02', subject: '<brak tematu>' },
-    { id: 'Z03', subject: 'aplikacja mobilna "Pogodynka Express"' },
-    { id: 'Z04', subject: '<brak tematu>' },
-    { id: 'Z05', subject: 'aplikacja webowa' },
-    { id: 'Z01', subject: '<brak tematu>' },
-    { id: 'Z02', subject: '<brak tematu>' },
-    { id: 'Z03', subject: 'aplikacja mobilna' },
-    { id: 'Z04', subject: '<brak tematu>' },
-    { id: 'Z05', subject: 'aplikacja webowa' },
-    { id: 'Z01', subject: '<brak tematu>' },
-    { id: 'Z02', subject: '<brak tematu>' },
-    { id: 'Z03', subject: 'aplikacja mobilna' },
-    { id: 'Z04', subject: '<brak tematu>' },
-    { id: 'Z05', subject: 'aplikacja webowa' },
-    { id: 'Z01', subject: '<brak tematu>' },
-    { id: 'Z02', subject: '<brak tematu>' },
-    { id: 'Z03', subject: 'aplikacja mobilna' },
-    { id: 'Z04', subject: '<brak tematu>' },
-    { id: 'Z05', subject: 'aplikacja webowa' },
-    { id: 'Z01', subject: '<brak tematu>' },
-    { id: 'Z02', subject: '<brak tematu>' },
-    { id: 'Z03', subject: 'aplikacja mobilna' },
-    { id: 'Z04', subject: '<brak tematu>' },
-    { id: 'Z05', subject: 'aplikacja webowa' },
-    { id: 'Z01', subject: '<brak tematu>' },
-    { id: 'Z02', subject: '<brak tematu>' },
-    { id: 'Z03', subject: 'aplikacja mobilna' },
-    { id: 'Z04', subject: '<brak tematu>' },
-    { id: 'Z05', subject: 'aplikacja webowa' },
-  ];
+  dataReady = false;
+  teams: Team[];
+  httpError: { statusCode: number; msg: string };
 
-  constructor() {}
+  constructor(private teamsService: TeamsService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.fetchTeams();
+  }
+
+  private fetchTeams() {
+    this.teamsService.getTeams().subscribe(
+      (data: Team[]) => {
+        this.teams = data;
+        this.dataReady = true;
+      },
+      (e: HttpErrorResponse) =>
+        (this.httpError = {
+          statusCode: e.status,
+          msg: 'Available teams fetching error: ' + e.statusText,
+        })
+    );
+  }
 }

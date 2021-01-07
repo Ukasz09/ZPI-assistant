@@ -1,0 +1,11 @@
+<div class="d-flex flex-column w-100 mx-auto">
+  <div class="text-center w-50 mx-auto">
+    <img src="assets/images/brand-logo-gray.png" class="w-100" alt="cart-empty-image" />
+  </div>
+  <div class="text-center font-weight-bold pt-5 pb-2 text-danger">
+    <span class="mx-auto" [style.font-size]="errorCodeFontSize">{{ errorCode }}</span>
+  </div>
+  <div class="text-center text-danger text-capitalize w-100 pb-2" [style.font-size]="errorTextFontSize">
+    {{ errorText }}
+  </div>
+</div>

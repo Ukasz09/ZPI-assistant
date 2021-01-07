@@ -14,9 +14,9 @@
 
 <!-- TEMPLATES -->
 <ng-template #dataNotFetchedTemplate>
-  <!-- <ng-container *ngIf="httpError !== undefined; else dataLoadingTemplate">
-    <div class="preferences-panel">
-      <div class="w-75 mx-auto">
+  <ng-container *ngIf="httpError !== undefined; else dataLoadingTemplate">
+    <div class="preferences-panel align-items-center d-flex h-100">
+      <div class="mx-auto w-75">
         <app-error-response
           [errorCode]="httpError.statusCode"
           [errorText]="httpError.msg"
@@ -26,7 +26,7 @@
         </app-error-response>
       </div>
     </div>
-  </ng-container> -->
+  </ng-container>
 </ng-template>
 
 <ng-template #dataLoadingTemplate>

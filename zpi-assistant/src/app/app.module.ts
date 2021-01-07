@@ -12,8 +12,10 @@ import { ModalModule } from 'ngx-bootstrap/modal';
 import { TypeaheadModule } from 'ngx-bootstrap/typeahead';
 import { TeamsComponent } from './pages/teams/teams.component';
 import { TeamsListPanelComponent } from './pages/teams/teams-list-panel/teams-list-panel.component';
+import { ErrorResponseComponent } from './shared/components/error-response/error-response.component';
+import { HttpClientModule } from '@angular/common/http';
 @NgModule({
-  declarations: [AppComponent, NavbarComponent, HomeComponent, TeamsComponent, TeamsListPanelComponent],
+  declarations: [AppComponent, NavbarComponent, HomeComponent, TeamsComponent, TeamsListPanelComponent, ErrorResponseComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -25,6 +27,7 @@ import { TeamsListPanelComponent } from './pages/teams/teams-list-panel/teams-li
     TypeaheadModule.forRoot(),
     BsDropdownModule.forRoot(),
     ReactiveFormsModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
