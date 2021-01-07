@@ -12,6 +12,7 @@ export class TeamsListPanelComponent implements OnInit {
   dataReady = false;
   teams: Team[];
   httpError: { statusCode: number; msg: string };
+  actualDisplayedTeamId: string;
 
   constructor(private teamsService: TeamsService) {}
 
@@ -24,6 +25,7 @@ export class TeamsListPanelComponent implements OnInit {
       (data: Team[]) => {
         this.teams = data;
         this.dataReady = true;
+        if (this.teams.length > 0) this.actualDisplayedTeamId = this.teams[0].id;
       },
       (e: HttpErrorResponse) =>
         (this.httpError = {
@@ -31,5 +33,13 @@ export class TeamsListPanelComponent implements OnInit {
           msg: 'Available teams fetching error: ' + e.statusText,
         })
     );
+  }
+
+  isActualDisplayedTeam(teamId: string): boolean {
+    return this.actualDisplayedTeamId == teamId;
+  }
+
+  teamListRowClass(teamId: string) {
+    return this.isActualDisplayedTeam(teamId) ? 'btn-success' : 'btn-light';
   }
 }
