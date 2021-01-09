@@ -10,7 +10,6 @@ import { TeachersService } from 'src/app/data/services/teachers.service';
   styleUrls: ['./teachers.component.scss'],
 })
 export class TeachersComponent implements OnInit {
-  private _searchFilter = '';
   fieldsUsedInFilter: string[] = ['name', 'surname'];
   filteredTeachers: TeacherSchema[] = [];
   teachers: TeacherSchema[] = [];
@@ -37,41 +36,5 @@ export class TeachersComponent implements OnInit {
           msg: 'Lecturers fetching error: ' + e.statusText,
         })
     );
-  }
-
-  get searchFilter(): string {
-    return this._searchFilter;
-  }
-
-  set searchFilter(value: string) {
-    this._searchFilter = value;
-    if (this.searchFilter) {
-      this.filteredTeachers = this.performFilter(this.searchFilter);
-    } else {
-      this.filteredTeachers = this.teachers;
-    }
-  }
-
-  private performFilter(filterBy: string): TeacherSchema[] {
-    filterBy = filterBy.toLowerCase();
-    return this.teachers.filter((teacher: TeacherSchema) => this.isInFilter(filterBy, teacher));
-  }
-
-  private isInFilter(filterBy: string, teacher: TeacherSchema): boolean {
-    const phrases = filterBy.split(/[ ,]+/);
-    for (const p of phrases) {
-      if (p) {
-        let contain = false;
-        for (const field of this.fieldsUsedInFilter) {
-          if (teacher[field].toLowerCase().indexOf(p) !== -1) {
-            contain = true;
-          }
-        }
-        if (contain === false) {
-          return false;
-        }
-      }
-    }
-    return true;
   }
 }
