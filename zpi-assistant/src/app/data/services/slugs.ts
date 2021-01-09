@@ -1,5 +1,6 @@
 export class Slugs {
-  static readonly TEAMS = '/teams';
+  static readonly ALL_TEAMS = '/teams';
+  static readonly TEAM = '/teams/{id}';
   static readonly TEACHERS = '/teachers';
   static readonly STUDENTS = '/students';
 }

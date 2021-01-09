@@ -5,11 +5,13 @@ import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.com
 import { StudentsComponent } from './pages/students/students.component';
 import { TeachersComponent } from './pages/teachers/teachers.component';
 import { TeamsComponent } from './pages/teams/teams.component';
+import { YourTeamComponent } from './pages/your-team/your-team.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'teams', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
   { path: 'teams', component: TeamsComponent },
+  { path: 'teams/your-team', component: YourTeamComponent },
   { path: 'teachers', component: TeachersComponent },
   { path: 'students', component: StudentsComponent },
   { path: '404', component: PageNotFoundComponent },

@@ -21,7 +21,7 @@ export class TeamsListPanelComponent implements OnInit {
   }
 
   private fetchTeams(): void {
-    this.teamsService.getTeams().subscribe(
+    this.teamsService.getAllTeams().subscribe(
       (data: TeamSchema[]) => {
         this.teams = data;
         this.dataReady = true;

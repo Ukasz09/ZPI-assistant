@@ -1,0 +1,10 @@
+{
+  "id": "Z03",
+  "subject": "aplikacja mobilna \"Pogodynka Express\"",
+  "members": [
+    { "name": "Paweł", "surname": "Pawlikowski", "indexNumber": "285736" },
+    { "name": "Danek", "surname": "Dundersztyc", "indexNumber": "260937" },
+    { "name": "Agnieszka", "surname": "Aleks", "indexNumber": "234875" }
+  ],
+  "adminIndex": "260937"
+}
