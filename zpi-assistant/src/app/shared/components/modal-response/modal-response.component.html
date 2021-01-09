@@ -1,0 +1,9 @@
+<div class="modal-header bg-{{ type }} text-center text-light py-0">
+  <div class="mx-auto py-2" style="font-size: larger; font-weight: 500">{{ headerText }}</div>
+</div>
+<div class="modal-body text-center" style="font-weight: 500">
+  <div *ngFor="let line of textLines">
+    {{ line }}
+  </div>
+  <ng-content></ng-content>
+</div>

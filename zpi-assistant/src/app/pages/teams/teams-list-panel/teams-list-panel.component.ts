@@ -20,12 +20,14 @@ export class TeamsListPanelComponent implements OnInit {
     this.fetchTeams();
   }
 
-  private fetchTeams() {
+  private fetchTeams(): void {
     this.teamsService.getTeams().subscribe(
       (data: TeamSchema[]) => {
         this.teams = data;
         this.dataReady = true;
-        if (this.teams.length > 0) this.actualDisplayedTeamId = this.teams[0].id;
+        if (this.teams.length > 0) {
+          this.actualDisplayedTeamId = this.teams[0].id;
+        }
       },
       (e: HttpErrorResponse) =>
         (this.httpError = {
@@ -36,10 +38,10 @@ export class TeamsListPanelComponent implements OnInit {
   }
 
   isActualDisplayedTeam(teamId: string): boolean {
-    return this.actualDisplayedTeamId == teamId;
+    return this.actualDisplayedTeamId === teamId;
   }
 
-  teamListRowClass(teamId: string) {
+  teamListRowClass(teamId: string): string {
     return this.isActualDisplayedTeam(teamId) ? 'btn-success' : 'btn-light';
   }
 }

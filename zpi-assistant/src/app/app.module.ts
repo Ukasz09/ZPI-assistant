@@ -19,8 +19,9 @@ import { TeachersComponent } from './pages/teachers/teachers.component';
 import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
 import { TypeaheadListComponent } from './shared/components/typeahead-list/typeahead-list.component';
 import { StudentsComponent } from './pages/students/students.component';
+import { ModalResponseComponent } from './shared/components/modal-response/modal-response.component';
 @NgModule({
-  declarations: [AppComponent, NavbarComponent, HomeComponent, TeamsComponent, TeamsListPanelComponent, ErrorResponseComponent, DataLoadingComponent, TeachersComponent, PageNotFoundComponent, TypeaheadListComponent, StudentsComponent],
+  declarations: [AppComponent, NavbarComponent, HomeComponent, TeamsComponent, TeamsListPanelComponent, ErrorResponseComponent, DataLoadingComponent, TeachersComponent, PageNotFoundComponent, TypeaheadListComponent, StudentsComponent, ModalResponseComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
