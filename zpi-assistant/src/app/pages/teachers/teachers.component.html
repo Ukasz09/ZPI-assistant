@@ -1,56 +1,10 @@
-<div class="row mt-3">
-  <div class="col-md-6">
-    <div class="overflow-auto h-100">
-      <!-- ------------------------------------------- SEARCH BAR ------------------------------------------- -->
-      <div class="input-group">
-        <div class="input-group-prepend">
-          <span class="input-group-text bg-dark text-light">Wyszukaj opiekuna:</span>
-        </div>
-        <input
-          type="text"
-          class="form-control text-truncate"
-          placeholder="Wpisz imię i / lub nazwisko opiekuna"
-          [(ngModel)]="searchFilter"
-        />
-      </div>
-      <!-- ------------------------------------------- TEACHERS LIST ------------------------------------------- -->
-      <div class="mt-2 bg-light rounded" *ngIf="dataReady; else dataNotYetFetchedTemplate">
-        <ng-container *ngIf="filteredTeachers.length > 0; else resultsEmpty">
-          <div *ngFor="let teacher of filteredTeachers">
-            <button type="button" class="btn btn-light w-100">
-              <div class="text-left">
-                <span class="mx-1">{{ teacher.title }}</span>
-                <span class="mx-1">{{ teacher.name | titlecase }}</span>
-                <span class="mx-1">{{ teacher.surname | titlecase }}</span>
-              </div>
-            </button>
-          </div>
-        </ng-container>
-        <ng-template #resultsEmpty>
-          <div class="py-2 text-secondary text-center">Not found any results</div>
-        </ng-template>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- TEMPLATES -->
-<ng-template #dataNotYetFetchedTemplate>
-  <ng-container *ngIf="httpError !== undefined; else dataLoadingTemplate">
-    <div class="preferences-panel align-items-center d-flex h-100">
-      <div class="mx-auto w-40">
-        <app-error-response
-          [errorCode]="httpError.statusCode"
-          [errorText]="httpError.msg"
-          errorCodeFontSize="3em"
-          errorTextFontSize="1em"
-        >
-        </app-error-response>
-      </div>
-    </div>
-  </ng-container>
-</ng-template>
-
-<ng-template #dataLoadingTemplate>
-  <app-data-loading text="Loading data"></app-data-loading>
-</ng-template>
+<app-typeahead-list
+  [modelsList]="teachers"
+  [dataReady]="dataReady"
+  [httpError]="httpError"
+  [displayedFieldsFromModel]="displayedFieldsInList"
+  [fieldsFromModelUsedInFilter]="fieldsUsedInFilter"
+  [inputPromptText]="'Wyszukaj opiekuna:'"
+  [inputPlaceholderText]="'Wpisz imię i / lub nazwisko opiekuna'"
+>
+</app-typeahead-list>

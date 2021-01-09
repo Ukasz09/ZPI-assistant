@@ -1,5 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { Subject } from 'rxjs';
 import { TeacherSchema } from 'src/app/data/schema/teacher';
 import { TeachersService } from 'src/app/data/services/teachers.service';
 
@@ -10,11 +11,12 @@ import { TeachersService } from 'src/app/data/services/teachers.service';
 })
 export class TeachersComponent implements OnInit {
   private _searchFilter = '';
-  private fieldsUsedInFilter: string[] = ['name', 'surname'];
+  fieldsUsedInFilter: string[] = ['name', 'surname'];
   filteredTeachers: TeacherSchema[] = [];
   teachers: TeacherSchema[] = [];
   dataReady = false;
   httpError: { statusCode: number; msg: string };
+  displayedFieldsInList = ['title', 'name', 'surname'];
 
   constructor(private teachersService: TeachersService) {}
 

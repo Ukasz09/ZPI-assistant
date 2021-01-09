@@ -1,0 +1,55 @@
+<div class="row mt-3">
+  <div class="col-md-6">
+    <div class="overflow-auto h-100">
+      <!-- ------------------------------------------- SEARCH BAR ------------------------------------------- -->
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text bg-dark text-light">{{ inputPromptText }}</span>
+        </div>
+        <input type="text" class="form-control text-truncate" [placeholder]="inputPlaceholderText" [(ngModel)]="searchFilter" />
+      </div>
+      <!-- ------------------------------------------- TEACHERS LIST ------------------------------------------- -->
+      <div class="mt-2 bg-light rounded" *ngIf="dataReady; else dataNotYetFetchedTemplate">
+        <ng-container *ngIf="filteredModelsList.length > 0; else resultsEmpty">
+          <div *ngFor="let model of filteredModelsList" class="py-2 bg-light w-100 rounded border">
+            <div class="row mx-1">
+              <div class="text-left align-middle align-items-center d-flex">
+                <span *ngFor="let field of displayedFieldsFromModel" class="mx-1">{{ model[field] }}</span>
+              </div>
+              <div class="justify-content-end d-flex flex-fill">
+                <div class="btn-group">
+                  <button class="btn btn-outline-secondary" (click)="onMessageBtnClick.emit(model)">Wiadomość</button>
+                  <button class="btn btn-success" (click)="onAddBtnClick.emit(model)">{{ addBtnText }}</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </ng-container>
+        <ng-template #resultsEmpty>
+          <div class="py-2 text-secondary text-center">Not found any results</div>
+        </ng-template>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- TEMPLATES -->
+<ng-template #dataNotYetFetchedTemplate>
+  <ng-container *ngIf="httpError !== undefined; else dataLoadingTemplate">
+    <div class="preferences-panel align-items-center d-flex h-100">
+      <div class="mx-auto w-40">
+        <app-error-response
+          [errorCode]="httpError.statusCode"
+          [errorText]="httpError.msg"
+          errorCodeFontSize="3em"
+          errorTextFontSize="1em"
+        >
+        </app-error-response>
+      </div>
+    </div>
+  </ng-container>
+</ng-template>
+
+<ng-template #dataLoadingTemplate>
+  <app-data-loading text="Loading data"></app-data-loading>
+</ng-template>
