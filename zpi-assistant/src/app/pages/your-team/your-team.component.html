@@ -1,23 +1,45 @@
 <div class="w-75 mt-3">
-  <div class="row py-4 mx-4">
-    <div class="col-md-7">
-      <!-- ----------------------- Header info ---------------------- -->
-      <div class="py-2 h5 text-dark bg-light rounded text-center font-weight-bold" style="font-size: 1.2em">Aplikacja mobilna</div>
-      <div class="py-2 text-dark bg-light rounded text-center"><i>"Super pralka"</i></div>
-      <div class="py-2 text-center mb-5 text-dark bg-light">prof Janusz Kogut</div>
+  <div class="py-4 mx-4">
+    <!-- ----------------------- Subject type ---------------------- -->
+    <div class="row mx-0">
+      <div class="col-md-6 py-2 h5 bg-success rounded text-center text-light font-weight-bold w-50" style="font-size: 1.3em">
+        Aplikacja mobilna
+      </div>
+      <div class="col-md-3">
+        <button class="btn btn-block btn-outline-danger">Usuń zepół</button>
+      </div>
+    </div>
+    <!-- ----------------------- Subject ---------------------- -->
+    <div class="row mx-0">
+      <div class="col-md-6 py-2 text-dark bg-light rounded text-center"><i>"Super pralka"</i></div>
+      <div class="col-md-3">
+        <button class="btn btn-dark btn-block">Edytuj temat</button>
+      </div>
+    </div>
+    <!-- ----------------------- Lecturer ---------------------- -->
+    <div class="row mx-0">
+      <div class="col-md-6 py-2 text-center mb-5 text-dark bg-light" style="font-size: 0.95em">prof Janusz Kogut</div>
+      <div class="col-md-3">
+        <button class="btn btn-dark btn-block">Edytuj opiekuna</button>
+      </div>
+    </div>
 
-      <!-- ----------------------- Team members ---------------------- -->
-      <div class="py-2 text-light bg-dark rounded text-center">Członkowie zespołu</div>
-      <div *ngFor="let member of team.members" class="py-2 bg-light w-100 rounded border">
-        <div class="d-flex flex-row mx-1">
-          <div class="text-left align-middle align-items-center d-flex text-truncate ml-3">
-            <span class="mx-1">{{ member.name }}</span>
-            <span class="mx-1">{{ member.surname }},</span>
-            <span class="mx-1">{{ member.indexNumber }}</span>
-          </div>
-          <div *ngIf="member.indexNumber == team.adminIndex" class="d-flex flex-fill justify-content-end mr-1">
-            <div class="badge badge-success align-items-center d-flex" style="font-size: 0.7em">Administrator</div>
-          </div>
+    <!-- ----------------------- Team members ---------------------- -->
+    <div class="row mx-0">
+      <div class="col-md-6 py-2 text-light bg-dark rounded text-center">Członkowie zespołu</div>
+      <div class="col-md-3">
+        <button class="btn btn-success btn-block">Dodaj studentów</button>
+      </div>
+    </div>
+    <div *ngFor="let member of team.members" class="py-2 bg-light w-50 rounded border">
+      <div class="d-flex flex-row mx-1">
+        <div class="text-left align-middle align-items-center d-flex text-truncate ml-3">
+          <span class="mx-1">{{ member.name }}</span>
+          <span class="mx-1">{{ member.surname }},</span>
+          <span class="mx-1">{{ member.indexNumber }}</span>
+        </div>
+        <div *ngIf="member.indexNumber == team.adminIndex" class="d-flex flex-fill justify-content-end mr-1">
+          <div class="badge badge-success align-items-center d-flex" style="font-size: 0.7em">Administrator</div>
         </div>
       </div>
     </div>
