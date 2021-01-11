@@ -5,6 +5,7 @@ import { TeamSchema } from 'src/app/data/schema/team';
 import { AuthService } from 'src/app/data/services/auth.service';
 import { StudentsService } from 'src/app/data/services/students.service';
 import { TeamsService } from 'src/app/data/services/teams.service';
+import { TeamConsts } from 'src/app/shared/logic/team-consts';
 
 @Component({
   selector: 'app-your-team',
@@ -65,5 +66,13 @@ export class YourTeamComponent implements OnInit {
 
   get subjectText(): string {
     return this.team.subject || '<brak tematu>';
+  }
+
+  get maxNumberOfTeamsMembers(): boolean {
+    return this.team.members.length >= TeamConsts.MAX_TEAM_MEMBERS;
+  }
+
+  get userIsTeamAdmin(): boolean {
+    return this.authService.userId === this.team.adminIndex;
   }
 }

@@ -6,7 +6,7 @@
         {{ topicText | titlecase }}
       </div>
       <div class="col-md-3">
-        <button class="btn btn-block btn-outline-danger">Usuń zepół</button>
+        <button *ngIf="userIsTeamAdmin" class="btn btn-block btn-outline-danger">Usuń zepół</button>
       </div>
     </div>
     <!-- ----------------------- Subject ---------------------- -->
@@ -15,7 +15,7 @@
         <i>{{ subjectText | titlecase }}</i>
       </div>
       <div class="col-md-3">
-        <button class="btn btn-dark btn-block">Edytuj temat</button>
+        <button *ngIf="userIsTeamAdmin" class="btn btn-dark btn-block">Edytuj temat</button>
       </div>
     </div>
     <!-- ----------------------- Lecturer ---------------------- -->
@@ -24,7 +24,7 @@
         {{ lecturerInfoText | titlecase }}
       </div>
       <div class="col-md-3">
-        <button class="btn btn-dark btn-block">Edytuj opiekuna</button>
+        <button *ngIf="userIsTeamAdmin" class="btn btn-dark btn-block">Edytuj opiekuna</button>
       </div>
     </div>
 
@@ -32,7 +32,7 @@
     <div class="row mx-0">
       <div class="col-md-6 py-2 text-light bg-dark rounded text-center">Członkowie zespołu</div>
       <div class="col-md-3">
-        <button class="btn btn-success btn-block">Dodaj studentów</button>
+        <button *ngIf="userIsTeamAdmin" class="btn btn-success btn-block" [disabled]="maxNumberOfTeamsMembers">Dodaj studentów</button>
       </div>
     </div>
     <div *ngFor="let member of team.members" class="py-2 bg-light w-50 rounded border">
