@@ -4,9 +4,10 @@
     <ng-container *ngIf="teams.length > 0; else resultsEmpty">
       <div *ngFor="let team of teams">
         <button type="button" class="btn w-100" [ngClass]="teamListRowClass(team.id)" (click)="actualDisplayedTeamId = team.id">
-          <div class="text-left">
-            <span class="mx-4 font-weight-bold">{{ team.id }}</span
-            ><span>{{ team.subject | titlecase }}</span>
+          <div class="text-left row mx-0">
+            <span class="col-md-1 mx-auto font-weight-bold text-truncate">{{ team.id }}</span>
+            <span class="col-md-4 text-truncate">{{ getTopicText(team) | titlecase }}</span>
+            <span class="col text-truncate">{{ getSubjectText(team) | titlecase }}</span>
           </div>
         </button>
       </div>
@@ -17,7 +18,7 @@
   </ng-container>
 </div>
 
-<!-- TEMPLATES -->
+<!-- ----------------------- TEMPLATES ---------------------- -->
 <ng-template #dataNotYetFetchedTemplate>
   <ng-container *ngIf="httpError !== undefined; else dataLoadingTemplate">
     <div class="preferences-panel align-items-center d-flex h-100">

@@ -44,4 +44,12 @@ export class TeamsListPanelComponent implements OnInit {
   teamListRowClass(teamId: string): string {
     return this.isActualDisplayedTeam(teamId) ? 'btn-success' : 'btn-light';
   }
+
+  getTopicText(team: TeamSchema): string {
+    return team.topic || '<brak tematu>';
+  }
+
+  getSubjectText(team: TeamSchema): string {
+    return team.subject || '<brak tematu>';
+  }
 }
