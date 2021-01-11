@@ -6,7 +6,7 @@
         {{ topicText | titlecase }}
       </div>
       <div class="col-md-3">
-        <button *ngIf="userIsTeamAdmin" class="btn btn-block btn-outline-danger">Usuń zepół</button>
+        <button *ngIf="userIsTeamAdmin" class="btn btn-block btn-outline-danger">Usuń zespół</button>
       </div>
     </div>
     <!-- ----------------------- Subject ---------------------- -->
@@ -14,8 +14,11 @@
       <div class="col-md-6 py-2 text-dark bg-light rounded text-center">
         <i>{{ subjectText | titlecase }}</i>
       </div>
-      <div class="col-md-3">
-        <button *ngIf="userIsTeamAdmin" class="btn btn-dark btn-block">Edytuj temat</button>
+      <div *ngIf="userIsTeamAdmin" class="col-md-3">
+        <button *ngIf="team.topic; else addSubjectBtn" class="btn btn-dark btn-block">Edytuj temat</button>
+        <ng-template #addSubjectBtn>
+          <button *ngIf="teamHasLecturer" class="btn btn-dark btn-block">Dodaj temat</button>
+        </ng-template>
       </div>
     </div>
     <!-- ----------------------- Lecturer ---------------------- -->
@@ -23,8 +26,11 @@
       <div class="col-md-6 py-2 text-center mb-5 text-dark bg-light" style="font-size: 0.95em">
         {{ lecturerInfoText | titlecase }}
       </div>
-      <div class="col-md-3">
-        <button *ngIf="userIsTeamAdmin" class="btn btn-dark btn-block">Edytuj opiekuna</button>
+      <div *ngIf="userIsTeamAdmin" class="col-md-3">
+        <button *ngIf="teamHasLecturer; else addLecturerBtn" class="btn btn-dark btn-block">Edytuj opiekuna</button>
+        <ng-template #addLecturerBtn>
+          <button class="btn btn-dark btn-block">Dodaj opiekuna</button>
+        </ng-template>
       </div>
     </div>
 
@@ -42,8 +48,17 @@
           <span class="mx-1">{{ member.surname }},</span>
           <span class="mx-1">{{ member.index }}</span>
         </div>
-        <div *ngIf="member.index == team.adminIndex" class="d-flex flex-fill justify-content-end mr-1">
-          <div class="badge badge-success align-items-center d-flex" style="font-size: 0.7em">Administrator</div>
+        <div class="d-flex flex-fill justify-content-end mr-1">
+          <div
+            *ngIf="member.index == team.adminIndex"
+            class="badge badge-success align-items-center d-flex mr-1"
+            style="font-size: 0.7em"
+          >
+            Administrator
+          </div>
+          <div *ngIf="member.index == loggedUserId" class="badge badge-dark align-items-center d-flex mr-1" style="font-size: 0.7em">
+            Ty
+          </div>
         </div>
       </div>
     </div>

@@ -28,6 +28,10 @@
       <!-- ------------------------------------------- ACCOUNT ------------------------------------------- -->
       <!-- ----------------------- LOGGED ---------------------- -->
       <div *ngIf="isLogged; else signInTemplate" class="btn-group" role="group">
+        <button class="btn btn-outline-light d-flex align-items-center" routerLink="/mailbox">
+          <span class="material-icons"> email </span>
+          <span class="badge badge-danger">4</span>
+        </button>
         <div class="btn-group" dropdown #accountDropdown="bs-dropdown" [autoClose]="true">
           <button
             id="account-info"

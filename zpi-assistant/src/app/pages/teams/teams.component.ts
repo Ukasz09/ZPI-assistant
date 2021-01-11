@@ -5,6 +5,7 @@ import { ErrorResponseType } from 'src/app/data/schema/error-response-types';
 import { AuthService } from 'src/app/data/services/auth.service';
 import { StudentsService } from 'src/app/data/services/students.service';
 import { TeamsService } from 'src/app/data/services/teams.service';
+import { TeamsListPanelComponent } from './teams-list-panel/teams-list-panel.component';
 
 @Component({
   selector: 'app-teams',
@@ -15,6 +16,7 @@ export class TeamsComponent implements OnInit {
   @ViewChild('teamCreationSuccessTemplate') teamCreationSuccessTemplate: TemplateRef<any>;
   @ViewChild('teamCreationErrHasTeamTemplate') teamCreationErrHasTeamTemplate: TemplateRef<any>;
   @ViewChild('otherErrorTemplate') otherErrorTemplate: TemplateRef<any>;
+  @ViewChild('teamListPanelTemplate') teamListPanelTemplate: TeamsListPanelComponent;
 
   modalRef: BsModalRef;
   private successfulTeamCreationText = 'Zespół {id} został pomyślnie utworzony';
@@ -58,6 +60,7 @@ export class TeamsComponent implements OnInit {
   }
 
   onCorrectTeamCreationResponse(data: any): void {
+    this.teamListPanelTemplate.fetchTeams();
     this.teamCreationSuccessTextLines[0] = this.successfulTeamCreationText.replace('{id}', `${data['id']}`);
     this.openModal(this.teamCreationSuccessTemplate);
   }

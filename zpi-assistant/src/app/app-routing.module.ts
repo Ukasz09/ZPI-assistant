@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './pages/home/home.component';
+import { MailboxComponent } from './pages/mailbox/mailbox.component';
 import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
 import { StudentsComponent } from './pages/students/students.component';
 import { TeachersComponent } from './pages/teachers/teachers.component';
@@ -14,6 +15,7 @@ const routes: Routes = [
   { path: 'teams/your-team', component: YourTeamComponent },
   { path: 'teachers', component: TeachersComponent },
   { path: 'students', component: StudentsComponent },
+  { path: 'mailbox', component: MailboxComponent },
   { path: '404', component: PageNotFoundComponent },
   { path: '**', redirectTo: '/404' },
 ];

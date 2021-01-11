@@ -54,10 +54,14 @@ export class YourTeamComponent implements OnInit {
   }
 
   get lecturerInfoText(): string {
-    if (Object.keys(this.team.lecturer).length === 0) {
+    if (!this.teamHasLecturer) {
       return '<brak opiekuna>';
     }
     return `${this.team.lecturer.title}  ${this.team.lecturer.name}  ${this.team.lecturer.surname} `;
+  }
+
+  get teamHasLecturer(): boolean {
+    return Object.keys(this.team.lecturer).length !== 0;
   }
 
   get topicText(): string {
@@ -74,5 +78,9 @@ export class YourTeamComponent implements OnInit {
 
   get userIsTeamAdmin(): boolean {
     return this.authService.userId === this.team.adminIndex;
+  }
+
+  get loggedUserId(): string {
+    return this.authService.userId;
   }
 }

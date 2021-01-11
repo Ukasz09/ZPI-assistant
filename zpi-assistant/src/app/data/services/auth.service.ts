@@ -17,6 +17,7 @@ export class AuthService {
   mockData(): void {
     this.userIsLogged = true;
     this.userAccountType = AccountTypes.STUDENT;
+    // this.userId = '285736';
     this.userId = '260937';
   }
 }

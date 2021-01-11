@@ -21,8 +21,9 @@ import { TypeaheadListComponent } from './shared/components/typeahead-list/typea
 import { StudentsComponent } from './pages/students/students.component';
 import { ModalResponseComponent } from './shared/components/modal-response/modal-response.component';
 import { YourTeamComponent } from './pages/your-team/your-team.component';
+import { MailboxComponent } from './pages/mailbox/mailbox.component';
 @NgModule({
-  declarations: [AppComponent, NavbarComponent, HomeComponent, TeamsComponent, TeamsListPanelComponent, ErrorResponseComponent, DataLoadingComponent, TeachersComponent, PageNotFoundComponent, TypeaheadListComponent, StudentsComponent, ModalResponseComponent, YourTeamComponent],
+  declarations: [AppComponent, NavbarComponent, HomeComponent, TeamsComponent, TeamsListPanelComponent, ErrorResponseComponent, DataLoadingComponent, TeachersComponent, PageNotFoundComponent, TypeaheadListComponent, StudentsComponent, ModalResponseComponent, YourTeamComponent, MailboxComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
