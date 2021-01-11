@@ -6,4 +6,5 @@ export class Slugs {
   static readonly STUDENT = '/students/{id}';
   static readonly LEAVE_TEAM = '/students/leaveTeam?id={id}';
   static readonly MAILBOX = '/mailbox?id={id}';
+  static readonly UPDATE_MESSAGE = '/mailbox?userId={useId}&msgId={msgId}';
 }

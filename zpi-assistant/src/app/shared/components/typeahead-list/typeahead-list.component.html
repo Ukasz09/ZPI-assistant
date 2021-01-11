@@ -12,14 +12,16 @@
       <div class="mt-2 bg-light rounded" *ngIf="dataReady; else dataNotYetFetchedTemplate">
         <ng-container *ngIf="filteredModelsList.length > 0; else resultsEmpty">
           <div *ngFor="let model of filteredModelsList" class="py-2 bg-light w-100 rounded border">
-            <div class="d-flex flex-row mx-1">
+            <div class="d-flex flex-row mx-3" style="height: 35px">
               <div class="text-left align-middle align-items-center d-flex text-truncate">
                 <span *ngFor="let field of displayedFieldsFromModel" class="mx-1">{{ model[field] }}</span>
               </div>
               <div class="justify-content-end d-flex flex-fill">
                 <div class="btn-group">
-                  <button class="btn btn-outline-secondary" (click)="onMessageBtnClick.emit(model)">Wiadomość</button>
-                  <button class="btn btn-success" (click)="onAddBtnClick.emit(model)">{{ addBtnText }}</button>
+                  <button *ngIf="msgBtnVisible" class="btn btn-outline-secondary" (click)="messageBtnClick.emit(model)">
+                    Wiadomość
+                  </button>
+                  <button *ngIf="addBtnVisible" class="btn btn-success" (click)="addBtnClick.emit(model)">{{ addBtnText }}</button>
                 </div>
               </div>
             </div>

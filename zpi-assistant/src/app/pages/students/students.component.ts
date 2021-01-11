@@ -1,7 +1,9 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { StudentSchema } from 'src/app/data/schema/student';
+import { AuthService } from 'src/app/data/services/auth.service';
 import { StudentsService } from 'src/app/data/services/students.service';
+import { AccountTypes } from 'src/app/shared/logic/account-types';
 
 @Component({
   selector: 'app-students',
@@ -16,7 +18,7 @@ export class StudentsComponent implements OnInit {
   httpError: { statusCode: number; msg: string };
   displayedFieldsInList = ['name', 'surname', 'index'];
 
-  constructor(private studentsService: StudentsService) {}
+  constructor(private studentsService: StudentsService, private authService: AuthService) {}
 
   ngOnInit(): void {
     this.fetchStudents();
@@ -35,5 +37,17 @@ export class StudentsComponent implements OnInit {
           msg: 'Students fetching error: ' + e.statusText,
         })
     );
+  }
+
+  get addBtnVisible(): boolean {
+    return this.authService.userIsLogged && this.userIsStudent;
+  }
+
+  get msgBtnVisible(): boolean {
+    return this.authService.userIsLogged;
+  }
+
+  private get userIsStudent(): boolean {
+    return this.authService.userAccountType === AccountTypes.STUDENT;
   }
 }

@@ -5,6 +5,7 @@ import { ErrorResponseType } from 'src/app/data/schema/error-response-types';
 import { AuthService } from 'src/app/data/services/auth.service';
 import { StudentsService } from 'src/app/data/services/students.service';
 import { TeamsService } from 'src/app/data/services/teams.service';
+import { AccountTypes } from 'src/app/shared/logic/account-types';
 import { TeamsListPanelComponent } from './teams-list-panel/teams-list-panel.component';
 
 @Component({
@@ -82,5 +83,9 @@ export class TeamsComponent implements OnInit {
         this.openModal(this.otherErrorTemplate);
       }
     );
+  }
+
+  get actionButtonsVisible(): boolean {
+    return this.authService.userIsLogged && this.authService.userAccountType === AccountTypes.STUDENT;
   }
 }

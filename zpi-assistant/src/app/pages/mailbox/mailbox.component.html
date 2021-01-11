@@ -57,9 +57,12 @@
       <div class="w-50">
         <div class="card w-100 my-4">
           <div class="d-flex flex-column card-body">
-            <div class="btn btn-outline-secondary" *ngFor="let message of mails" (click)="actualDisplayedMsg = message">
+            <div class="btn" [ngClass]="messageClass(message)" *ngFor="let message of mails" (click)="onMsgClick(message)">
               <div class="row mx-0">
-                <div class="col-md-5 text-center font-weight-bold">{{ message.from }}:</div>
+                <div class="align-items-center d-flex col-md-5 text-center font-weight-bold">
+                  <div *ngIf="!message.isRead" class="bg-danger rounded-circle mr-4" style="width: 10px; height: 10px"></div>
+                  {{ message.from }}:
+                </div>
                 <div class="col text-truncate">{{ message.subject }}</div>
               </div>
             </div>

@@ -1,10 +1,10 @@
 <div class="row mt-3">
-  <div class="col">
+  <div class="col-md-9">
     <div class="team-list-size d-block overflow-auto">
       <app-teams-list-panel #teamListPanelTemplate></app-teams-list-panel>
     </div>
   </div>
-  <div class="col-md-3 px-0">
+  <div class="col px-0" *ngIf="actionButtonsVisible">
     <button class="btn btn-dark btn-block my-1" id="create-team-btn" (click)="onCreateTeamClick()">Utwórz zespół</button>
     <button class="btn btn-dark btn-block my-1" id="join-team-btn">Dołącz do zespołu</button>
     <button class="btn btn-success btn-block my-1" id="your-team-btn" routerLink="/teams/your-team">Twój zespół</button>

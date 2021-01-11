@@ -14,9 +14,11 @@ export class TypeaheadListComponent implements OnInit, OnChanges {
   @Input() inputPromptText: string;
   @Input() inputPlaceholderText: string;
   @Input() addBtnText = 'Dodaj';
+  @Input() addBtnVisible: boolean;
+  @Input() msgBtnVisible: boolean;
 
-  @Output() onMessageBtnClick = new EventEmitter<object>();
-  @Output() onAddBtnClick = new EventEmitter<object>();
+  @Output() messageBtnClick = new EventEmitter<object>();
+  @Output() addBtnClick = new EventEmitter<object>();
 
   filteredModelsList: object[] = [];
   private _searchFilter = '';

@@ -44,4 +44,23 @@ export class MailboxComponent implements OnInit {
   get actualDisplayedMsgIsInvitation(): boolean {
     return this.actualDisplayedMsg.type === MessageTypes.INVITATION;
   }
+
+  onMsgClick(message: Message): void {
+    this.actualDisplayedMsg = message;
+    this.changeIsReadStateOfMsg(message);
+  }
+
+  private changeIsReadStateOfMsg(message: Message): void {
+    message.isRead = true;
+    this.mailboxService.updateMessage(this.authService.userId, message.id).subscribe(
+      (_) => this.authService.updateUnreadMsgQty(),
+      (err: HttpErrorResponse) => {
+        //TODO: add alert
+      }
+    );
+  }
+
+  messageClass(message: Message): string {
+    return this.actualDisplayedMsg === message ? 'btn-dark' : 'btn-outline-secondary';
+  }
 }
