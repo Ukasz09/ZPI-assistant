@@ -5,17 +5,30 @@
     </div>
   </div>
   <div class="col-md-3 px-0">
-    <button class="btn btn-dark btn-block my-1" id="create-team-btn" (click)="onCreateTeamClick(teamCreationSuccess)">
-      Utwórz zespół
-    </button>
+    <button class="btn btn-dark btn-block my-1" id="create-team-btn" (click)="onCreateTeamClick()">Utwórz zespół</button>
     <button class="btn btn-dark btn-block my-1" id="join-team-btn">Dołącz do zespołu</button>
     <button class="btn btn-success btn-block my-1" id="your-team-btn" routerLink="/teams/your-team">Twój zespół</button>
   </div>
 </div>
 
 <!-- ------------------------------------------- MODAL TEMPLATES ------------------------------------------- -->
-<ng-template #teamCreationSuccess>
+<ng-template #teamCreationSuccessTemplate>
   <app-modal-response type="success" headerText="Pomyślnie utworzono zespół" [textLines]="teamCreationSuccessTextLines">
     <button class="btn btn-sm btn-outline-success w-25 mt-3" (click)="modalRef.hide()">OK</button>
+  </app-modal-response>
+</ng-template>
+
+<ng-template #teamCreationErrHasTeamTemplate>
+  <app-modal-response type="danger" headerText="Błąd podczas tworzenia zespołu" [textLines]="teamCreationErrHaveTeamLines">
+    <div class="row justify-content-center d-flex">
+      <button class="btn btn-sm btn-outline-dark w-25 mt-3" (click)="modalRef.hide()">Nie</button>
+      <button class="btn btn-sm btn-outline-danger w-25 mt-3" (click)="leaveTeam()">Tak</button>
+    </div>
+  </app-modal-response>
+</ng-template>
+
+<ng-template #otherErrorTemplate>
+  <app-modal-response type="danger" headerText="Błąd podczas tworzenia zespołu" [textLines]="otherErrorText">
+    <button class="btn btn-sm btn-outline-danger w-25 mt-3" (click)="modalRef.hide()">OK</button>
   </app-modal-response>
 </ng-template>

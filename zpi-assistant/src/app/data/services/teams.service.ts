@@ -1,10 +1,7 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { StudentsComponent } from 'src/app/pages/students/students.component';
-import { StudentSchema } from '../schema/student';
+import { Observable, throwError } from 'rxjs';
 import { TeamSchema } from '../schema/team';
-
 @Injectable({
   providedIn: 'root',
 })
@@ -22,5 +19,35 @@ export class TeamsService {
     // const ENDPOINT = URL.replace('{id}',teamId);
     const ENDPOINT = 'assets/mocks/team.json';
     return this.http.get<TeamSchema>(ENDPOINT);
+  }
+
+  createTeam(): Observable<object> {
+    // const ENDPOINT = environment.API_URL + Slugs.TEAM;
+    // const ENDPOINT = 'assets/mocks/correct-team-creation-response.json';
+    // return this.http.post<object>(ENDPOINT, {});
+    // throw new HttpErrorResponse({
+    //   error: {
+    //     id: 0,
+    //     teamId: 'Z02',
+    //   },
+    // });
+
+    //POST ERROR
+    return this.putErrorResponse(
+      {
+        id: 0,
+        teamId: 'Z02',
+      },
+      403
+    );
+  }
+
+  private putErrorResponse<T>(errorObj: any, statusCode?: number, msg?: string): Observable<T> {
+    const error = new HttpErrorResponse({
+      error: errorObj,
+      status: statusCode ?? 404,
+      statusText: msg,
+    });
+    return throwError(error) as any;
   }
 }
