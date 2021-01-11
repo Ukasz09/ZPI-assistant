@@ -6,7 +6,7 @@ export class Message {
     public from: string,
     public to: string,
     public subject: string,
-    public message: string,
+    public msgLines: string[],
     public type: MessageTypes,
     public isRead: boolean
   ) {}

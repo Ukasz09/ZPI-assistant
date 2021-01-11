@@ -1,28 +1,40 @@
 [
   {
     "id": "0",
-    "from": "Powiadomienia systemowe ZPI Assistant",
+    "from": "ZPI-Assistant",
     "to": "anna.jawor@pwr.edu.pl",
     "subject": "Prośba o obiecie opieki nad zepołem",
-    "message": "Student Jan Kowalski zwraca się z prośbą o objęcie opieką jego zepołu",
+    "msgLines": ["Student Jan Kowalski (245609) zwraca się z prośbą o objęcie opieką jego zepołu"],
     "type": 1,
     "isRead": false
   },
   {
     "id": "1",
-    "from": "Powiadomienia systemowe ZPI Assistant",
+    "from": "ZPI-Assistant",
     "to": "pawel.pawlikowski@pwr.edu.pl",
     "subject": "Zaproszenie do dołączenia do zespołu",
-    "message": "Zaproszono Cię do dołczenia do zespołu.\nZaproszenie wygenerowane przez: ID zespołu: Z03\nAdministrator zespołu: Jan Kowalski, 245378\nOpiekun zespołu: dr inż. Grzegorz Zając\nTemat zespołu: <brak tematu>\nCzłonkowie zespołu:\n - Jan Kowalski, 245378",
+    "msgLines": [
+      "Zaproszono Cię do dołączenia do zespołu.",
+      "",
+      "-----------------------------------------------------",
+      "Zaproszenie wygenerowane przez:",
+      "ID zespołu: Z03",
+      "Administrator zespołu: Jan Kowalski, 245378",
+      "Opiekun zespołu: dr inż. Grzegorz Zając",
+      "Temat zespołu: <brak tematu>",
+      "",
+      "Członkowie zespołu:",
+      "- Jan Kowalski, 245378"
+    ],
     "type": 1,
     "isRead": false
   },
   {
     "id": "2",
-    "from": "Powiadomienia systemowe ZPI Assistant",
+    "from": "ZPI-Assistant",
     "to": "danek.dundersztyc@pwr.edu.pl",
     "subject": "Zmiana składu osobowego zespołu",
-    "message": "Student Jan Kowalski (2314143) wypisał się z zespołu",
+    "msgLines": ["Student Jan Kowalski (2314143) wypisał się z zespołu"],
     "type": 0,
     "isRead": false
   }
