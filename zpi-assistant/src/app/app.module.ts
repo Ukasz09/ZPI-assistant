@@ -23,7 +23,22 @@ import { ModalResponseComponent } from './shared/components/modal-response/modal
 import { YourTeamComponent } from './pages/your-team/your-team.component';
 import { MailboxComponent } from './pages/mailbox/mailbox.component';
 @NgModule({
-  declarations: [AppComponent, NavbarComponent, HomeComponent, TeamsComponent, TeamsListPanelComponent, ErrorResponseComponent, DataLoadingComponent, TeachersComponent, PageNotFoundComponent, TypeaheadListComponent, StudentsComponent, ModalResponseComponent, YourTeamComponent, MailboxComponent],
+  declarations: [
+    AppComponent,
+    NavbarComponent,
+    HomeComponent,
+    TeamsComponent,
+    TeamsListPanelComponent,
+    ErrorResponseComponent,
+    DataLoadingComponent,
+    TeachersComponent,
+    PageNotFoundComponent,
+    TypeaheadListComponent,
+    StudentsComponent,
+    ModalResponseComponent,
+    YourTeamComponent,
+    MailboxComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,

@@ -1,9 +1,9 @@
 [
-  { "name": "Janusz", "surname": "Kowalski", "title": "dr. inż" },
-  { "name": "Anna", "surname": "Jawor", "title": "dr. inż" },
-  { "name": "Tomasz", "surname": "Paliowoda", "title": "inż" },
-  { "name": "Anna", "surname": "Struś", "title": "prof." },
-  { "name": "Paweł", "surname": "Piotrowski", "title": "prof. dr hab inż" },
-  { "name": "Maciej", "surname": "Marcinek", "title": "mgr" },
-  { "name": "Urszula", "surname": "Dębkowska", "title": "mgr. inż" }
+  { "name": "Janusz", "surname": "Kowalski", "email": "janusz.kowalski@pwr.edu.pl", "title": "dr. inż" },
+  { "name": "Anna", "surname": "Jawor", "email": "anna.jawor@pwr.edu.pl", "title": "dr. inż" },
+  { "name": "Tomasz", "surname": "Paliowoda", "email": "tomasz.paliwoda@pwr.edu.pl", "title": "inż" },
+  { "name": "Anna", "surname": "Struś", "email": "anna.strus@pwr.edu.pl", "title": "prof." },
+  { "name": "Paweł", "surname": "Piotrowski", "email": "pawel.piotrowski@pwr.edu.pl", "title": "prof. dr hab inż" },
+  { "name": "Maciej", "surname": "Marcinek", "email": "maciej.marcinek@pwr.edu.pl", "title": "mgr" },
+  { "name": "Urszula", "surname": "Dębkowska", "email": "urszula.dembkowska@pwr.edu.pl", "title": "mgr. inż" }
 ]

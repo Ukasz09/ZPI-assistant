@@ -1,4 +1,4 @@
 export enum AccountTypes {
-  STUDENT,
-  LECTURER,
+  STUDENT = 0,
+  LECTURER = 1,
 }
