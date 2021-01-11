@@ -1,10 +1,12 @@
 {
   "id": "Z03",
-  "subject": "aplikacja mobilna \"Pogodynka Express\"",
+  "topic": "aplikacja mobilna",
+  "subject": "Pogodynka Express",
   "members": [
-    { "name": "Paweł", "surname": "Pawlikowski", "indexNumber": "285736" },
-    { "name": "Danek", "surname": "Dundersztyc", "indexNumber": "260937" },
-    { "name": "Agnieszka", "surname": "Aleks", "indexNumber": "234875" }
+    { "name": "Paweł", "surname": "Pawlikowski", "index": "285736", "teamId": "Z03" },
+    { "name": "Danek", "surname": "Dundersztyc", "index": "260937", "teamId": "Z03" },
+    { "name": "Agnieszka", "surname": "Aleks", "index": "234875", "teamId": "Z03" }
   ],
-  "adminIndex": "260937"
+  "adminIndex": "260937",
+  "lecturer": { "name": "Anna", "surname": "Struś", "title": "prof." }
 }

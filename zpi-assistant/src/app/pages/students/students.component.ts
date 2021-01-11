@@ -9,12 +9,12 @@ import { StudentsService } from 'src/app/data/services/students.service';
   styleUrls: ['./students.component.scss'],
 })
 export class StudentsComponent implements OnInit {
-  fieldsUsedInFilter: string[] = ['name', 'surname', 'indexNumber'];
+  fieldsUsedInFilter: string[] = ['name', 'surname', 'index'];
   filteredStudents: StudentSchema[] = [];
   students: StudentSchema[] = [];
   dataReady = false;
   httpError: { statusCode: number; msg: string };
-  displayedFieldsInList = ['name', 'surname', 'indexNumber'];
+  displayedFieldsInList = ['name', 'surname', 'index'];
 
   constructor(private studentsService: StudentsService) {}
 

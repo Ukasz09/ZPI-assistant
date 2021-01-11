@@ -1,7 +1,9 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { StudentSchema } from 'src/app/data/schema/student';
 import { TeamSchema } from 'src/app/data/schema/team';
+import { AuthService } from 'src/app/data/services/auth.service';
+import { StudentsService } from 'src/app/data/services/students.service';
 import { TeamsService } from 'src/app/data/services/teams.service';
 
 @Component({
@@ -10,18 +12,34 @@ import { TeamsService } from 'src/app/data/services/teams.service';
   styleUrls: ['./your-team.component.scss'],
 })
 export class YourTeamComponent implements OnInit {
+  @Input() teamId: string;
+
   team: TeamSchema;
   dataReady: boolean;
   httpError: { statusCode: number; msg: string };
 
-  constructor(private teamsService: TeamsService) {}
+  constructor(private teamsService: TeamsService, private authService: AuthService, private studentService: StudentsService) {}
 
   ngOnInit(): void {
-    this.fetchTeam();
+    this.fetchData();
   }
 
-  private fetchTeam(): void {
-    this.teamsService.getTeam().subscribe(
+  private fetchData(): void {
+    const studentId = this.authService.userId;
+    this.studentService.getStudent(studentId).subscribe(
+      (data: StudentSchema) => {
+        this.fetchTeam(data.teamId);
+      },
+      (e: HttpErrorResponse) =>
+        (this.httpError = {
+          statusCode: e.status,
+          msg: `User's data fetching error: ${e.statusText}`,
+        })
+    );
+  }
+
+  private fetchTeam(teamId: string): void {
+    this.teamsService.getTeam(this.authService.userId).subscribe(
       (data: TeamSchema) => {
         this.team = data;
         this.dataReady = true;
@@ -32,5 +50,20 @@ export class YourTeamComponent implements OnInit {
           msg: `Team's data fetching error: ${e.statusText}`,
         })
     );
+  }
+
+  get lecturerInfoText(): string {
+    if (Object.keys(this.team.lecturer).length === 0) {
+      return '<brak opiekuna>';
+    }
+    return `${this.team.lecturer.title}  ${this.team.lecturer.name}  ${this.team.lecturer.surname} `;
+  }
+
+  get topicText(): string {
+    return this.team.topic || '<brak tematu>';
+  }
+
+  get subjectText(): string {
+    return this.team.subject || '<brak tematu>';
   }
 }

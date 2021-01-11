@@ -1,41 +1,92 @@
 [
-  { "id": "Z01", "subject": "<brak tematu>", "members": [], "adminId": "" },
-  { "id": "Z02", "subject": "<brak tematu>", "members": [], "adminID": "" },
+  { "id": "Z01", "topic": "unknown", "subject": "<brak tematu>", "members": [], "adminIndex": "", "lecturer": "" },
+  { "id": "Z02", "topic": "unknown", "subject": "<brak tematu>", "members": [], "adminIndex": "", "lecturer": "" },
   {
     "id": "Z03",
-    "subject": "aplikacja mobilna \"Pogodynka Express\"",
+    "topic": "aplikacja mobilna",
+    "subject": "Pogodynka Express",
     "members": [
-      { "name": "Paweł", "surname": "Pawlikowski", "indexNumber": "285736" },
-      { "name": "Danek", "surname": "Dundersztyc", "indexNumber": "260937" },
-      { "name": "Agnieszka", "surname": "Aleks", "indexNumber": "234875" }
+      { "name": "Paweł", "surname": "Pawlikowski", "index": "285736" },
+      { "name": "Danek", "surname": "Dundersztyc", "index": "260937" },
+      { "name": "Agnieszka", "surname": "Aleks", "index": "234875" }
     ],
-    "adminID": "260937"
+    "adminIndex": "260937",
+    "lecturer": { "name": "Janusz", "surname": "Kowalski", "title": "dr. inż" }
   },
-  { "id": "Z04", "subject": "<brak tematu>", "members": [], "adminID": "" },
-  { "id": "Z05", "subject": "aplikacja webowa", "members": [], "adminID": "" },
-  { "id": "Z06", "subject": "<brak tematu>", "members": [], "adminID": "" },
-  { "id": "Z07", "subject": "<brak tematu>", "members": [], "adminID": "" },
-  { "id": "Z08", "subject": "aplikacja mobilna", "members": [], "adminID": "" },
-  { "id": "Z09", "subject": "<brak tematu>", "members": [], "adminID": "" },
-  { "id": "Z10", "subject": "aplikacja webowa", "members": [], "adminID": "" },
-  { "id": "Z11", "subject": "<brak tematu>", "members": [], "adminID": "" },
-  { "id": "Z12", "subject": "<brak tematu>", "members": [], "adminID": "" },
-  { "id": "Z13", "subject": "aplikacja mobilna", "members": [], "adminID": "" },
-  { "id": "Z14", "subject": "<brak tematu>", "members": [], "adminID": "" },
-  { "id": "Z15", "subject": "aplikacja webowa", "members": [], "adminID": "" },
-  { "id": "Z16", "subject": "<brak tematu>", "members": [], "adminID": "" },
-  { "id": "Z17", "subject": "<brak tematu>", "members": [], "adminID": "" },
-  { "id": "Z18", "subject": "aplikacja mobilna", "members": [], "adminID": "" },
-  { "id": "Z19", "subject": "<brak tematu>", "members": [], "adminID": "" },
-  { "id": "Z20", "subject": "aplikacja webowa", "members": [], "adminID": "" },
-  { "id": "Z21", "subject": "<brak tematu>", "members": [], "adminID": "" },
-  { "id": "Z22", "subject": "<brak tematu>", "members": [], "adminID": "" },
-  { "id": "Z23", "subject": "aplikacja mobilna", "members": [], "adminID": "" },
-  { "id": "Z24", "subject": "<brak tematu>", "members": [], "adminID": "" },
-  { "id": "Z25", "subject": "aplikacja webowa", "members": [], "adminID": "" },
-  { "id": "Z26", "subject": "<brak tematu>", "members": [], "adminID": "" },
-  { "id": "Z27", "subject": "<brak tematu>", "members": [], "adminID": "" },
-  { "id": "Z28", "subject": "aplikacja mobilna", "members": [], "adminID": "" },
-  { "id": "Z29", "subject": "<brak tematu>", "members": [], "adminID": "" },
-  { "id": "Z30", "subject": "aplikacja webowa", "members": [], "adminID": "" }
+  { "id": "Z04", "topic": "unknown", "subject": "<brak tematu>", "members": [], "adminIndex": "", "lecturer": "" },
+  {
+    "id": "Z05",
+    "topic": "aplikacja webowa",
+    "subject": "System do zarządzania zagrodą kurczaków",
+    "members": [],
+    "adminIndex": "",
+    "lecturer": { "name": "Paweł", "surname": "Piotrowski", "title": "prof. dr hab inż" }
+  },
+  { "id": "Z06", "topic": "unknown", "subject": "<brak tematu>", "members": [], "adminIndex": "", "lecturer": "" },
+  { "id": "Z07", "topic": "unknown", "subject": "<brak tematu>", "members": [], "adminIndex": "", "lecturer": "" },
+  {
+    "id": "Z08",
+    "topic": "aplikacja mobilna",
+    "subject": "Aplikacja do śledzenia znajomych",
+    "members": [],
+    "adminIndex": "",
+    "lecturer": { "name": "Janusz", "surname": "Kowalski", "title": "dr. inż" }
+  },
+  { "id": "Z09", "topic": "unknown", "subject": "<brak tematu>", "members": [], "adminIndex": "", "lecturer": "" },
+  {
+    "id": "Z10",
+    "topic": "aplikacja webowa",
+    "subject": "Gdzie zjesc obiad za darmo",
+    "members": [],
+    "adminIndex": "",
+    "lecturer": { "name": "Janusz", "surname": "Kowalski", "title": "dr. inż" }
+  },
+  { "id": "Z11", "topic": "unknown", "subject": "<brak tematu>", "members": [], "adminIndex": "", "lecturer": "" },
+  { "id": "Z12", "topic": "unknown", "subject": "<brak tematu>", "members": [], "adminIndex": "", "lecturer": "" },
+  { "id": "Z13", "topic": "aplikacja mobilna", "subject": "fiszki", "members": [], "adminIndex": "", "lecturer": "" },
+  { "id": "Z14", "topic": "unknown", "subject": "<brak tematu>", "members": [], "adminIndex": "", "lecturer": "" },
+  {
+    "id": "Z15",
+    "topic": "aplikacja webowa",
+    "subject": "Crowd meter",
+    "members": [],
+    "adminIndex": "",
+    "lecturer": { "name": "Urszula", "surname": "Dębkowska", "title": "mgr. inż" }
+  },
+  { "id": "Z16", "topic": "unknown", "subject": "<brak tematu>", "members": [], "adminIndex": "", "lecturer": "" },
+  { "id": "Z17", "topic": "unknown", "subject": "<brak tematu>", "members": [], "adminIndex": "", "lecturer": "" },
+  { "id": "Z18", "topic": "aplikacja mobilna", "subject": "PWr info", "members": [], "adminIndex": "", "lecturer": "" },
+  { "id": "Z19", "topic": "unknown", "subject": "<brak tematu>", "members": [], "adminIndex": "", "lecturer": "" },
+  {
+    "id": "Z20",
+    "topic": "aplikacja webowa",
+    "subject": "Ile dni do końca świata",
+    "members": [],
+    "adminIndex": "",
+    "lecturer": { "name": "Paweł", "surname": "Piotrowski", "title": "prof. dr hab inż" }
+  },
+  { "id": "Z21", "topic": "unknown", "subject": "<brak tematu>", "members": [], "adminIndex": "", "lecturer": "" },
+  { "id": "Z22", "topic": "unknown", "subject": "<brak tematu>", "members": [], "adminIndex": "", "lecturer": "" },
+  { "id": "Z23", "topic": "aplikacja mobilna", "subject": "organizer życia", "members": [], "adminIndex": "", "lecturer": "" },
+  { "id": "Z24", "topic": "unknown", "subject": "<brak tematu>", "members": [], "adminIndex": "", "lecturer": "" },
+  {
+    "id": "Z25",
+    "topic": "aplikacja webowa",
+    "subject": "Miernik pozostałych dni życia",
+    "members": [],
+    "adminIndex": "",
+    "lecturer": { "name": "Urszula", "surname": "Dębkowska", "title": "mgr. inż" }
+  },
+  { "id": "Z26", "topic": "unknown", "subject": "<brak tematu>", "members": [], "adminIndex": "", "lecturer": "" },
+  { "id": "Z27", "topic": "unknown", "subject": "<brak tematu>", "members": [], "adminIndex": "", "lecturer": "" },
+  { "id": "Z28", "topic": "aplikacja mobilna", "subject": "", "members": [], "adminIndex": "", "lecturer": "" },
+  { "id": "Z29", "topic": "unknown", "subject": "<brak tematu>", "members": [], "adminIndex": "", "lecturer": "" },
+  {
+    "id": "Z30",
+    "topic": "aplikacja webowa",
+    "subject": "Gra 3D",
+    "members": [],
+    "adminIndex": "",
+    "lecturer": { "name": "Paweł", "surname": "Piotrowski", "title": "prof. dr hab inż" }
+  }
 ]

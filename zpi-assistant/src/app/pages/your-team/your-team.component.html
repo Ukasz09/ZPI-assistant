@@ -1,9 +1,9 @@
-<div class="w-75 mt-3">
-  <div class="py-4 mx-4">
+<div *ngIf="dataReady; else dataNotYetFetchedTemplate" class="py-4 mx-4">
+  <div class="w-75 mt-3">
     <!-- ----------------------- Subject type ---------------------- -->
     <div class="row mx-0">
       <div class="col-md-6 py-2 h5 bg-success rounded text-center text-light font-weight-bold w-50" style="font-size: 1.3em">
-        Aplikacja mobilna
+        {{ topicText | titlecase }}
       </div>
       <div class="col-md-3">
         <button class="btn btn-block btn-outline-danger">Usuń zepół</button>
@@ -11,14 +11,18 @@
     </div>
     <!-- ----------------------- Subject ---------------------- -->
     <div class="row mx-0">
-      <div class="col-md-6 py-2 text-dark bg-light rounded text-center"><i>"Super pralka"</i></div>
+      <div class="col-md-6 py-2 text-dark bg-light rounded text-center">
+        <i>{{ subjectText | titlecase }}</i>
+      </div>
       <div class="col-md-3">
         <button class="btn btn-dark btn-block">Edytuj temat</button>
       </div>
     </div>
     <!-- ----------------------- Lecturer ---------------------- -->
     <div class="row mx-0">
-      <div class="col-md-6 py-2 text-center mb-5 text-dark bg-light" style="font-size: 0.95em">prof Janusz Kogut</div>
+      <div class="col-md-6 py-2 text-center mb-5 text-dark bg-light" style="font-size: 0.95em">
+        {{ lecturerInfoText | titlecase }}
+      </div>
       <div class="col-md-3">
         <button class="btn btn-dark btn-block">Edytuj opiekuna</button>
       </div>
@@ -36,12 +40,33 @@
         <div class="text-left align-middle align-items-center d-flex text-truncate ml-3">
           <span class="mx-1">{{ member.name }}</span>
           <span class="mx-1">{{ member.surname }},</span>
-          <span class="mx-1">{{ member.indexNumber }}</span>
+          <span class="mx-1">{{ member.index }}</span>
         </div>
-        <div *ngIf="member.indexNumber == team.adminIndex" class="d-flex flex-fill justify-content-end mr-1">
+        <div *ngIf="member.index == team.adminIndex" class="d-flex flex-fill justify-content-end mr-1">
           <div class="badge badge-success align-items-center d-flex" style="font-size: 0.7em">Administrator</div>
         </div>
       </div>
     </div>
   </div>
 </div>
+
+<!-- ----------------------- TEMPLATES ---------------------- -->
+<ng-template #dataNotYetFetchedTemplate>
+  <ng-container *ngIf="httpError !== undefined; else dataLoadingTemplate">
+    <div class="w-50 py-5 mx-auto d-flex h-100">
+      <div class="mx-auto w-75">
+        <app-error-response
+          [errorCode]="httpError.statusCode"
+          [errorText]="httpError.msg"
+          errorCodeFontSize="3em"
+          errorTextFontSize="1em"
+        >
+        </app-error-response>
+      </div>
+    </div>
+  </ng-container>
+</ng-template>
+
+<ng-template #dataLoadingTemplate>
+  <app-data-loading text="Loading data"></app-data-loading>
+</ng-template>

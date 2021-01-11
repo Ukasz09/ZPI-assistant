@@ -14,4 +14,11 @@ export class StudentsService {
     const URL = 'assets/mocks/students.json';
     return this.http.get<StudentSchema[]>(URL);
   }
+
+  getStudent(studentIndex: string): Observable<StudentSchema> {
+    // const URL = environment.API_URL + Slugs.STUDENT;
+    // const ENDPOINT = URL.replace('{id}',studentIndex);
+    const URL = 'assets/mocks/student.json';
+    return this.http.get<StudentSchema>(URL);
+  }
 }
