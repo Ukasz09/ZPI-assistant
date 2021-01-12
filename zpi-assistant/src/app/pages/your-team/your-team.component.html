@@ -6,7 +6,13 @@
         {{ topicText | titlecase }}
       </div>
       <div class="col-md-3">
-        <button *ngIf="userIsTeamAdmin" class="btn btn-block btn-outline-danger">Usuń zespół</button>
+        <button
+          *ngIf="userIsTeamAdmin"
+          class="btn btn-block btn-outline-danger"
+          (click)="openModal(confirmRemovingByPasswordTemplate)"
+        >
+          Usuń zespół
+        </button>
       </div>
     </div>
     <!-- ----------------------- Subject ---------------------- -->
@@ -123,8 +129,27 @@
   </app-modal-response>
 </ng-template>
 
+<ng-template #confirmRemovingByPasswordTemplate>
+  <app-modal-response type="dark" headerText="Potwierdź usunięcie całego zespołu" [textLines]="['Potwierdz operację - podaj hasło:']">
+    <div class="input-group mt-3">
+      <div class="input-group-prepend">
+        <div class="input-group-text">Hasło</div>
+      </div>
+      <input type="password" class="form-control" [formControl]="passwordControl" #inputBox />
+      <button type="submit" class="btn btn-success" [disabled]="passwordControl.invalid" (click)="removeTeam()">Potwierdź</button>
+    </div>
+    <alert type="danger" *ngIf="showIncorrectPasswordAlert">Podano nieprawidłowe hasło - spróbuj ponownie</alert>
+  </app-modal-response>
+</ng-template>
+
 <ng-template #successfulLeftFromTeamTemplate>
   <app-modal-response type="success" headerText="Pomyślnie wypisano z zespołu" [textLines]="['Pomyślnie wypisano Cię z zespołu']">
+    <button class="btn btn-sm btn-outline-success w-25 mt-3" (click)="modalRef.hide()">OK</button>
+  </app-modal-response>
+</ng-template>
+
+<ng-template #successfulRemoveTeamTemplate>
+  <app-modal-response type="success" headerText="Pomyślnie usunięto z zespołu" [textLines]="['Twój zespół został pomyślnie usunięty']">
     <button class="btn btn-sm btn-outline-success w-25 mt-3" (click)="modalRef.hide()">OK</button>
   </app-modal-response>
 </ng-template>

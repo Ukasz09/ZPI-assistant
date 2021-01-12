@@ -57,7 +57,14 @@ export class TeamsService {
     // return this.http.put(url, {});
 
     return new BehaviorSubject({});
-    return this.errorResponse({ id: ErrorResponseType.INCORRECT_PASSWORD });
+  }
+
+  removeTeam(teamId: string): Observable<any> {
+    // const rawSlug = '/teams/removeTeam?teamId={teamId}';
+    // const slug = rawSlug.replace('{teamId}', teamId);
+    // const url = environment.API_URL + slug;
+    // return this.http.put(url, {});
+    return new BehaviorSubject({});
   }
 
   /* ------------------------------------------- TMP ------------------------------------------- */

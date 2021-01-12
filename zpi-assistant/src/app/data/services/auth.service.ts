@@ -1,7 +1,8 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, throwError } from 'rxjs';
 import { AccountTypes } from 'src/app/shared/logic/account-types';
+import { ErrorResponseType } from 'src/app/shared/logic/error-response-types';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -31,5 +32,16 @@ export class AuthService {
     // const url = environment.API_URL + slug;
     // return this.http.get<{ accountType: AccountTypes }>(url);
     return new BehaviorSubject({ accountType: AccountTypes.STUDENT });
+    // return this.errorResponse({ id: ErrorResponseType.INCORRECT_PASSWORD });
+  }
+
+  /* ------------------------------------------- TMP ------------------------------------------- */
+  private errorResponse<T>(errorObj: any, statusCode?: number, msg?: string): Observable<T> {
+    const error = new HttpErrorResponse({
+      error: errorObj,
+      status: statusCode ?? 404,
+      statusText: msg,
+    });
+    return throwError(error) as any;
   }
 }

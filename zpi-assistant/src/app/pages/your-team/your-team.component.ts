@@ -18,6 +18,7 @@ import { AlertsService } from 'src/app/shared/services/alert.service';
   styleUrls: ['./your-team.component.scss'],
 })
 export class YourTeamComponent implements OnInit {
+  @ViewChild('successfulRemoveTeamTemplate') successfulRemoveTeamTemplate: TemplateRef<any>;
   @ViewChild('successfulLeftFromTeamTemplate') successfulLeftFromTeamTemplate: TemplateRef<any>;
   @ViewChild('otherErrorTemplate') otherErrorTemplate: TemplateRef<any>;
   @Input() teamId: string;
@@ -113,13 +114,55 @@ export class YourTeamComponent implements OnInit {
 
   leaveTeam(): void {
     const studentEmail = this.authService.userEmail;
-    this.teamsService.leaveTeam(this.teamId, studentEmail).subscribe(
+    this.authService.confirmPassword(studentEmail, this.passwordControl.value).subscribe(
       (_) => {
-        this.showIncorrectPasswordAlert = false;
-        this.initPasswordControl();
-        this.modalRef.hide();
-        this.router.navigateByUrl('/teams');
-        this.openModal(this.successfulLeftFromTeamTemplate);
+        this.teamsService.leaveTeam(this.teamId, studentEmail).subscribe(
+          (_) => {
+            this.showIncorrectPasswordAlert = false;
+            this.initPasswordControl();
+            this.modalRef.hide();
+            this.router.navigateByUrl('/teams');
+            this.openModal(this.successfulLeftFromTeamTemplate);
+          },
+          (err: HttpErrorResponse) => {
+            this.modalRef.hide();
+            this.showIncorrectPasswordAlert = false;
+            this.otherErrorTextLines = [err.message];
+            this.openModal(this.otherErrorTemplate);
+          }
+        );
+      },
+      (err: HttpErrorResponse) => {
+        this.showIncorrectPasswordAlert = true;
+        if (err.error.id !== ErrorResponseType.INCORRECT_PASSWORD) {
+          this.modalRef.hide();
+          this.showIncorrectPasswordAlert = false;
+          this.otherErrorTextLines = [err.message];
+          this.openModal(this.otherErrorTemplate);
+        }
+      }
+    );
+  }
+
+  removeTeam(): void {
+    const studentEmail = this.authService.userEmail;
+    this.authService.confirmPassword(studentEmail, this.passwordControl.value).subscribe(
+      (_) => {
+        this.teamsService.removeTeam(this.teamId).subscribe(
+          (_) => {
+            this.showIncorrectPasswordAlert = false;
+            this.initPasswordControl();
+            this.modalRef.hide();
+            this.router.navigateByUrl('/teams');
+            this.openModal(this.successfulRemoveTeamTemplate);
+          },
+          (err: HttpErrorResponse) => {
+            this.modalRef.hide();
+            this.showIncorrectPasswordAlert = false;
+            this.otherErrorTextLines = [err.message];
+            this.openModal(this.otherErrorTemplate);
+          }
+        );
       },
       (err: HttpErrorResponse) => {
         this.showIncorrectPasswordAlert = true;
