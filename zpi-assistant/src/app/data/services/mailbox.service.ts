@@ -25,4 +25,13 @@ export class MailboxService {
     // return this.http.get<Message[]>(url);
     return new BehaviorSubject({});
   }
+
+  deleteMessage(userId: string, msgId: string): Observable<any> {
+    // const rawSlug = '/mailbox?userId={useId}&msgId={msgId}';
+    // const slug = rawSlug.replace('{userId}', userId).replace('{msgId}', msgId);
+    // const url = environment.API_URL + slug;
+    // return this.http.delete<Message[]>(url);
+
+    return new BehaviorSubject({});
+  }
 }

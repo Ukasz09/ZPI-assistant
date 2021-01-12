@@ -18,6 +18,7 @@ export class MailboxComponent implements OnInit {
   @ViewChild('otherErrorTemplate') otherErrorTemplate: TemplateRef<any>;
   @ViewChild('teamJoinErrHasTeamTemplate') teamJoinErrHasTeamTemplate: TemplateRef<any>;
   @ViewChild('successTeamJoinTemplate') successTeamJoinTemplate: TemplateRef<any>;
+  @ViewChild('correctInvitationDismissTemplate') correctInvitationDismissTemplate: TemplateRef<any>;
 
   private successTeamJoinText = 'Pomyślnie dołączono do zespołu: {teamId}';
   private alreadyAMemberOfTeamText = 'Jesteś członkiem zespołu: {id}';
@@ -128,6 +129,20 @@ export class MailboxComponent implements OnInit {
         // this.onAcceptInvitation();
         this.modalRef.hide();
         this.onAcceptInvitationCorrectResponse('Z40'); //TODO: tmp
+      },
+      (err: HttpErrorResponse) => {
+        this.otherErrorText = err.message;
+        this.openModal(this.otherErrorTemplate);
+      }
+    );
+  }
+
+  dismissInvitation(): void {
+    this.modalRef.hide();
+    this.mailboxService.deleteMessage(this.authService.userId, this.actualDisplayedMsg.id).subscribe(
+      (response) => {
+        this.openModal(this.correctInvitationDismissTemplate);
+        this.fetchMails();
       },
       (err: HttpErrorResponse) => {
         this.otherErrorText = err.message;

@@ -44,7 +44,7 @@
           <!-- ----------------------- Buttons ---------------------- -->
           <div class="card-body btn-group">
             <ng-container *ngIf="actualDisplayedMsgIsInvitation; else sendMessageBtn">
-              <button class="btn btn-danger">Odrzuć zaproszenie</button>
+              <button class="btn btn-danger" (click)="openModal(confirmInvitationDismissTemplate)">Odrzuć zaproszenie</button>
               <button class="btn btn-success" (click)="onAcceptInvitation()">Akceptuj zaproszenie</button>
             </ng-container>
             <ng-template #sendMessageBtn>
@@ -120,5 +120,24 @@
 <ng-template #otherErrorTemplate>
   <app-modal-response type="danger" headerText="Błąd podczas dołączania do zespołu" [textLines]="otherErrorText">
     <button class="btn btn-sm btn-outline-danger w-25 mt-3" (click)="modalRef.hide()">OK</button>
+  </app-modal-response>
+</ng-template>
+
+<ng-template #confirmInvitationDismissTemplate>
+  <app-modal-response type="dark" headerText="Czy na pewno chcesz odrzucić to zaproszenie">
+    <div class="row justify-content-center d-flex">
+      <button class="btn btn-sm btn-outline-dark w-25 mt-3" (click)="modalRef.hide()">Nie</button>
+      <button class="btn btn-sm btn-outline-danger w-25 mt-3" (click)="dismissInvitation()">Tak</button>
+    </div>
+  </app-modal-response>
+</ng-template>
+
+<ng-template #correctInvitationDismissTemplate>
+  <app-modal-response
+    type="success"
+    headerText="Pomyślnie usunięto zaproszenie"
+    [textLines]="['Zaproszenie dotyczące dołaczenia do zespołu zostało poprawnie usunięte']"
+  >
+    <button class="btn btn-sm btn-outline-success w-25 mt-3" (click)="modalRef.hide()">OK</button>
   </app-modal-response>
 </ng-template>
