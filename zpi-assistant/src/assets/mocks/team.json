@@ -3,10 +3,10 @@
   "topic": "aplikacja mobilna",
   "subject": "Pogodynka Express",
   "members": [
-    { "name": "Paweł", "surname": "Pawlikowski", "index": "285736", "teamId": "Z03" },
-    { "name": "Danek", "surname": "Dundersztyc", "index": "260937", "teamId": "Z03" },
-    { "name": "Agnieszka", "surname": "Aleks", "index": "234875", "teamId": "Z03" }
+    { "name": "Paweł", "surname": "Pawlikowski", "email": "pawel.pawlikowski@pwr.edu.pl", "index": "285736", "teamId": "Z03" },
+    { "name": "Danek", "surname": "Dundersztyc", "email": "danek.dundersztyc@pwr.edu.pl", "index": "260937", "teamId": "Z03" },
+    { "name": "Agnieszka", "surname": "Aleks", "email": "agnieszka.aleks@pwr.edu.pl", "index": "234875", "teamId": "Z03" }
   ],
-  "adminIndex": "260937",
-  "lecturer": { "id": 2, "name": "Anna", "surname": "Struś", "title": "prof." }
+  "adminEmail": "danek.dundersztyc@pwr.edu.pl",
+  "lecturer": { "id": "0", "name": "Janusz", "surname": "Kowalski", "email": "janusz.kowalski@pwr.edu.pl", "title": "dr. inż" }
 }

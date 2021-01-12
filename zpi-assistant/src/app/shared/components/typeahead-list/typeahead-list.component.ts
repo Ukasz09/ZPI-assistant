@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
+import { emit } from 'process';
 import { AuthService } from 'src/app/data/services/auth.service';
 
 @Component({
@@ -17,11 +18,11 @@ export class TypeaheadListComponent implements OnInit, OnChanges {
   @Input() addBtnText = 'Dodaj';
   @Input() addBtnVisible: boolean;
   @Input() msgBtnVisible: boolean;
-  @Input() idFieldName: string;
 
   @Output() messageBtnClick = new EventEmitter<object>();
   @Output() addBtnClick = new EventEmitter<object>();
 
+  modelIdFieldName = 'email';
   filteredModelsList: object[] = [];
   private _searchFilter = '';
 
@@ -72,8 +73,8 @@ export class TypeaheadListComponent implements OnInit, OnChanges {
     return true;
   }
 
-  otherThanActualUser(id: string): boolean {
-    return this.authService.userId !== id;
+  otherThanActualUser(email: string): boolean {
+    return this.authService.userEmail !== email;
   }
 
   get userIsLogged(): boolean {

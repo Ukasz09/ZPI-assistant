@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { HomeComponent } from './pages/home/home.component';
 import { MailboxComponent } from './pages/mailbox/mailbox.component';
 import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
 import { StudentsComponent } from './pages/students/students.component';
@@ -10,7 +9,6 @@ import { YourTeamComponent } from './pages/your-team/your-team.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'teams', pathMatch: 'full' },
-  { path: 'home', component: HomeComponent },
   { path: 'teams', component: TeamsComponent },
   { path: 'teams/your-team', component: YourTeamComponent },
   { path: 'teachers', component: TeachersComponent },

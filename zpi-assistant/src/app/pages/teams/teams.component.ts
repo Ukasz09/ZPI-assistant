@@ -1,12 +1,13 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
-import { ErrorResponseType } from 'src/app/data/schema/error-response-types';
+import { ErrorResponseType } from 'src/app/shared/logic/error-response-types';
 import { AuthService } from 'src/app/data/services/auth.service';
 import { StudentsService } from 'src/app/data/services/students.service';
 import { TeamsService } from 'src/app/data/services/teams.service';
 import { AccountTypes } from 'src/app/shared/logic/account-types';
 import { TeamsListPanelComponent } from './teams-list-panel/teams-list-panel.component';
+import { AlertsService } from 'src/app/shared/services/alert.service';
 
 @Component({
   selector: 'app-teams',
@@ -30,7 +31,8 @@ export class TeamsComponent implements OnInit {
     private modalService: BsModalService,
     private teamsService: TeamsService,
     private authService: AuthService,
-    private studentService: StudentsService
+    private studentService: StudentsService,
+    private alertService: AlertsService
   ) {}
 
   ngOnInit(): void {}
@@ -72,7 +74,7 @@ export class TeamsComponent implements OnInit {
   }
 
   leaveTeam(): void {
-    this.studentService.leaveTeam(this.authService.userId).subscribe(
+    this.studentService.leaveTeam(this.authService.userEmail).subscribe(
       (_) => {
         // this.onCreateTeamClick();
         this.modalRef.hide();
@@ -87,5 +89,12 @@ export class TeamsComponent implements OnInit {
 
   get actionButtonsVisible(): boolean {
     return this.authService.userIsLogged && this.authService.userAccountType === AccountTypes.STUDENT;
+  }
+
+  showNotImplementedError(): void {
+    const id = 'notImplemented';
+    if (!this.alertService.contain(id)) {
+      this.alertService.error('Functionality not implemented!', id);
+    }
   }
 }

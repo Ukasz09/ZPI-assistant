@@ -59,7 +59,7 @@ export class TeachersComponent implements OnInit {
   }
 
   private initTeamIdOfLoggedUser(): void {
-    this.studentService.getStudent(this.authService.userId).subscribe(
+    this.studentService.getStudent(this.authService.userEmail).subscribe(
       (response: StudentSchema) => {
         this.teamIdOfLoggedUser = response.teamId;
       },
@@ -110,5 +110,12 @@ export class TeachersComponent implements OnInit {
 
   openModal(template: TemplateRef<any>): void {
     this.modalRef = this.modalService.show(template);
+  }
+
+  showNotImplementedError(): void {
+    const id = 'notImplemented';
+    if (!this.alertsService.contain(id)) {
+      this.alertsService.error('Functionality not implemented!', id);
+    }
   }
 }

@@ -56,7 +56,7 @@ export class StudentsComponent implements OnInit {
   }
 
   private initTeamIdOfLoggedUser(): void {
-    this.studentsService.getStudent(this.authService.userId).subscribe(
+    this.studentsService.getStudent(this.authService.userEmail).subscribe(
       (response: StudentSchema) => {
         this.teamIdOfLoggedUser = response.teamId;
       },
@@ -105,5 +105,12 @@ export class StudentsComponent implements OnInit {
 
   openModal(template: TemplateRef<any>): void {
     this.modalRef = this.modalService.show(template);
+  }
+
+  showNotImplementedError(): void {
+    const id = 'notImplemented';
+    if (!this.alertsService.contain(id)) {
+      this.alertsService.error('Functionality not implemented!', id);
+    }
   }
 }

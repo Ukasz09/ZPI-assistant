@@ -1,13 +1,14 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
-import { ErrorResponseType } from 'src/app/data/schema/error-response-types';
+import { ErrorResponseType } from 'src/app/shared/logic/error-response-types';
 import { Message } from 'src/app/data/schema/mailbox-message';
 import { AuthService } from 'src/app/data/services/auth.service';
 import { MailboxService } from 'src/app/data/services/mailbox.service';
 import { StudentsService } from 'src/app/data/services/students.service';
 import { MessageTypes } from 'src/app/shared/logic/message-types';
 import { AlertsService } from 'src/app/shared/services/alert.service';
+import { NavbarService } from 'src/app/shared/services/navbar.service';
 
 @Component({
   selector: 'app-mailbox',
@@ -37,7 +38,8 @@ export class MailboxComponent implements OnInit {
     private authService: AuthService,
     private alertService: AlertsService,
     private studentService: StudentsService,
-    private modalService: BsModalService
+    private modalService: BsModalService,
+    private navbarService: NavbarService
   ) {}
 
   ngOnInit(): void {
@@ -45,8 +47,8 @@ export class MailboxComponent implements OnInit {
   }
 
   private fetchMails(): void {
-    const userId = this.authService.userId;
-    this.mailboxService.getMessages(userId).subscribe(
+    const userEmail = this.authService.userEmail;
+    this.mailboxService.getMessages(userEmail).subscribe(
       (data: Message[]) => {
         this.mails = data;
         if (this.mails.length > 0) {
@@ -76,10 +78,11 @@ export class MailboxComponent implements OnInit {
 
   private changeIsReadStateOfMsg(message: Message): void {
     message.isRead = true;
-    this.mailboxService.updateMessage(this.authService.userId, message.id).subscribe(
-      (_) => this.authService.updateUnreadMsgQty(),
+    this.mailboxService.updateMessage(this.authService.userEmail, message).subscribe(
+      (_) => this.navbarService.updateUnreadMsgQty(this.authService.userEmail),
       (err: HttpErrorResponse) => {
         this.alertService.error('Update message status failed');
+        throw err;
       }
     );
   }
@@ -89,7 +92,7 @@ export class MailboxComponent implements OnInit {
   }
 
   onAcceptInvitation(): void {
-    this.studentService.acceptInvitation(this.authService.userId, this.actualDisplayedMsg.id).subscribe(
+    this.studentService.acceptInvitation(this.authService.userEmail, this.actualDisplayedMsg.id).subscribe(
       (response: { teamId: string }) => {
         this.onAcceptInvitationCorrectResponse(response.teamId);
       },
@@ -124,7 +127,7 @@ export class MailboxComponent implements OnInit {
   }
 
   leaveTeam(): void {
-    this.studentService.leaveTeam(this.authService.userId).subscribe(
+    this.studentService.leaveTeam(this.authService.userEmail).subscribe(
       (_) => {
         // this.onAcceptInvitation();
         this.modalRef.hide();
@@ -139,8 +142,8 @@ export class MailboxComponent implements OnInit {
 
   dismissInvitation(): void {
     this.modalRef.hide();
-    this.mailboxService.deleteMessage(this.authService.userId, this.actualDisplayedMsg.id).subscribe(
-      (response) => {
+    this.mailboxService.deleteMessage(this.authService.userEmail, this.actualDisplayedMsg.id).subscribe(
+      () => {
         this.openModal(this.correctInvitationDismissTemplate);
         this.fetchMails();
       },
@@ -149,5 +152,12 @@ export class MailboxComponent implements OnInit {
         this.openModal(this.otherErrorTemplate);
       }
     );
+  }
+
+  showNotImplementedError(): void {
+    const id = 'notImplemented';
+    if (!this.alertService.contain(id)) {
+      this.alertService.error('Functionality not implemented!', id);
+    }
   }
 }

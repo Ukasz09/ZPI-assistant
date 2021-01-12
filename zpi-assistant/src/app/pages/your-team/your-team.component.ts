@@ -1,5 +1,8 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import { FormControl, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { StudentSchema } from 'src/app/data/schema/student';
 import { TeamSchema } from 'src/app/data/schema/team';
 import { AuthService } from 'src/app/data/services/auth.service';
@@ -13,20 +16,30 @@ import { TeamConstants } from 'src/app/shared/logic/team-consts';
   styleUrls: ['./your-team.component.scss'],
 })
 export class YourTeamComponent implements OnInit {
+  @ViewChild('successfulLeftFromTeamTemplate') successfulLeftFromTeamTemplate: TemplateRef<any>;
   @Input() teamId: string;
 
+  modalRef: BsModalRef;
   team: TeamSchema;
   dataReady: boolean;
   httpError: { statusCode: number; msg: string };
+  passwordControl: FormControl;
 
-  constructor(private teamsService: TeamsService, private authService: AuthService, private studentService: StudentsService) {}
+  constructor(
+    private router: Router,
+    private teamsService: TeamsService,
+    private authService: AuthService,
+    private studentService: StudentsService,
+    private modalService: BsModalService
+  ) {}
 
   ngOnInit(): void {
     this.fetchData();
+    this.passwordControl = new FormControl('', [Validators.required, Validators.minLength(4)]);
   }
 
   private fetchData(): void {
-    const studentId = this.authService.userId;
+    const studentId = this.authService.userEmail;
     this.studentService.getStudent(studentId).subscribe(
       (data: StudentSchema) => {
         this.fetchTeam(data.teamId);
@@ -40,7 +53,7 @@ export class YourTeamComponent implements OnInit {
   }
 
   private fetchTeam(teamId: string): void {
-    this.teamsService.getTeam(this.authService.userId).subscribe(
+    this.teamsService.getTeam(this.authService.userEmail).subscribe(
       (data: TeamSchema) => {
         this.team = data;
         this.dataReady = true;
@@ -77,10 +90,29 @@ export class YourTeamComponent implements OnInit {
   }
 
   get userIsTeamAdmin(): boolean {
-    return this.authService.userId === this.team.adminIndex;
+    return this.authService.userEmail === this.team.adminEmail;
   }
 
-  get loggedUserId(): string {
-    return this.authService.userId;
+  get loggedUserEmail(): string {
+    return this.authService.userEmail;
+  }
+
+  openModal(template: TemplateRef<any>): void {
+    this.modalRef = this.modalService.show(template);
+  }
+
+  onConfirmTeamLeavingClick() {} //TODO:
+
+  leaveTeam(): void {
+    this.modalRef.hide();
+    const studentEmail = this.authService.userEmail;
+    this.teamsService.leaveTeam(this.teamId, studentEmail).subscribe(
+      (_) => {
+        this.modalRef.hide();
+        this.router.navigateByUrl('/teams');
+        this.openModal(this.successfulLeftFromTeamTemplate);
+      },
+      (err: HttpErrorResponse) => {}
+    );
   }
 }

@@ -7,7 +7,7 @@ export class TeamSchema {
     public topic: string,
     public subject: string,
     public members: StudentSchema[],
-    public adminIndex: string,
+    public adminEmail: string,
     public lecturer: TeacherSchema
   ) {}
 }

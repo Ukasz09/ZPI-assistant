@@ -38,9 +38,19 @@
     <div class="row mx-0">
       <div class="col-md-6 py-2 text-light bg-dark rounded text-center">Członkowie zespołu</div>
       <div class="col-md-3">
-        <button *ngIf="userIsTeamAdmin" class="btn btn-success btn-block" [disabled]="maxNumberOfTeamsMembers" routerLink="/students">
+        <button
+          *ngIf="userIsTeamAdmin; else leaveFromTeamBtnTemplate"
+          class="btn btn-success btn-block"
+          [disabled]="maxNumberOfTeamsMembers"
+          routerLink="/students"
+        >
           Dodaj studentów
         </button>
+        <ng-template #leaveFromTeamBtnTemplate>
+          <button class="btn btn-outline-danger btn-block" (click)="openModal(confirmLeavingByPasswordTemplate)">
+            Wypisz z zespołu
+          </button>
+        </ng-template>
       </div>
     </div>
     <div *ngFor="let member of team.members" class="py-2 bg-light w-50 rounded border">
@@ -52,13 +62,17 @@
         </div>
         <div class="d-flex flex-fill justify-content-end mr-1">
           <div
-            *ngIf="member.index == team.adminIndex"
+            *ngIf="member.email == team.adminEmail"
             class="badge badge-success align-items-center d-flex mr-1"
             style="font-size: 0.7em"
           >
             Administrator
           </div>
-          <div *ngIf="member.index == loggedUserId" class="badge badge-dark align-items-center d-flex mr-1" style="font-size: 0.7em">
+          <div
+            *ngIf="member.email == loggedUserEmail"
+            class="badge badge-dark align-items-center d-flex mr-1"
+            style="font-size: 0.7em"
+          >
             Ty
           </div>
         </div>
@@ -86,4 +100,26 @@
 
 <ng-template #dataLoadingTemplate>
   <app-data-loading text="Loading data"></app-data-loading>
+</ng-template>
+
+<ng-template #confirmLeavingByPasswordTemplate>
+  <app-modal-response
+    type="dark"
+    headerText="Potwierdź chęć wypisania się z zespołu"
+    [textLines]="['Potwierdz operację - podaj hasło:']"
+  >
+    <div class="input-group mt-3">
+      <div class="input-group-prepend">
+        <div class="input-group-text">Hasło</div>
+      </div>
+      <input type="password" class="form-control" [formControl]="passwordControl" #inputBox />
+      <button type="submit" class="btn btn-success" [disabled]="passwordControl.invalid" (click)="leaveTeam()">Potwierdź</button>
+    </div>
+  </app-modal-response>
+</ng-template>
+<ng-template #successfulLeftFromTeamTemplate>
+  <app-modal-response type="success" headerText="Pomyślnie wypisano z zespołu" [textLines]="['Pomyślnie wypisano Cię z zespołu']">
+    <!-- <button class="btn btn-sm btn-outline-success w-25 mt-3" (click)="modalRef.hide()">OK</button> -->
+    <button class="btn btn-sm btn-outline-success w-25 mt-3" (click)="modalRef.hide()">OK</button>
+  </app-modal-response>
 </ng-template>

@@ -1,6 +1,8 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, throwError } from 'rxjs';
+import { ErrorResponseType } from 'src/app/shared/logic/error-response-types';
+import { MessageTypes } from 'src/app/shared/logic/message-types';
 import { environment } from 'src/environments/environment';
 import { TeamSchema } from '../schema/team';
 @Injectable({
@@ -10,9 +12,10 @@ export class TeamsService {
   constructor(private http: HttpClient) {}
 
   getAllTeams(): Observable<TeamSchema[]> {
-    // const URL = environment.API_URL + Slugs.ALL_TEAMS;
-    const URL = 'assets/mocks/teams.json';
-    return this.http.get<TeamSchema[]>(URL);
+    // const rawSlug = '/teams';
+    // const url = environment.API_URL + rawSlug;
+    const url = 'assets/mocks/teams.json';
+    return this.http.get<TeamSchema[]>(url);
   }
 
   getTeam(teamId = 'Z2'): Observable<TeamSchema> {
@@ -30,21 +33,29 @@ export class TeamsService {
 
     return this.putErrorResponse(
       {
-        id: 0,
+        id: ErrorResponseType.ERR_STUDENT_HAVE_TEAM,
         teamId: 'Z02',
       },
       403
     );
   }
 
-  addTeamLecturer(teamId: string, lecturerId: string): Observable<any> {
-    // let slug = '/teams/addLecturer?teamId={teamId}&lecturerId={lecturerId}';
-    // slug = slug.replace('{teamId}', teamId).replace('{lecturerId', lecturerId);
+  addTeamLecturer(teamId: string, email: string): Observable<any> {
+    // const rawSlug = '/teams/addLecturer?teamId={teamId}&email={email}';
+    // const slug = rawSlug.replace('{teamId}', teamId).replace('{email', email);
     // const endpoint = environment.API_URL + slug;
     // return this.http.get(endpoint);
 
     return new BehaviorSubject<any>({});
     // return this.putErrorResponse({});
+  }
+
+  leaveTeam(teamId: string, userEmail: string): Observable<any> {
+    // const rawSlug = '/teams/leaveTeam?teamId={teamId}&email={email}';
+    // const slug = rawSlug.replace('{teamId}', teamId).replace('{email}', userEmail);
+    // const endpoint = environment.API_URL + slug;
+    // return this.http.put(endpoint);
+    return new BehaviorSubject({});
   }
 
   /* ------------------------------------------- TMP ------------------------------------------- */

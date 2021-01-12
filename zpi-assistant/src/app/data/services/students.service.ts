@@ -17,24 +17,24 @@ export class StudentsService {
     return this.http.get<StudentSchema[]>(url);
   }
 
-  getStudent(studentIndex: string): Observable<StudentSchema> {
-    // const rawSlug = '/students/{id}';
-    // const slug = rawSlug.replace('{id}', studentIndex);
+  getStudent(userEmail: string): Observable<StudentSchema> {
+    // const rawSlug = '/students/{email}';
+    // const slug = rawSlug.replace('{email}', userEmail);
     // const url = environment.API_URL + rawSlug;
     const url = 'assets/mocks/student.json';
     return this.http.get<StudentSchema>(url);
   }
 
-  leaveTeam(studentIndex: string): Observable<any> {
-    // const rawSlug = '/students/leaveTeam?id={id}';
-    // const slug = rawSlug.replace('{id}', studentIndex);
+  leaveTeam(userEmail: string): Observable<any> {
+    // const rawSlug = '/students/leaveTeam?email={email}';
+    // const slug = rawSlug.replace('{email}',userEmail);
     // const url = environment.API_URL + rawSlug;
     return new BehaviorSubject<any>({});
   }
 
-  acceptInvitation(studentId: string, messageId: string): Observable<any> {
-    // const rawSlug = '/mailbox/accept?studentId={studentId}&messageId={messageId}';
-    // const slug = rawSlug.replace('{studentId', studentId).replace('{messageId}', messageId);
+  acceptInvitation(userEmail: string, messageId: string): Observable<any> {
+    // const rawSlug = '/mailbox/accept?email={email}&messageId={messageId}';
+    // const slug = rawSlug.replace('{email', email).replace('{messageId}', messageId);
     // const url = environment.API_URL + slug;
     // this.http.post(url, {});
     return new BehaviorSubject<any>({ teamId: 'Z03' });

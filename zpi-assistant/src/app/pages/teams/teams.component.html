@@ -6,7 +6,7 @@
   </div>
   <div class="col px-0" *ngIf="actionButtonsVisible">
     <button class="btn btn-dark btn-block my-1" id="create-team-btn" (click)="onCreateTeamClick()">Utwórz zespół</button>
-    <button class="btn btn-dark btn-block my-1" id="join-team-btn">Dołącz do zespołu</button>
+    <button class="btn btn-dark btn-block my-1" id="join-team-btn" (click)="showNotImplementedError()">Dołącz do zespołu</button>
     <button class="btn btn-success btn-block my-1" id="your-team-btn" routerLink="/teams/your-team">Twój zespół</button>
   </div>
 </div>

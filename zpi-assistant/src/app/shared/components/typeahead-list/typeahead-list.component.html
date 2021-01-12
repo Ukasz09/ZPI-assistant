@@ -17,7 +17,7 @@
                 <span *ngFor="let field of displayedFieldsFromModel" class="mx-1">{{ model[field] }}</span>
               </div>
               <div class="justify-content-end d-flex flex-fill">
-                <div *ngIf="otherThanActualUser(model[idFieldName]); else youBadge" class="btn-group">
+                <div *ngIf="otherThanActualUser(model[modelIdFieldName]); else youBadge" class="btn-group">
                   <button *ngIf="msgBtnVisible" class="btn btn-outline-secondary" (click)="messageBtnClick.emit(model)">
                     Wiadomość
                   </button>

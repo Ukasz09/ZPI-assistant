@@ -2,7 +2,9 @@
   "id": "Z03",
   "topic": "",
   "subject": "",
-  "members": [{ "name": "Paweł", "surname": "Pawlikowski", "index": "285736", "teamId": "Z03" }],
+  "members": [
+    { "name": "Paweł", "surname": "Pawlikowski", "email": "pawel.pawlikowski@pwr.edu.pl", "index": "285736", "teamId": "Z03" }
+  ],
   "adminIndex": "260937",
   "lecturer": {}
 }

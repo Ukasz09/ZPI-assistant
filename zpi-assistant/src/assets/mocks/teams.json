@@ -1,6 +1,6 @@
 [
-  { "id": "Z01", "topic": "", "subject": "", "members": [], "adminIndex": "", "lecturer": "" },
-  { "id": "Z02", "topic": "", "subject": "", "members": [], "adminIndex": "", "lecturer": "" },
+  { "id": "Z01", "topic": "", "subject": "", "members": [], "adminEmail": "", "lecturer": "" },
+  { "id": "Z02", "topic": "", "subject": "", "members": [], "adminEmail": "", "lecturer": "" },
   {
     "id": "Z03",
     "topic": "aplikacja mobilna",
@@ -10,83 +10,83 @@
       { "name": "Danek", "surname": "Dundersztyc", "index": "260937" },
       { "name": "Agnieszka", "surname": "Aleks", "index": "234875" }
     ],
-    "adminIndex": "260937",
-    "lecturer": { "id": "0", "name": "Janusz", "surname": "Kowalski", "title": "dr. inż" }
+    "adminEmail": "danek.dundersztyc@pwr.edu.pl",
+    "lecturer": { "id": "0", "name": "Janusz", "surname": "Kowalski", "email": "janusz.kowalski@pwr.edu.pl", "title": "dr. inż" }
   },
-  { "id": "Z04", "topic": "", "subject": "", "members": [], "adminIndex": "", "lecturer": "" },
+  { "id": "Z04", "topic": "", "subject": "", "members": [], "adminEmail": "", "lecturer": "" },
   {
     "id": "Z05",
     "topic": "aplikacja webowa",
     "subject": "System do zarządzania zagrodą kurczaków",
     "members": [],
-    "adminIndex": "",
-    "lecturer": { "id": "0", "name": "Paweł", "surname": "Piotrowski", "title": "prof. dr hab inż" }
+    "adminEmail": "",
+    "lecturer": { "id": "0", "name": "Janusz", "surname": "Kowalski", "email": "janusz.kowalski@pwr.edu.pl", "title": "dr. inż" }
   },
-  { "id": "Z06", "topic": "", "subject": "", "members": [], "adminIndex": "", "lecturer": "" },
-  { "id": "Z07", "topic": "", "subject": "", "members": [], "adminIndex": "", "lecturer": "" },
+  { "id": "Z06", "topic": "", "subject": "", "members": [], "adminEmail": "", "lecturer": "" },
+  { "id": "Z07", "topic": "", "subject": "", "members": [], "adminEmail": "", "lecturer": "" },
   {
     "id": "Z08",
     "topic": "aplikacja mobilna",
     "subject": "Aplikacja do śledzenia znajomych",
     "members": [],
-    "adminIndex": "",
-    "lecturer": { "id": "0", "name": "Janusz", "surname": "Kowalski", "title": "dr. inż" }
+    "adminEmail": "",
+    "lecturer": { "id": "0", "name": "Janusz", "surname": "Kowalski", "email": "janusz.kowalski@pwr.edu.pl", "title": "dr. inż" }
   },
-  { "id": "Z09", "topic": "", "subject": "", "members": [], "adminIndex": "", "lecturer": "" },
+  { "id": "Z09", "topic": "", "subject": "", "members": [], "adminEmail": "", "lecturer": "" },
   {
     "id": "Z10",
     "topic": "aplikacja webowa",
     "subject": "Gdzie zjesc obiad za darmo",
     "members": [],
-    "adminIndex": "",
-    "lecturer": { "id": "0", "name": "Janusz", "surname": "Kowalski", "title": "dr. inż" }
+    "adminEmail": "",
+    "lecturer": { "id": "0", "name": "Janusz", "surname": "Kowalski", "email": "janusz.kowalski@pwr.edu.pl", "title": "dr. inż" }
   },
-  { "id": "Z11", "topic": "", "subject": "", "members": [], "adminIndex": "", "lecturer": "" },
-  { "id": "Z12", "topic": "", "subject": "", "members": [], "adminIndex": "", "lecturer": "" },
-  { "id": "Z13", "topic": "aplikacja mobilna", "subject": "fiszki", "members": [], "adminIndex": "", "lecturer": "" },
-  { "id": "Z14", "topic": "", "subject": "", "members": [], "adminIndex": "", "lecturer": "" },
+  { "id": "Z11", "topic": "", "subject": "", "members": [], "adminEmail": "", "lecturer": "" },
+  { "id": "Z12", "topic": "", "subject": "", "members": [], "adminEmail": "", "lecturer": "" },
+  { "id": "Z13", "topic": "aplikacja mobilna", "subject": "fiszki", "members": [], "adminEmail": "", "lecturer": "" },
+  { "id": "Z14", "topic": "", "subject": "", "members": [], "adminEmail": "", "lecturer": "" },
   {
     "id": "Z15",
     "topic": "aplikacja webowa",
     "subject": "Crowd meter",
     "members": [],
-    "adminIndex": "",
-    "lecturer": { "id": "0", "name": "Urszula", "surname": "Dębkowska", "title": "mgr. inż" }
+    "adminEmail": "",
+    "lecturer": { "id": "0", "name": "Janusz", "surname": "Kowalski", "email": "janusz.kowalski@pwr.edu.pl", "title": "dr. inż" }
   },
-  { "id": "Z16", "topic": "", "subject": "", "members": [], "adminIndex": "", "lecturer": "" },
-  { "id": "Z17", "topic": "", "subject": "", "members": [], "adminIndex": "", "lecturer": "" },
-  { "id": "Z18", "topic": "aplikacja mobilna", "subject": "PWr info", "members": [], "adminIndex": "", "lecturer": "" },
-  { "id": "Z19", "topic": "", "subject": "", "members": [], "adminIndex": "", "lecturer": "" },
+  { "id": "Z16", "topic": "", "subject": "", "members": [], "adminEmail": "", "lecturer": "" },
+  { "id": "Z17", "topic": "", "subject": "", "members": [], "adminEmail": "", "lecturer": "" },
+  { "id": "Z18", "topic": "aplikacja mobilna", "subject": "PWr info", "members": [], "adminEmail": "", "lecturer": "" },
+  { "id": "Z19", "topic": "", "subject": "", "members": [], "adminEmail": "", "lecturer": "" },
   {
     "id": "Z20",
     "topic": "aplikacja webowa",
     "subject": "Ile dni do końca świata",
     "members": [],
-    "adminIndex": "",
-    "lecturer": { "id": "0", "name": "Paweł", "surname": "Piotrowski", "title": "prof. dr hab inż" }
+    "adminEmail": "",
+    "lecturer": { "id": "0", "name": "Janusz", "surname": "Kowalski", "email": "janusz.kowalski@pwr.edu.pl", "title": "dr. inż" }
   },
-  { "id": "Z21", "topic": "", "subject": "", "members": [], "adminIndex": "", "lecturer": "" },
-  { "id": "Z22", "topic": "", "subject": "", "members": [], "adminIndex": "", "lecturer": "" },
-  { "id": "Z23", "topic": "aplikacja mobilna", "subject": "organizer życia", "members": [], "adminIndex": "", "lecturer": "" },
-  { "id": "Z24", "topic": "", "subject": "", "members": [], "adminIndex": "", "lecturer": "" },
+  { "id": "Z21", "topic": "", "subject": "", "members": [], "adminEmail": "", "lecturer": "" },
+  { "id": "Z22", "topic": "", "subject": "", "members": [], "adminEmail": "", "lecturer": "" },
+  { "id": "Z23", "topic": "aplikacja mobilna", "subject": "organizer życia", "members": [], "adminEmail": "", "lecturer": "" },
+  { "id": "Z24", "topic": "", "subject": "", "members": [], "adminEmail": "", "lecturer": "" },
   {
     "id": "Z25",
     "topic": "aplikacja webowa",
     "subject": "Miernik pozostałych dni życia",
     "members": [],
-    "adminIndex": "",
-    "lecturer": { "id": "0", "name": "Urszula", "surname": "Dębkowska", "title": "mgr. inż" }
+    "adminEmail": "",
+    "lecturer": { "id": "0", "name": "Janusz", "surname": "Kowalski", "email": "janusz.kowalski@pwr.edu.pl", "title": "dr. inż" }
   },
-  { "id": "Z26", "topic": "", "subject": "", "members": [], "adminIndex": "", "lecturer": "" },
-  { "id": "Z27", "topic": "", "subject": "", "members": [], "adminIndex": "", "lecturer": "" },
-  { "id": "Z28", "topic": "aplikacja mobilna", "subject": "", "members": [], "adminIndex": "", "lecturer": "" },
-  { "id": "Z29", "topic": "", "subject": "", "members": [], "adminIndex": "", "lecturer": "" },
+  { "id": "Z26", "topic": "", "subject": "", "members": [], "adminEmail": "", "lecturer": "" },
+  { "id": "Z27", "topic": "", "subject": "", "members": [], "adminEmail": "", "lecturer": "" },
+  { "id": "Z28", "topic": "aplikacja mobilna", "subject": "", "members": [], "adminEmail": "", "lecturer": "" },
+  { "id": "Z29", "topic": "", "subject": "", "members": [], "adminEmail": "", "lecturer": "" },
   {
     "id": "Z30",
     "topic": "aplikacja webowa",
     "subject": "Gra 3D",
     "members": [],
-    "adminIndex": "",
-    "lecturer": { "id": "0", "name": "Paweł", "surname": "Piotrowski", "title": "prof. dr hab inż" }
+    "adminEmail": "",
+    "lecturer": { "id": "0", "name": "Janusz", "surname": "Kowalski", "email": "janusz.kowalski@pwr.edu.pl", "title": "dr. inż" }
   }
 ]

@@ -10,25 +10,25 @@ import { Message } from '../schema/mailbox-message';
 export class MailboxService {
   constructor(private http: HttpClient) {}
 
-  getMessages(userId: string): Observable<Message[]> {
-    // const rawSlug = '/mailbox?id={id}';
-    // const slug = rawSlug.replace('{id}', userId);
+  getMessages(userEmail: string): Observable<Message[]> {
+    // const rawSlug = '/mailbox?email={email}';
+    // const slug = rawSlug.replace('{email}', userEmail);
     // const url = environment.API_URL + rawSlug;
     const url = 'assets/mocks/mailbox.json';
     return this.http.get<Message[]>(url);
   }
 
-  updateMessage(userId: string, msgId: string): Observable<any> {
-    const rawSlug = '/mailbox?userId={useId}&msgId={msgId}';
-    const slug = rawSlug.replace('{userId}', userId).replace('{msgId}', msgId);
-    const url = environment.API_URL + slug;
-    // return this.http.get<Message[]>(url);
+  updateMessage(userEmail: string, message: Message): Observable<any> {
+    // const rawSlug = '/mailbox?email={email}&messageId={messageId}';
+    // const slug = rawSlug.replace('{email}', userEmail).replace('{messageId}', message.id);
+    // const url = environment.API_URL + slug;
+    // return this.http.put<Message[]>(url, message);
     return new BehaviorSubject({});
   }
 
-  deleteMessage(userId: string, msgId: string): Observable<any> {
-    // const rawSlug = '/mailbox?userId={useId}&msgId={msgId}';
-    // const slug = rawSlug.replace('{userId}', userId).replace('{msgId}', msgId);
+  deleteMessage(userEmail: string, messageId: string): Observable<any> {
+    // const rawSlug = '/mailbox?email={email}&messageId={messageId}';
+    // const slug = rawSlug.replace('{email}', userEmail).replace('{messageId}', messageId);
     // const url = environment.API_URL + slug;
     // return this.http.delete<Message[]>(url);
 

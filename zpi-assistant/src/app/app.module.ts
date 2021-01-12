@@ -4,7 +4,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NavbarComponent } from './shared/layouts/navbar/navbar.component';
-import { HomeComponent } from './pages/home/home.component';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { ButtonsModule } from 'ngx-bootstrap/buttons';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -28,7 +27,6 @@ import { AlertModule } from 'ngx-bootstrap/alert';
   declarations: [
     AppComponent,
     NavbarComponent,
-    HomeComponent,
     TeamsComponent,
     TeamsListPanelComponent,
     ErrorResponseComponent,
