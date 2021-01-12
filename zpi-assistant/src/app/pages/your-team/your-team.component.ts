@@ -8,6 +8,7 @@ import { TeamSchema } from 'src/app/data/schema/team';
 import { AuthService } from 'src/app/data/services/auth.service';
 import { StudentsService } from 'src/app/data/services/students.service';
 import { TeamsService } from 'src/app/data/services/teams.service';
+import { ErrorResponseType } from 'src/app/shared/logic/error-response-types';
 import { TeamConstants } from 'src/app/shared/logic/team-consts';
 
 @Component({
@@ -17,6 +18,7 @@ import { TeamConstants } from 'src/app/shared/logic/team-consts';
 })
 export class YourTeamComponent implements OnInit {
   @ViewChild('successfulLeftFromTeamTemplate') successfulLeftFromTeamTemplate: TemplateRef<any>;
+  @ViewChild('otherErrorTemplate') otherErrorTemplate: TemplateRef<any>;
   @Input() teamId: string;
 
   modalRef: BsModalRef;
@@ -24,6 +26,8 @@ export class YourTeamComponent implements OnInit {
   dataReady: boolean;
   httpError: { statusCode: number; msg: string };
   passwordControl: FormControl;
+  showIncorrectPasswordAlert = false;
+  otherErrorTextLines: string[];
 
   constructor(
     private router: Router,
@@ -35,6 +39,10 @@ export class YourTeamComponent implements OnInit {
 
   ngOnInit(): void {
     this.fetchData();
+    this.initPasswordControl();
+  }
+
+  private initPasswordControl(): void {
     this.passwordControl = new FormControl('', [Validators.required, Validators.minLength(4)]);
   }
 
@@ -101,18 +109,25 @@ export class YourTeamComponent implements OnInit {
     this.modalRef = this.modalService.show(template);
   }
 
-  onConfirmTeamLeavingClick() {} //TODO:
-
   leaveTeam(): void {
-    this.modalRef.hide();
     const studentEmail = this.authService.userEmail;
     this.teamsService.leaveTeam(this.teamId, studentEmail).subscribe(
       (_) => {
+        this.showIncorrectPasswordAlert = false;
+        this.initPasswordControl();
         this.modalRef.hide();
         this.router.navigateByUrl('/teams');
         this.openModal(this.successfulLeftFromTeamTemplate);
       },
-      (err: HttpErrorResponse) => {}
+      (err: HttpErrorResponse) => {
+        this.showIncorrectPasswordAlert = true;
+        if (err.error.id !== ErrorResponseType.INCORRECT_PASSWORD) {
+          this.modalRef.hide();
+          this.showIncorrectPasswordAlert = false;
+          this.otherErrorTextLines = [err.message];
+          this.openModal(this.otherErrorTemplate);
+        }
+      }
     );
   }
 }

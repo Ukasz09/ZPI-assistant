@@ -78,7 +78,7 @@ export class MailboxComponent implements OnInit {
 
   private changeIsReadStateOfMsg(message: Message): void {
     message.isRead = true;
-    this.mailboxService.updateMessage(this.authService.userEmail, message).subscribe(
+    this.mailboxService.markMessageAsReaded(this.authService.userEmail, message.id).subscribe(
       (_) => this.navbarService.updateUnreadMsgQty(this.authService.userEmail),
       (err: HttpErrorResponse) => {
         this.alertService.error('Update message status failed');

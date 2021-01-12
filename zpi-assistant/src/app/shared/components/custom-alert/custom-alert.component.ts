@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { AlertModel } from 'src/app/models/alert';
 import { AlertsService } from '../../services/alert.service';
 
@@ -8,7 +8,9 @@ import { AlertsService } from '../../services/alert.service';
   styleUrls: ['./custom-alert.component.scss'],
 })
 export class CustomAlertComponent {
-  constructor(public alertsService: AlertsService) {}
+  @Input() alert: AlertModel;
+
+  constructor(private alertsService: AlertsService) {}
 
   onAlertClose(alert: AlertModel): void {
     this.alertsService.remove(alert);

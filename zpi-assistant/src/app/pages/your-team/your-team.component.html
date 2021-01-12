@@ -115,11 +115,18 @@
       <input type="password" class="form-control" [formControl]="passwordControl" #inputBox />
       <button type="submit" class="btn btn-success" [disabled]="passwordControl.invalid" (click)="leaveTeam()">Potwierdź</button>
     </div>
+    <alert type="danger" *ngIf="showIncorrectPasswordAlert">Podano nieprawidłowe hasło - spróbuj ponownie</alert>
   </app-modal-response>
 </ng-template>
+
 <ng-template #successfulLeftFromTeamTemplate>
   <app-modal-response type="success" headerText="Pomyślnie wypisano z zespołu" [textLines]="['Pomyślnie wypisano Cię z zespołu']">
-    <!-- <button class="btn btn-sm btn-outline-success w-25 mt-3" (click)="modalRef.hide()">OK</button> -->
     <button class="btn btn-sm btn-outline-success w-25 mt-3" (click)="modalRef.hide()">OK</button>
+  </app-modal-response>
+</ng-template>
+
+<ng-template #otherErrorTemplate>
+  <app-modal-response type="danger" headerText="Błąd podczas tworzenia zespołu" [textLines]="otherErrorTextLines">
+    <button class="btn btn-sm btn-outline-danger w-25 mt-3" (click)="modalRef.hide()">OK</button>
   </app-modal-response>
 </ng-template>

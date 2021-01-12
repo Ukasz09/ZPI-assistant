@@ -18,11 +18,11 @@ export class MailboxService {
     return this.http.get<Message[]>(url);
   }
 
-  updateMessage(userEmail: string, message: Message): Observable<any> {
-    // const rawSlug = '/mailbox?email={email}&messageId={messageId}';
-    // const slug = rawSlug.replace('{email}', userEmail).replace('{messageId}', message.id);
+  markMessageAsReaded(userEmail: string, messageId: string): Observable<any> {
+    // const rawSlug = '/mailbox/markReaded?email={email}&messageId={messageId}';
+    // const slug = rawSlug.replace('{email}', userEmail).replace('{messageId}', messageId);
     // const url = environment.API_URL + slug;
-    // return this.http.put<Message[]>(url, message);
+    // return this.http.put<Message[]>(url, {});
     return new BehaviorSubject({});
   }
 

@@ -1,12 +1,10 @@
-<ng-container *ngFor="let alert of alertsService.alerts">
-  <div class="text-center font-weight-bold" [ngClass]="{ 'sticky-top': alert.sticky }">
-    <alert
-      [type]="alert.type"
-      [dismissible]="alert.dismissible"
-      [dismissOnTimeout]="alert.dismissTimeout"
-      (onClose)="onAlertClose(alert)"
-    >
-      {{ alert.message }}</alert
-    >
-  </div>
-</ng-container>
+<div class="text-center font-weight-bold" [ngClass]="{ 'sticky-top': alert.sticky }">
+  <alert
+    [type]="alert.type"
+    [dismissible]="alert.dismissible"
+    [dismissOnTimeout]="alert.dismissTimeout"
+    (onClose)="onAlertClose(alert)"
+  >
+    {{ alert.message }}</alert
+  >
+</div>

@@ -31,7 +31,7 @@ export class TeamsService {
     // const rawSlug = '/teams';
     // const url = environment.API_URL + rawSlug;
 
-    return this.putErrorResponse(
+    return this.errorResponse(
       {
         id: ErrorResponseType.ERR_STUDENT_HAVE_TEAM,
         teamId: 'Z02',
@@ -53,13 +53,15 @@ export class TeamsService {
   leaveTeam(teamId: string, userEmail: string): Observable<any> {
     // const rawSlug = '/teams/leaveTeam?teamId={teamId}&email={email}';
     // const slug = rawSlug.replace('{teamId}', teamId).replace('{email}', userEmail);
-    // const endpoint = environment.API_URL + slug;
-    // return this.http.put(endpoint);
+    // const url = environment.API_URL + slug;
+    // return this.http.put(url, {});
+
     return new BehaviorSubject({});
+    return this.errorResponse({ id: ErrorResponseType.INCORRECT_PASSWORD });
   }
 
   /* ------------------------------------------- TMP ------------------------------------------- */
-  private putErrorResponse<T>(errorObj: any, statusCode?: number, msg?: string): Observable<T> {
+  private errorResponse<T>(errorObj: any, statusCode?: number, msg?: string): Observable<T> {
     const error = new HttpErrorResponse({
       error: errorObj,
       status: statusCode ?? 404,

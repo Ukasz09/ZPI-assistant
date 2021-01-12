@@ -15,7 +15,7 @@ export class NavbarComponent implements OnInit {
 
   logonUser(): void {
     this.navbarService.updateUnreadMsgQty(this.authService.userEmail);
-    const userEmail = 'dane2k.dundersztyc@pwr.edu.pl'; //TODO: tmp
+    const userEmail = 'danek.dundersztyc@pwr.edu.pl'; //TODO: tmp
     const userPassword = 'test123'; //TODO: tmp
     this.authService.confirmPassword(userEmail, userPassword).subscribe(
       (response) => {

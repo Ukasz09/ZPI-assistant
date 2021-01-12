@@ -86,8 +86,6 @@ export class TeachersComponent implements OnInit {
   }
 
   addTeamLecturer(teamId: string, teacherId: string): void {
-    console.log(teamId);
-
     this.teamsService.addTeamLecturer(teamId, teacherId).subscribe(
       (_) => {
         this.onCorrectTeamLecturerAdd(teacherId);
