@@ -1,6 +1,7 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
+import { ErrorResponseType } from 'src/app/data/schema/error-response-types';
 import { Message } from 'src/app/data/schema/mailbox-message';
 import { AuthService } from 'src/app/data/services/auth.service';
 import { MailboxService } from 'src/app/data/services/mailbox.service';
@@ -14,10 +15,16 @@ import { AlertsService } from 'src/app/shared/services/alert.service';
   styleUrls: ['./mailbox.component.scss'],
 })
 export class MailboxComponent implements OnInit {
+  @ViewChild('otherErrorTemplate') otherErrorTemplate: TemplateRef<any>;
+  @ViewChild('teamJoinErrHasTeamTemplate') teamJoinErrHasTeamTemplate: TemplateRef<any>;
   @ViewChild('successTeamJoinTemplate') successTeamJoinTemplate: TemplateRef<any>;
 
   private successTeamJoinText = 'Pomyślnie dołączono do zespołu: {teamId}';
+  private alreadyAMemberOfTeamText = 'Jesteś członkiem zespołu: {id}';
+  teamJoinErrHaveTeamLines = [this.alreadyAMemberOfTeamText, 'Czy chcesz opuścić zespół?'];
+  otherErrorText: string;
   successTeamJoinTextLines = [this.successTeamJoinText];
+
   mails: Message[] = [];
   dataReady = false;
   httpError: { statusCode: number; msg: string };
@@ -83,17 +90,49 @@ export class MailboxComponent implements OnInit {
   onAcceptInvitation(): void {
     this.studentService.acceptInvitation(this.authService.userId, this.actualDisplayedMsg.id).subscribe(
       (response: { teamId: string }) => {
-        this.successTeamJoinTextLines[0] = this.successTeamJoinText.replace('{teamId}', response.teamId);
-        this.openModal(this.successTeamJoinTemplate);
-        this.fetchMails();
+        this.onAcceptInvitationCorrectResponse(response.teamId);
       },
       (err: HttpErrorResponse) => {
-        //TODO:
+        const response = err.error;
+        if (this.isUserHaveTeamError(response)) {
+          this.onIncorrectTeamJoinHasTeamResponse(response);
+        } else {
+          this.otherErrorText = response.message;
+          this.openModal(this.otherErrorTemplate);
+        }
       }
     );
+  }
+  private isUserHaveTeamError(data: any): boolean {
+    return 'id' in data && data['id'] == ErrorResponseType.ERR_STUDENT_HAVE_TEAM;
+  }
+
+  private onAcceptInvitationCorrectResponse(teamId: string): void {
+    this.successTeamJoinTextLines[0] = this.successTeamJoinText.replace('{teamId}', teamId);
+    this.openModal(this.successTeamJoinTemplate);
+    this.fetchMails();
+  }
+
+  private onIncorrectTeamJoinHasTeamResponse(response: { id: string; teamId: string }): void {
+    this.teamJoinErrHaveTeamLines[0] = this.alreadyAMemberOfTeamText.replace('{id}', `${response.teamId}`);
+    this.openModal(this.teamJoinErrHasTeamTemplate);
   }
 
   openModal(template: TemplateRef<any>): void {
     this.modalRef = this.modalService.show(template);
+  }
+
+  leaveTeam(): void {
+    this.studentService.leaveTeam(this.authService.userId).subscribe(
+      (_) => {
+        // this.onAcceptInvitation();
+        this.modalRef.hide();
+        this.onAcceptInvitationCorrectResponse('Z40'); //TODO: tmp
+      },
+      (err: HttpErrorResponse) => {
+        this.otherErrorText = err.message;
+        this.openModal(this.otherErrorTemplate);
+      }
+    );
   }
 }

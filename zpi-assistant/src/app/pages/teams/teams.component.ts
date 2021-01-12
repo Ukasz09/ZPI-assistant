@@ -22,9 +22,9 @@ export class TeamsComponent implements OnInit {
   modalRef: BsModalRef;
   private successfulTeamCreationText = 'Zespół {id} został pomyślnie utworzony';
   private alreadyAMemberOfTeamText = 'Jesteś członkiem zespołu: {id}';
+  teamCreationErrHaveTeamLines = [this.alreadyAMemberOfTeamText, 'Czy chcesz opuścić zespół?'];
   otherErrorText: string;
   teamCreationSuccessTextLines = [this.successfulTeamCreationText, 'Przypisano studenta jako administratora zespołu'];
-  teamCreationErrHaveTeamLines = [this.alreadyAMemberOfTeamText, 'Czy chcesz opuścić zespół?'];
 
   constructor(
     private modalService: BsModalService,

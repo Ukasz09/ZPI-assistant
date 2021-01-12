@@ -107,3 +107,18 @@
     <button class="btn btn-sm btn-outline-success w-25 mt-3" (click)="modalRef.hide()">OK</button>
   </app-modal-response>
 </ng-template>
+
+<ng-template #teamJoinErrHasTeamTemplate>
+  <app-modal-response type="danger" headerText="Błąd podczas dołączania do zespołu" [textLines]="teamJoinErrHaveTeamLines">
+    <div class="row justify-content-center d-flex">
+      <button class="btn btn-sm btn-outline-dark w-25 mt-3" (click)="modalRef.hide()">Nie</button>
+      <button class="btn btn-sm btn-outline-danger w-25 mt-3" (click)="leaveTeam()">Tak</button>
+    </div>
+  </app-modal-response>
+</ng-template>
+
+<ng-template #otherErrorTemplate>
+  <app-modal-response type="danger" headerText="Błąd podczas dołączania do zespołu" [textLines]="otherErrorText">
+    <button class="btn btn-sm btn-outline-danger w-25 mt-3" (click)="modalRef.hide()">OK</button>
+  </app-modal-response>
+</ng-template>
