@@ -32,11 +32,11 @@ export class StudentsService {
     return new BehaviorSubject<any>({});
   }
 
-  acceptInvitation(userEmail: string, messageId: string): Observable<any> {
+  acceptInvitation(userEmail: string, messageId: string): Observable<{ teamId: string }> {
     // const rawSlug = '/mailbox/accept?email={email}&messageId={messageId}';
     // const slug = rawSlug.replace('{email', email).replace('{messageId}', messageId);
     // const url = environment.API_URL + slug;
-    // this.http.post(url, {});
-    return new BehaviorSubject<any>({ teamId: 'Z03' });
+    // this.http.put(url, {});
+    return new BehaviorSubject<{ teamId: string }>({ teamId: 'Z03' });
   }
 }

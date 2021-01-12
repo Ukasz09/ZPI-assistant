@@ -55,7 +55,7 @@ export class StudentsComponent implements OnInit {
       (e: HttpErrorResponse) =>
         (this.httpError = {
           statusCode: e.status,
-          msg: 'Students fetching error: ' + e.statusText,
+          msg: 'Students fetching error: ' + e.message,
         })
     );
   }

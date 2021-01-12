@@ -44,7 +44,7 @@ export class TeamsService {
     // const rawSlug = '/teams/addLecturer?teamId={teamId}&email={email}';
     // const slug = rawSlug.replace('{teamId}', teamId).replace('{email', email);
     // const endpoint = environment.API_URL + slug;
-    // return this.http.get(endpoint);
+    // return this.http.put(endpoint,{});
 
     return new BehaviorSubject<any>({});
     // return this.putErrorResponse({});
@@ -63,7 +63,7 @@ export class TeamsService {
     // const rawSlug = '/teams/removeTeam?teamId={teamId}';
     // const slug = rawSlug.replace('{teamId}', teamId);
     // const url = environment.API_URL + slug;
-    // return this.http.put(url, {});
+    // return this.http.delete(url, {});
     return new BehaviorSubject({});
   }
 

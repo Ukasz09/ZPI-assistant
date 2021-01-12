@@ -1,27 +1,229 @@
-# ZpiAssistant
+## ZPI Assistant - Frontend
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.1.4.
+### Prerequisites
 
-## Development server
+First of all, make sure that you have installed NodeJs - if not, you can download it from here:
+`https://nodejs.org/en/download/`
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Then install required prerequisites on your development machine:
 
-## Code scaffolding
+```bash
+npm install --save
+```
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+I case of running application on dev server make sure that you have installed AngularCLI:
 
-## Build
+```bash
+npm install -g @angular/cli
+```
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+### Running application (development server)
 
-## Running unit tests
+```bash
+npm start
+```
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+or
 
-## Running end-to-end tests
+```bash
+ng serve
+```
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+This will start a dev server. After that navigate to page `http://localhost:4200/`
 
-## Further help
+### Routes
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+---
+
+- **Name:**
+  confirmPassword
+- **Route:**
+  `/auth?email={email}&password={password}`
+- **Type**
+  GET
+- **ResponseSchema:**
+  `{ accountType: AccountTypes }`
+- **ErrorSchema**
+  ` { id: ErrorResponseType.INCORRECT_PASSWORD }` / `{ message: msg_text } `
+
+---
+
+- **Name:**
+  getMessages
+- **Type**
+  GET
+- **Route:**
+  `/mailbox?email={email}`
+- **ResponseSchema:**
+  `Message[]`
+- **ErrorSchema**
+  `{ message: msg_text } `
+
+---
+
+- **Name:**
+  markMessageAsReaded
+- **Type**
+  PUT
+- **Route:**
+  `/mailbox/markReaded?email={email}&messageId={messageId}`
+- **ResponseSchema:**
+  N/A
+- **ErrorSchema**
+  `{ message: msg_text } `
+
+---
+
+- **Name:**
+  deleteMessage
+- **Route:**
+  `/mailbox?email={email}&messageId={messageId}`
+- **Type**
+  DELETE
+- **ResponseSchema:**
+  N/A
+- **ErrorSchema**
+  `{ message: msg_text } `
+
+---
+
+- **Name:**
+  getStudents
+- **Route:**
+  `/students`
+- **Type**
+  GET
+- **ResponseSchema:**
+  StudentSchema[]
+- **ErrorSchema**
+  `{ message: msg_text } `
+
+---
+
+- **Name:**
+  getStudent
+- **Route:**
+  `/students/{email}`
+- **Type**
+  GET
+- **ResponseSchema:**
+  StudentSchema
+- **ErrorSchema**
+  `{ message: msg_text } `
+
+---
+
+- **Name:**
+  leaveTeam
+- **Route:**
+  `/students/leaveTeam?email={email}`
+- **Type**
+  PUT
+- **ResponseSchema:**
+  N/A
+- **ErrorSchema**
+  `{ message: msg_text } `
+
+---
+
+- **Name:**
+  acceptInvitation
+- **Route:**
+  `/mailbox/accept?email={email}&messageId={messageId}`
+- **Type**
+  PUT
+- **ResponseSchema:**
+  `{ teamId: string }`
+- **ErrorSchema**
+  `{id : ErrorResponseType.ERR_STUDENT_HAVE_TEAM}` / `{ message : msg_text } `
+
+---
+
+- **Name:**
+  getTeachers
+- **Route:**
+  `/teachers`
+- **Type**
+  GET
+- **ResponseSchema:**
+  `TeacherSchema[]`
+- **ErrorSchema**
+  `{ message : msg_text } `
+
+---
+
+- **Name:**
+  getAllTeams
+- **Route:**
+  `/teams`
+- **Type**
+  GET
+- **ResponseSchema:**
+  `TeamSchema[]`
+- **ErrorSchema**
+  `{ message : msg_text } `
+
+---
+
+- **Name:**
+  getTeam
+- **Route:**
+  `/teams/{id}`
+- **Type**
+  GET
+- **ResponseSchema:**
+  `TeamSchema`
+- **ErrorSchema**
+  `{ message : msg_text } `
+
+---
+
+- **Name:**
+  createTeam
+- **Route:**
+  `/teams/{id}`
+- **Type**
+  POST
+- **ResponseSchema:**
+  `{ id: string }`
+- **ErrorSchema**
+  `{ id: ErrorResponseType.ERR_STUDENT_HAVE_TEAM, teamId: 'Z02', }`/ `{ message : msg_text } `
+
+---
+
+- **Name:**
+  addTeamLecturer
+- **Route:**
+  `/teams/addLecturer?teamId={teamId}&email={email}`
+- **Type**
+  PUT
+- **ResponseSchema:**
+  N / A
+- **ErrorSchema**
+  `{ message : msg_text } `
+
+---
+
+- **Name:**
+  leaveTeam
+- **Route:**
+  `/teams/leaveTeam?teamId={teamId}&email={email}`
+- **Type**
+  PUT
+- **ResponseSchema:**
+  N / A
+- **ErrorSchema**
+  `{ message : msg_text } `
+
+---
+
+- **Name:**
+  removeTeam
+- **Route:**
+  `/teams/removeTeam?teamId={teamId}`
+- **Type**
+  DELETE
+- **ResponseSchema:**
+  N / A
+- **ErrorSchema**
+  `{ message : msg_text } `

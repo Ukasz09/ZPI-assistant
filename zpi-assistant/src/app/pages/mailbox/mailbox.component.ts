@@ -60,7 +60,7 @@ export class MailboxComponent implements OnInit {
       (err: HttpErrorResponse) => {
         this.httpError = {
           statusCode: err.status,
-          msg: 'Mails fetching error: ' + err.statusText,
+          msg: 'Mails fetching error: ' + err.message,
         };
       }
     );

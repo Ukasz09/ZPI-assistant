@@ -58,13 +58,13 @@ export class TeamsComponent implements OnInit {
     );
   }
 
-  private isUserHaveTeamError(data: any): boolean {
-    return 'id' in data && data['id'] == ErrorResponseType.ERR_STUDENT_HAVE_TEAM;
+  private isUserHaveTeamError(data: { id: ErrorResponseType }): boolean {
+    return 'id' in data && data.id === ErrorResponseType.ERR_STUDENT_HAVE_TEAM;
   }
 
-  onCorrectTeamCreationResponse(data: any): void {
+  onCorrectTeamCreationResponse(data: { id: string }): void {
     this.teamListPanelTemplate.fetchTeams();
-    this.teamCreationSuccessTextLines[0] = this.successfulTeamCreationText.replace('{id}', `${data['id']}`);
+    this.teamCreationSuccessTextLines[0] = this.successfulTeamCreationText.replace('{id}', `${data.id}`);
     this.openModal(this.teamCreationSuccessTemplate);
   }
 

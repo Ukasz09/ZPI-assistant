@@ -72,7 +72,7 @@ export class YourTeamComponent implements OnInit {
       (e: HttpErrorResponse) =>
         (this.httpError = {
           statusCode: e.status,
-          msg: `Team's data fetching error: ${e.statusText}`,
+          msg: `Team's data fetching error: ${e.message}`,
         })
     );
   }
