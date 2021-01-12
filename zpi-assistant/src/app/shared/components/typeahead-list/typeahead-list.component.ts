@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
+import { AuthService } from 'src/app/data/services/auth.service';
 
 @Component({
   selector: 'app-typeahead-list',
@@ -16,6 +17,7 @@ export class TypeaheadListComponent implements OnInit, OnChanges {
   @Input() addBtnText = 'Dodaj';
   @Input() addBtnVisible: boolean;
   @Input() msgBtnVisible: boolean;
+  @Input() idFieldName: string;
 
   @Output() messageBtnClick = new EventEmitter<object>();
   @Output() addBtnClick = new EventEmitter<object>();
@@ -23,7 +25,7 @@ export class TypeaheadListComponent implements OnInit, OnChanges {
   filteredModelsList: object[] = [];
   private _searchFilter = '';
 
-  constructor() {}
+  constructor(private authService: AuthService) {}
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes.dataReady && this.dataReady) {
@@ -68,5 +70,13 @@ export class TypeaheadListComponent implements OnInit, OnChanges {
       }
     }
     return true;
+  }
+
+  otherThanActualUser(id: string): boolean {
+    return this.authService.userId !== id;
+  }
+
+  get userIsLogged(): boolean {
+    return this.authService.userIsLogged;
   }
 }

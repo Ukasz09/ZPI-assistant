@@ -17,12 +17,19 @@
                 <span *ngFor="let field of displayedFieldsFromModel" class="mx-1">{{ model[field] }}</span>
               </div>
               <div class="justify-content-end d-flex flex-fill">
-                <div class="btn-group">
+                <div *ngIf="otherThanActualUser(model[idFieldName]); else youBadge" class="btn-group">
                   <button *ngIf="msgBtnVisible" class="btn btn-outline-secondary" (click)="messageBtnClick.emit(model)">
                     Wiadomość
                   </button>
-                  <button *ngIf="addBtnVisible" class="btn btn-success" (click)="addBtnClick.emit(model)">{{ addBtnText }}</button>
+                  <button *ngIf="addBtnVisible" class="btn btn-success" (click)="addBtnClick.emit(model)">
+                    {{ addBtnText }}
+                  </button>
                 </div>
+                <ng-template #youBadge>
+                  <div *ngIf="userIsLogged" class="d-flex align-items-center">
+                    <div class="badge badge-dark align-items-center d-flex mr-1">Ty</div>
+                  </div>
+                </ng-template>
               </div>
             </div>
           </div>

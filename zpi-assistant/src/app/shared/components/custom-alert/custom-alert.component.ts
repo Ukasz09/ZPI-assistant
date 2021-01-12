@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { AlertModel } from 'src/app/models/alert';
 import { AlertsService } from '../../services/alert.service';
 

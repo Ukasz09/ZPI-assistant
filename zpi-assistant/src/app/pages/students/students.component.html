@@ -8,5 +8,14 @@
   [inputPlaceholderText]="'Wpisz imię / nazwisko / numer albumu '"
   [addBtnVisible]="addBtnVisible"
   [msgBtnVisible]="msgBtnVisible"
+  idFieldName="index"
+  (addBtnClick)="onAddBtnClick($event)"
 >
 </app-typeahead-list>
+
+<!-- ------------------------------------------- TEMPLATES ------------------------------------------- -->
+<ng-template #studentInvitationSuccessTemplate>
+  <app-modal-response type="success" headerText="Wysłano zaproszenie" [textLines]="studentInvitationSuccessTextLines">
+    <button class="btn btn-sm btn-outline-success w-25 mt-3" (click)="modalRef.hide()">OK</button>
+  </app-modal-response>
+</ng-template>

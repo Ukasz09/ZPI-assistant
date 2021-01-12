@@ -40,6 +40,7 @@ export class TeachersComponent implements OnInit {
 
   ngOnInit(): void {
     this.fetchTeachers();
+    this.initTeamIdOfLoggedUser();
   }
 
   private fetchTeachers(): void {
@@ -63,7 +64,7 @@ export class TeachersComponent implements OnInit {
         this.teamIdOfLoggedUser = response.teamId;
       },
       (err: HttpErrorResponse) => {
-        //TODO: show alert
+        this.alertsService.error(`User data fetching error: ${err.message}. Try to refresh page`);
       }
     );
   }
@@ -85,6 +86,8 @@ export class TeachersComponent implements OnInit {
   }
 
   addTeamLecturer(teamId: string, teacherId: string): void {
+    console.log(teamId);
+
     this.teamsService.addTeamLecturer(teamId, teacherId).subscribe(
       (_) => {
         this.onCorrectTeamLecturerAdd(teacherId);

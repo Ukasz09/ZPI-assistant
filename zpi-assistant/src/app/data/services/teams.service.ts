@@ -18,7 +18,7 @@ export class TeamsService {
   getTeam(teamId = 'Z2'): Observable<TeamSchema> {
     // const URL = environment.API_URL + Slugs.TEAM;
     // const ENDPOINT = URL.replace('{id}',teamId);
-    const ENDPOINT = 'assets/mocks/team-empty.json';
+    const ENDPOINT = 'assets/mocks/team.json';
     return this.http.get<TeamSchema>(ENDPOINT);
   }
 
@@ -49,8 +49,8 @@ export class TeamsService {
     // const endpoint = environment.API_URL + slug;
     // return this.http.get(endpoint);
 
-    // return new BehaviorSubject<any>({});
-    return this.putErrorResponse({});
+    return new BehaviorSubject<any>({});
+    // return this.putErrorResponse({});
   }
 
   private putErrorResponse<T>(errorObj: any, statusCode?: number, msg?: string): Observable<T> {
