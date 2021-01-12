@@ -15,7 +15,9 @@
         <i>{{ subjectText | titlecase }}</i>
       </div>
       <div *ngIf="userIsTeamAdmin" class="col-md-3">
-        <button *ngIf="team.topic; else addSubjectBtn" class="btn btn-dark btn-block">Edytuj temat</button>
+        <button *ngIf="team.topic; else addSubjectBtn" class="btn btn-dark btn-block" (click)="showNotImplementedError()">
+          Edytuj temat
+        </button>
         <ng-template #addSubjectBtn>
           <button *ngIf="teamHasLecturer" class="btn btn-dark btn-block">Dodaj temat</button>
         </ng-template>
@@ -27,7 +29,9 @@
         {{ lecturerInfoText | titlecase }}
       </div>
       <div *ngIf="userIsTeamAdmin" class="col-md-3">
-        <button *ngIf="teamHasLecturer; else addLecturerBtn" class="btn btn-dark btn-block">Edytuj opiekuna</button>
+        <button *ngIf="teamHasLecturer; else addLecturerBtn" class="btn btn-dark btn-block" (click)="showNotImplementedError()">
+          Edytuj opiekuna
+        </button>
         <ng-template #addLecturerBtn>
           <button class="btn btn-dark btn-block" routerLink="/teachers">Dodaj opiekuna</button>
         </ng-template>

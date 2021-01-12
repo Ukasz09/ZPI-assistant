@@ -53,6 +53,7 @@ export class MailboxComponent implements OnInit {
         this.mails = data;
         if (this.mails.length > 0) {
           this.actualDisplayedMsg = this.mails[0];
+          this.actualDisplayedMsg.isRead = true;
         }
         this.dataReady = true;
       },

@@ -1,1 +1,8 @@
-{ "name": "Paweł", "surname": "Pawlikowski", "email": "pawel.pawlikowski@pwr.edu.pl", "index": "285736", "teamId": "Z03" }
+{
+  "name": "Danek",
+  "surname": "Dundersztyc",
+  "email": "danek.dundersztyc@pwr.edu.pl",
+  "index": "260937",
+  "teamId": "Z03",
+  "isTeamAdmin": true
+}

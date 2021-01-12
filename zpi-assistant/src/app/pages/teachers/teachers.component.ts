@@ -28,6 +28,7 @@ export class TeachersComponent implements OnInit {
   private successfulLecturerInvitationText = '{name} otrzymał prośbę dotyczącą objęcia opieki nad zespołem';
   lecturerInvitationSuccessTextLines = [this.successfulLecturerInvitationText];
   modalRef: BsModalRef;
+  userIsTeamAdmin = false;
 
   constructor(
     private teachersService: TeachersService,
@@ -41,6 +42,9 @@ export class TeachersComponent implements OnInit {
   ngOnInit(): void {
     this.fetchTeachers();
     this.initTeamIdOfLoggedUser();
+    if (this.userIsStudent) {
+      this.fetchStudentInfo();
+    }
   }
 
   private fetchTeachers(): void {
@@ -58,6 +62,18 @@ export class TeachersComponent implements OnInit {
     );
   }
 
+  private fetchStudentInfo(): void {
+    this.studentService.getStudent(this.authService.userEmail).subscribe(
+      (student: StudentSchema) => {
+        this.userIsTeamAdmin = student.isTeamAdmin;
+      },
+      (err: HttpErrorResponse) => {
+        this.alertsService.error(err.message);
+        throw err;
+      }
+    );
+  }
+
   private initTeamIdOfLoggedUser(): void {
     this.studentService.getStudent(this.authService.userEmail).subscribe(
       (response: StudentSchema) => {
@@ -70,7 +86,7 @@ export class TeachersComponent implements OnInit {
   }
 
   get addBtnVisible(): boolean {
-    return this.authService.userIsLogged && this.userIsStudent;
+    return this.authService.userIsLogged && this.userIsStudent && this.userIsTeamAdmin;
   }
 
   get msgBtnVisible(): boolean {

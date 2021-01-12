@@ -3,8 +3,15 @@
   "topic": "",
   "subject": "",
   "members": [
-    { "name": "Paweł", "surname": "Pawlikowski", "email": "pawel.pawlikowski@pwr.edu.pl", "index": "285736", "teamId": "Z03" }
+    {
+      "name": "Paweł",
+      "surname": "Pawlikowski",
+      "email": "pawel.pawlikowski@pwr.edu.pl",
+      "index": "285736",
+      "teamId": "Z03",
+      "isTeamAdmin": false
+    }
   ],
-  "adminIndex": "260937",
+  "adminEmail": "",
   "lecturer": {}
 }

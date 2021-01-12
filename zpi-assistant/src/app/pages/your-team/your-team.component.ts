@@ -10,6 +10,7 @@ import { StudentsService } from 'src/app/data/services/students.service';
 import { TeamsService } from 'src/app/data/services/teams.service';
 import { ErrorResponseType } from 'src/app/shared/logic/error-response-types';
 import { TeamConstants } from 'src/app/shared/logic/team-consts';
+import { AlertsService } from 'src/app/shared/services/alert.service';
 
 @Component({
   selector: 'app-your-team',
@@ -34,7 +35,8 @@ export class YourTeamComponent implements OnInit {
     private teamsService: TeamsService,
     private authService: AuthService,
     private studentService: StudentsService,
-    private modalService: BsModalService
+    private modalService: BsModalService,
+    private alertsService: AlertsService
   ) {}
 
   ngOnInit(): void {
@@ -129,5 +131,12 @@ export class YourTeamComponent implements OnInit {
         }
       }
     );
+  }
+
+  showNotImplementedError(): void {
+    const id = 'notImplemented';
+    if (!this.alertsService.contain(id)) {
+      this.alertsService.error('Functionality not implemented!', id);
+    }
   }
 }

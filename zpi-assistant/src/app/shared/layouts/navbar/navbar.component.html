@@ -47,10 +47,12 @@
             <li role="menuitem"><a class="dropdown-item" href="#">246703</a></li>
           </ul>
         </div>
-        <button class="btn btn-outline-danger" (click)="logoutUser()">Sign out</button>
+        <button class="btn btn-outline-danger" (click)="logoutUser()" routerLink="/teams">Sign out</button>
       </div>
       <!-- ----------------------- NOT LOGGED ---------------------- -->
-      <ng-template #signInTemplate> <button class="btn btn-outline-success" (click)="logonUser()">Sign in</button> </ng-template>
+      <ng-template #signInTemplate>
+        <button class="btn btn-outline-success" (click)="logonUser()" routerLink="/teams">Sign in</button>
+      </ng-template>
     </div>
   </div>
 </nav>

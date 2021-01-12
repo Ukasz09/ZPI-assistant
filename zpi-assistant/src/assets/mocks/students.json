@@ -1,9 +1,51 @@
 [
-  { "name": "Piotr", "surname": "Piotrowski", "email": "piotr.piotrowski@pwr.edu.pl", "index": "231412", "teamId": "" },
-  { "name": "Paweł", "surname": "Pawlikowski", "email": "pawel.pawlikowski@pwr.edu.pl", "index": "285736", "teamId": "Z03" },
-  { "name": "Danek", "surname": "Dundersztyc", "email": "danek.dundersztyc@pwr.edu.pl", "index": "260937", "teamId": "Z03" },
-  { "name": "Agnieszka", "surname": "Aleks", "email": "agnieszka.aleks@pwr.edu.pl", "index": "234875", "teamId": "Z03" },
-  { "name": "Agata", "surname": "Mróz", "email": "agata.mroz@pwr.edu.pl", "index": "298765", "teamId": "" },
-  { "name": "Marek", "surname": "Marcinek", "email": "marek.marcinek@pwr.edu.pl", "index": "213141", "teamId": "" },
-  { "name": "John", "surname": "Stanley-Wozniak", "email": "john.stanley-wozniak@pwr.edu.pl", "index": "202104", "teamId": "" }
+  {
+    "name": "Piotr",
+    "surname": "Piotrowski",
+    "email": "piotr.piotrowski@pwr.edu.pl",
+    "index": "231412",
+    "teamId": "",
+    "isTeamAdmin": false
+  },
+  {
+    "name": "Paweł",
+    "surname": "Pawlikowski",
+    "email": "pawel.pawlikowski@pwr.edu.pl",
+    "index": "285736",
+    "teamId": "Z03",
+    "isTeamAdmin": false
+  },
+  {
+    "name": "Danek",
+    "surname": "Dundersztyc",
+    "email": "danek.dundersztyc@pwr.edu.pl",
+    "index": "260937",
+    "teamId": "Z03",
+    "isTeamAdmin": true
+  },
+  {
+    "name": "Agnieszka",
+    "surname": "Aleks",
+    "email": "agnieszka.aleks@pwr.edu.pl",
+    "index": "234875",
+    "teamId": "Z03",
+    "isTeamAdmin": false
+  },
+  { "name": "Agata", "surname": "Mróz", "email": "agata.mroz@pwr.edu.pl", "index": "298765", "teamId": "", "isTeamAdmin": false },
+  {
+    "name": "Marek",
+    "surname": "Marcinek",
+    "email": "marek.marcinek@pwr.edu.pl",
+    "index": "213141",
+    "teamId": "",
+    "isTeamAdmin": false
+  },
+  {
+    "name": "John",
+    "surname": "Stanley-Wozniak",
+    "email": "john.stanley-wozniak@pwr.edu.pl",
+    "index": "202104",
+    "teamId": "",
+    "isTeamAdmin": false
+  }
 ]

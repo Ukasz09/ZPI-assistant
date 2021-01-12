@@ -26,6 +26,7 @@ export class StudentsComponent implements OnInit {
   displayedFieldsInList = ['name', 'surname', 'index'];
   teamIdOfLoggedUser: string;
   modalRef: BsModalRef;
+  userIsTeamAdmin = false;
 
   constructor(
     private studentsService: StudentsService,
@@ -46,6 +47,10 @@ export class StudentsComponent implements OnInit {
         this.students = data;
         this.filteredStudents = this.students;
         this.dataReady = true;
+        if (this.userIsStudent) {
+          const student = this.students.find((s) => s.email === this.authService.userEmail);
+          this.userIsTeamAdmin = student.isTeamAdmin;
+        }
       },
       (e: HttpErrorResponse) =>
         (this.httpError = {
@@ -67,7 +72,7 @@ export class StudentsComponent implements OnInit {
   }
 
   get addBtnVisible(): boolean {
-    return this.authService.userIsLogged && this.userIsStudent;
+    return this.authService.userIsLogged && this.userIsStudent && this.userIsTeamAdmin;
   }
 
   get msgBtnVisible(): boolean {
