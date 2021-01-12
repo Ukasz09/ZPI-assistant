@@ -16,24 +16,18 @@ export class TeamsService {
   }
 
   getTeam(teamId = 'Z2'): Observable<TeamSchema> {
-    // const URL = environment.API_URL + Slugs.TEAM;
-    // const ENDPOINT = URL.replace('{id}',teamId);
-    const ENDPOINT = 'assets/mocks/team.json';
-    return this.http.get<TeamSchema>(ENDPOINT);
+    // const rawSlug = '/teams/{id}';
+    // const slug = rawSlug.replace('{id}', teamId);
+    // const url = environment.API_URL + slug;
+
+    const url = 'assets/mocks/team.json';
+    return this.http.get<TeamSchema>(url);
   }
 
   createTeam(): Observable<object> {
-    // const ENDPOINT = environment.API_URL + Slugs.TEAM;
-    // const ENDPOINT = 'assets/mocks/correct-team-creation-response.json';
-    // return this.http.post<object>(ENDPOINT, {});
-    // throw new HttpErrorResponse({
-    //   error: {
-    //     id: 0,
-    //     teamId: 'Z02',
-    //   },
-    // });
+    // const rawSlug = '/teams';
+    // const url = environment.API_URL + rawSlug;
 
-    //POST ERROR
     return this.putErrorResponse(
       {
         id: 0,
@@ -53,6 +47,7 @@ export class TeamsService {
     // return this.putErrorResponse({});
   }
 
+  /* ------------------------------------------- TMP ------------------------------------------- */
   private putErrorResponse<T>(errorObj: any, statusCode?: number, msg?: string): Observable<T> {
     const error = new HttpErrorResponse({
       error: errorObj,

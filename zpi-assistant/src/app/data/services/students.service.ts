@@ -3,7 +3,6 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { StudentSchema } from '../schema/student';
-import { Slugs } from './slugs';
 
 @Injectable({
   providedIn: 'root',
@@ -12,21 +11,32 @@ export class StudentsService {
   constructor(private http: HttpClient) {}
 
   getStudents(): Observable<StudentSchema[]> {
-    // const URL = environment.API_URL + Slugs.STUDENTS;
-    const URL = 'assets/mocks/students.json';
-    return this.http.get<StudentSchema[]>(URL);
+    // const rawSlug = '/students';
+    // const url = environment.API_URL + rawSlug;
+    const url = 'assets/mocks/students.json';
+    return this.http.get<StudentSchema[]>(url);
   }
 
   getStudent(studentIndex: string): Observable<StudentSchema> {
-    // const URL = environment.API_URL + Slugs.STUDENT;
-    // const ENDPOINT = URL.replace('{id}',studentIndex);
-    const URL = 'assets/mocks/student.json';
-    return this.http.get<StudentSchema>(URL);
+    // const rawSlug = '/students/{id}';
+    // const slug = rawSlug.replace('{id}', studentIndex);
+    // const url = environment.API_URL + rawSlug;
+    const url = 'assets/mocks/student.json';
+    return this.http.get<StudentSchema>(url);
   }
 
   leaveTeam(studentIndex: string): Observable<any> {
-    // const URL = environment.API_URL + Slugs.LEAVE_TEAM;
-    // const ENDPOINT = URL.replace('{id}',studentIndex);
+    // const rawSlug = '/students/leaveTeam?id={id}';
+    // const slug = rawSlug.replace('{id}', studentIndex);
+    // const url = environment.API_URL + rawSlug;
     return new BehaviorSubject<any>({});
+  }
+
+  acceptInvitation(studentId: string, messageId: string): Observable<any> {
+    // const rawSlug = '/mailbox/accept?studentId={studentId}&messageId={messageId}';
+    // const slug = rawSlug.replace('{studentId', studentId).replace('{messageId}', messageId);
+    // const url = environment.API_URL + slug;
+    // this.http.post(url, {});
+    return new BehaviorSubject<any>({ teamId: 'Z03' });
   }
 }
