@@ -29,7 +29,7 @@
       <div *ngIf="userIsTeamAdmin" class="col-md-3">
         <button *ngIf="teamHasLecturer; else addLecturerBtn" class="btn btn-dark btn-block">Edytuj opiekuna</button>
         <ng-template #addLecturerBtn>
-          <button class="btn btn-dark btn-block">Dodaj opiekuna</button>
+          <button class="btn btn-dark btn-block" routerLink="/teachers">Dodaj opiekuna</button>
         </ng-template>
       </div>
     </div>
@@ -38,7 +38,9 @@
     <div class="row mx-0">
       <div class="col-md-6 py-2 text-light bg-dark rounded text-center">Członkowie zespołu</div>
       <div class="col-md-3">
-        <button *ngIf="userIsTeamAdmin" class="btn btn-success btn-block" [disabled]="maxNumberOfTeamsMembers">Dodaj studentów</button>
+        <button *ngIf="userIsTeamAdmin" class="btn btn-success btn-block" [disabled]="maxNumberOfTeamsMembers" routerLink="/students">
+          Dodaj studentów
+        </button>
       </div>
     </div>
     <div *ngFor="let member of team.members" class="py-2 bg-light w-50 rounded border">

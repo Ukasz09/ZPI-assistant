@@ -8,5 +8,13 @@
   [inputPlaceholderText]="'Wpisz imię / nazwisko'"
   [addBtnVisible]="addBtnVisible"
   [msgBtnVisible]="msgBtnVisible"
+  (addBtnClick)="onAddBtnClick($event)"
 >
 </app-typeahead-list>
+
+<!-- ------------------------------------------- TEMPLATES ------------------------------------------- -->
+<ng-template #lecturerInvitationSuccessTemplate>
+  <app-modal-response type="success" headerText="Wysłano prośbę" [textLines]="lecturerInvitationSuccessTextLines">
+    <button class="btn btn-sm btn-outline-success w-25 mt-3" (click)="modalRef.hide()">OK</button>
+  </app-modal-response>
+</ng-template>

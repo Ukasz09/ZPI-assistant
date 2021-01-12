@@ -1,10 +1,14 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { Subject } from 'rxjs';
+import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
+import { StudentSchema } from 'src/app/data/schema/student';
 import { TeacherSchema } from 'src/app/data/schema/teacher';
 import { AuthService } from 'src/app/data/services/auth.service';
+import { StudentsService } from 'src/app/data/services/students.service';
 import { TeachersService } from 'src/app/data/services/teachers.service';
+import { TeamsService } from 'src/app/data/services/teams.service';
 import { AccountTypes } from 'src/app/shared/logic/account-types';
+import { AlertsService } from 'src/app/shared/services/alert.service';
 
 @Component({
   selector: 'app-teachers',
@@ -12,14 +16,27 @@ import { AccountTypes } from 'src/app/shared/logic/account-types';
   styleUrls: ['./teachers.component.scss'],
 })
 export class TeachersComponent implements OnInit {
+  @ViewChild('lecturerInvitationSuccessTemplate') lecturerInvitationSuccessTemplate: TemplateRef<any>;
+
   fieldsUsedInFilter: string[] = ['name', 'surname'];
   filteredTeachers: TeacherSchema[] = [];
   teachers: TeacherSchema[] = [];
   dataReady = false;
   httpError: { statusCode: number; msg: string };
   displayedFieldsInList = ['title', 'name', 'surname'];
+  teamIdOfLoggedUser: string;
+  private successfulLecturerInvitationText = '{name} otrzymał prośbę dotyczącą objęcia opieki nad zespołem';
+  lecturerInvitationSuccessTextLines = [this.successfulLecturerInvitationText];
+  modalRef: BsModalRef;
 
-  constructor(private teachersService: TeachersService, private authService: AuthService) {}
+  constructor(
+    private teachersService: TeachersService,
+    private authService: AuthService,
+    private teamsService: TeamsService,
+    private studentService: StudentsService,
+    private modalService: BsModalService,
+    private alertsService: AlertsService
+  ) {}
 
   ngOnInit(): void {
     this.fetchTeachers();
@@ -40,6 +57,17 @@ export class TeachersComponent implements OnInit {
     );
   }
 
+  private initTeamIdOfLoggedUser(): void {
+    this.studentService.getStudent(this.authService.userId).subscribe(
+      (response: StudentSchema) => {
+        this.teamIdOfLoggedUser = response.teamId;
+      },
+      (err: HttpErrorResponse) => {
+        //TODO: show alert
+      }
+    );
+  }
+
   get addBtnVisible(): boolean {
     return this.authService.userIsLogged && this.userIsStudent;
   }
@@ -50,5 +78,34 @@ export class TeachersComponent implements OnInit {
 
   private get userIsStudent(): boolean {
     return this.authService.userAccountType === AccountTypes.STUDENT;
+  }
+
+  onAddBtnClick(teacher: TeacherSchema): void {
+    this.addTeamLecturer(this.teamIdOfLoggedUser, teacher.id);
+  }
+
+  addTeamLecturer(teamId: string, teacherId: string): void {
+    this.teamsService.addTeamLecturer(teamId, teacherId).subscribe(
+      (_) => {
+        this.onCorrectTeamLecturerAdd(teacherId);
+      },
+      (err: HttpErrorResponse) => {
+        this.alertsService.error(`Invitation not send: ${err.message}`);
+      }
+    );
+  }
+
+  private onCorrectTeamLecturerAdd(teacherId: string): void {
+    const teacherModel = this.teachers.find((t) => t.id === teacherId);
+    const newModalText = this.successfulLecturerInvitationText.replace(
+      '{name}',
+      `${teacherModel.title} ${teacherModel.name} ${teacherModel.surname}`
+    );
+    this.lecturerInvitationSuccessTextLines[0] = newModalText;
+    this.openModal(this.lecturerInvitationSuccessTemplate);
+  }
+
+  openModal(template: TemplateRef<any>): void {
+    this.modalRef = this.modalService.show(template);
   }
 }

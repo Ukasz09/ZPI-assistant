@@ -22,6 +22,8 @@ import { StudentsComponent } from './pages/students/students.component';
 import { ModalResponseComponent } from './shared/components/modal-response/modal-response.component';
 import { YourTeamComponent } from './pages/your-team/your-team.component';
 import { MailboxComponent } from './pages/mailbox/mailbox.component';
+import { CustomAlertComponent } from './shared/components/custom-alert/custom-alert.component';
+import { AlertModule } from 'ngx-bootstrap/alert';
 @NgModule({
   declarations: [
     AppComponent,
@@ -38,6 +40,7 @@ import { MailboxComponent } from './pages/mailbox/mailbox.component';
     ModalResponseComponent,
     YourTeamComponent,
     MailboxComponent,
+    CustomAlertComponent,
   ],
   imports: [
     BrowserModule,
@@ -51,6 +54,7 @@ import { MailboxComponent } from './pages/mailbox/mailbox.component';
     BsDropdownModule.forRoot(),
     ReactiveFormsModule,
     HttpClientModule,
+    AlertModule.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent],

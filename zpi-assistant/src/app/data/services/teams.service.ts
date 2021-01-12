@@ -1,6 +1,7 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, throwError } from 'rxjs';
+import { BehaviorSubject, Observable, throwError } from 'rxjs';
+import { environment } from 'src/environments/environment';
 import { TeamSchema } from '../schema/team';
 @Injectable({
   providedIn: 'root',
@@ -17,7 +18,7 @@ export class TeamsService {
   getTeam(teamId = 'Z2'): Observable<TeamSchema> {
     // const URL = environment.API_URL + Slugs.TEAM;
     // const ENDPOINT = URL.replace('{id}',teamId);
-    const ENDPOINT = 'assets/mocks/team.json';
+    const ENDPOINT = 'assets/mocks/team-empty.json';
     return this.http.get<TeamSchema>(ENDPOINT);
   }
 
@@ -40,6 +41,16 @@ export class TeamsService {
       },
       403
     );
+  }
+
+  addTeamLecturer(teamId: string, lecturerId: string): Observable<any> {
+    // let slug = '/teams/addLecturer?teamId={teamId}&lecturerId={lecturerId}';
+    // slug = slug.replace('{teamId}', teamId).replace('{lecturerId', lecturerId);
+    // const endpoint = environment.API_URL + slug;
+    // return this.http.get(endpoint);
+
+    // return new BehaviorSubject<any>({});
+    return this.putErrorResponse({});
   }
 
   private putErrorResponse<T>(errorObj: any, statusCode?: number, msg?: string): Observable<T> {

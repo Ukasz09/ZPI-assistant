@@ -8,5 +8,5 @@
     { "name": "Agnieszka", "surname": "Aleks", "index": "234875", "teamId": "Z03" }
   ],
   "adminIndex": "260937",
-  "lecturer": { "name": "Anna", "surname": "Struś", "title": "prof." }
+  "lecturer": { "id": 2, "name": "Anna", "surname": "Struś", "title": "prof." }
 }

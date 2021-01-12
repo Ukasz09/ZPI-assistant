@@ -47,7 +47,9 @@ export class MailboxComponent implements OnInit {
 
   onMsgClick(message: Message): void {
     this.actualDisplayedMsg = message;
-    this.changeIsReadStateOfMsg(message);
+    if (!message.isRead) {
+      this.changeIsReadStateOfMsg(message);
+    }
   }
 
   private changeIsReadStateOfMsg(message: Message): void {

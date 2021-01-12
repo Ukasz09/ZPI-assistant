@@ -11,7 +11,7 @@
       { "name": "Agnieszka", "surname": "Aleks", "index": "234875" }
     ],
     "adminIndex": "260937",
-    "lecturer": { "name": "Janusz", "surname": "Kowalski", "title": "dr. inż" }
+    "lecturer": { "id": "0", "name": "Janusz", "surname": "Kowalski", "title": "dr. inż" }
   },
   { "id": "Z04", "topic": "", "subject": "", "members": [], "adminIndex": "", "lecturer": "" },
   {
@@ -20,7 +20,7 @@
     "subject": "System do zarządzania zagrodą kurczaków",
     "members": [],
     "adminIndex": "",
-    "lecturer": { "name": "Paweł", "surname": "Piotrowski", "title": "prof. dr hab inż" }
+    "lecturer": { "id": "0", "name": "Paweł", "surname": "Piotrowski", "title": "prof. dr hab inż" }
   },
   { "id": "Z06", "topic": "", "subject": "", "members": [], "adminIndex": "", "lecturer": "" },
   { "id": "Z07", "topic": "", "subject": "", "members": [], "adminIndex": "", "lecturer": "" },
@@ -30,7 +30,7 @@
     "subject": "Aplikacja do śledzenia znajomych",
     "members": [],
     "adminIndex": "",
-    "lecturer": { "name": "Janusz", "surname": "Kowalski", "title": "dr. inż" }
+    "lecturer": { "id": "0", "name": "Janusz", "surname": "Kowalski", "title": "dr. inż" }
   },
   { "id": "Z09", "topic": "", "subject": "", "members": [], "adminIndex": "", "lecturer": "" },
   {
@@ -39,7 +39,7 @@
     "subject": "Gdzie zjesc obiad za darmo",
     "members": [],
     "adminIndex": "",
-    "lecturer": { "name": "Janusz", "surname": "Kowalski", "title": "dr. inż" }
+    "lecturer": { "id": "0", "name": "Janusz", "surname": "Kowalski", "title": "dr. inż" }
   },
   { "id": "Z11", "topic": "", "subject": "", "members": [], "adminIndex": "", "lecturer": "" },
   { "id": "Z12", "topic": "", "subject": "", "members": [], "adminIndex": "", "lecturer": "" },
@@ -51,7 +51,7 @@
     "subject": "Crowd meter",
     "members": [],
     "adminIndex": "",
-    "lecturer": { "name": "Urszula", "surname": "Dębkowska", "title": "mgr. inż" }
+    "lecturer": { "id": "0", "name": "Urszula", "surname": "Dębkowska", "title": "mgr. inż" }
   },
   { "id": "Z16", "topic": "", "subject": "", "members": [], "adminIndex": "", "lecturer": "" },
   { "id": "Z17", "topic": "", "subject": "", "members": [], "adminIndex": "", "lecturer": "" },
@@ -63,7 +63,7 @@
     "subject": "Ile dni do końca świata",
     "members": [],
     "adminIndex": "",
-    "lecturer": { "name": "Paweł", "surname": "Piotrowski", "title": "prof. dr hab inż" }
+    "lecturer": { "id": "0", "name": "Paweł", "surname": "Piotrowski", "title": "prof. dr hab inż" }
   },
   { "id": "Z21", "topic": "", "subject": "", "members": [], "adminIndex": "", "lecturer": "" },
   { "id": "Z22", "topic": "", "subject": "", "members": [], "adminIndex": "", "lecturer": "" },
@@ -75,7 +75,7 @@
     "subject": "Miernik pozostałych dni życia",
     "members": [],
     "adminIndex": "",
-    "lecturer": { "name": "Urszula", "surname": "Dębkowska", "title": "mgr. inż" }
+    "lecturer": { "id": "0", "name": "Urszula", "surname": "Dębkowska", "title": "mgr. inż" }
   },
   { "id": "Z26", "topic": "", "subject": "", "members": [], "adminIndex": "", "lecturer": "" },
   { "id": "Z27", "topic": "", "subject": "", "members": [], "adminIndex": "", "lecturer": "" },
@@ -87,6 +87,6 @@
     "subject": "Gra 3D",
     "members": [],
     "adminIndex": "",
-    "lecturer": { "name": "Paweł", "surname": "Piotrowski", "title": "prof. dr hab inż" }
+    "lecturer": { "id": "0", "name": "Paweł", "surname": "Piotrowski", "title": "prof. dr hab inż" }
   }
 ]
