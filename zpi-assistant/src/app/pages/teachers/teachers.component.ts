@@ -98,13 +98,13 @@ export class TeachersComponent implements OnInit {
   }
 
   onAddBtnClick(teacher: TeacherSchema): void {
-    this.addTeamLecturer(this.teamIdOfLoggedUser, teacher.id);
+    this.addTeamLecturer(this.teamIdOfLoggedUser, teacher.email);
   }
 
-  addTeamLecturer(teamId: string, teacherId: string): void {
-    this.teamsService.addTeamLecturer(teamId, teacherId).subscribe(
+  addTeamLecturer(teamId: string, teacherEmail: string): void {
+    this.teamsService.addTeamLecturer(teamId, teacherEmail).subscribe(
       (_) => {
-        this.onCorrectTeamLecturerAdd(teacherId);
+        this.onCorrectTeamLecturerAdd(teacherEmail);
       },
       (err: HttpErrorResponse) => {
         this.alertsService.error(`Invitation not send: ${err.message}`);
@@ -112,8 +112,8 @@ export class TeachersComponent implements OnInit {
     );
   }
 
-  private onCorrectTeamLecturerAdd(teacherId: string): void {
-    const teacherModel = this.teachers.find((t) => t.id === teacherId);
+  private onCorrectTeamLecturerAdd(teacherEmail: string): void {
+    const teacherModel = this.teachers.find((t) => t.email === teacherEmail);
     const newModalText = this.successfulLecturerInvitationText.replace(
       '{name}',
       `${teacherModel.title} ${teacherModel.name} ${teacherModel.surname}`

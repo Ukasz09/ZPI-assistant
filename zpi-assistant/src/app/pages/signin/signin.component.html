@@ -1,0 +1,42 @@
+<div class="card my-4 w-50">
+  <div class="bg-dark rounded text-light text-center py-2 h5">Logowanie do systemu</div>
+  <div class="px-4 py-4">
+    <form
+      class="needs-validation"
+      [ngClass]="{ 'was-validated': wasVaidated }"
+      novalidate
+      (ngSubmit)="onSubmit(!signinForm.invalid)"
+      #signinForm="ngForm"
+    >
+      <div class="form-group">
+        <label for="emailInput">Adres email:</label>
+        <input
+          type="email"
+          class="form-control"
+          id="emailInput"
+          name="email"
+          (focus)="wasVaidated = false"
+          [(ngModel)]="email"
+          required
+        />
+        <div class="invalid-feedback">Provide valid email.</div>
+      </div>
+      <div class="form-group">
+        <label for="passwordInput">Hasło:</label>
+        <input
+          type="password"
+          class="form-control"
+          id="passwordInput"
+          name="password"
+          (focus)="wasVaidated = false"
+          [(ngModel)]="password"
+          required
+        />
+        <div class="invalid-feedback">Password cannot be empty.</div>
+      </div>
+      <div class="row mx-0 d-flex justify-content-end">
+        <button class="btn btn-success" type="submit">Zaloguj</button>
+      </div>
+    </form>
+  </div>
+</div>

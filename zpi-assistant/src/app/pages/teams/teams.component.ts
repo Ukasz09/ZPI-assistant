@@ -45,7 +45,7 @@ export class TeamsComponent implements OnInit {
     this.teamsService.createTeam(this.authService.userEmail).subscribe(
       (data: { teamId: string }) => {
         this.teamListPanelTemplate.fetchTeams();
-        this.teamCreationSuccessTextLines[0] = this.successfulTeamCreationText.replace('{id}', `${data.id}`);
+        this.teamCreationSuccessTextLines[0] = this.successfulTeamCreationText.replace('{id}', `${data.teamId}`);
         this.openModal(this.teamCreationSuccessTemplate);
       },
       (err: HttpErrorResponse) => {

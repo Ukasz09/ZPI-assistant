@@ -49,7 +49,7 @@ export class StudentsComponent implements OnInit {
         this.dataReady = true;
         if (this.userIsStudent) {
           const student = this.students.find((s) => s.email === this.authService.userEmail);
-          this.userIsTeamAdmin = student.isTeamAdmin;
+          this.userIsTeamAdmin = student?.isTeamAdmin ?? false;
         }
       },
       (e: HttpErrorResponse) =>

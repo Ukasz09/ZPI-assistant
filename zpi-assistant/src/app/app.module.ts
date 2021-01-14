@@ -23,6 +23,7 @@ import { YourTeamComponent } from './pages/your-team/your-team.component';
 import { MailboxComponent } from './pages/mailbox/mailbox.component';
 import { CustomAlertComponent } from './shared/components/custom-alert/custom-alert.component';
 import { AlertModule } from 'ngx-bootstrap/alert';
+import { SigninComponent } from './pages/signin/signin.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -39,6 +40,7 @@ import { AlertModule } from 'ngx-bootstrap/alert';
     YourTeamComponent,
     MailboxComponent,
     CustomAlertComponent,
+    SigninComponent,
   ],
   imports: [
     BrowserModule,

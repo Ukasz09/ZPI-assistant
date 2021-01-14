@@ -1,8 +1,10 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { emit } from 'process';
 import { BehaviorSubject, Observable, throwError } from 'rxjs';
 import { AccountTypes } from 'src/app/shared/logic/account-types';
 import { ErrorResponseType } from 'src/app/shared/logic/error-response-types';
+import { NavbarService } from 'src/app/shared/services/navbar.service';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -13,12 +15,14 @@ export class AuthService {
   userAccountType: AccountTypes;
   userEmail: string;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private navbarService: NavbarService) {}
 
   logonUser(email: string, accountType: AccountTypes): void {
-    this.userEmail = email;
+    this.userEmail = 'danek.dundersztyc@pwr.edu.pl'; //TODO: tmp
+    // this.userEmail = email;
     this.userAccountType = accountType;
     this.userIsLogged = true;
+    this.navbarService.updateUnreadMsgQty(email);
   }
 
   logoutUser(): void {
@@ -31,6 +35,7 @@ export class AuthService {
     // const slug = rawSlug.replace('{email}', email).replace('{password}', password);
     // const url = environment.API_URL + slug;
     // return this.http.get<{ accountType: AccountTypes }>(url);
+
     return new BehaviorSubject({ accountType: AccountTypes.STUDENT });
     // return this.errorResponse({ id: ErrorResponseType.INCORRECT_PASSWORD });
   }
