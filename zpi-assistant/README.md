@@ -181,11 +181,11 @@ This will start a dev server. After that navigate to page `http://localhost:4200
 - **Name:**
   createTeam
 - **Route:**
-  `/teams/{id}`
+  `/teams/{studentEmail}`
 - **Type**
   POST
 - **ResponseSchema:**
-  `{ id: string }`
+  `{ teamId: string }`
 - **ErrorSchema**
   `{ id: ErrorResponseType.ERR_STUDENT_HAVE_TEAM, teamId: 'Z02', }`/ `{ message : msg_text } `
 
@@ -205,22 +205,9 @@ This will start a dev server. After that navigate to page `http://localhost:4200
 ---
 
 - **Name:**
-  leaveTeam
-- **Route:**
-  `/teams/leaveTeam?teamId={teamId}&email={email}`
-- **Type**
-  PUT
-- **ResponseSchema:**
-  N / A
-- **ErrorSchema**
-  `{ message : msg_text } `
-
----
-
-- **Name:**
   removeTeam
 - **Route:**
-  `/teams/removeTeam?teamId={teamId}`
+  `/teams/{teamId}`
 - **Type**
   DELETE
 - **ResponseSchema:**

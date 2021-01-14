@@ -42,9 +42,11 @@ export class TeamsComponent implements OnInit {
   }
 
   onCreateTeamClick(): void {
-    this.teamsService.createTeam().subscribe(
-      (data: any) => {
-        this.onCorrectTeamCreationResponse(data);
+    this.teamsService.createTeam(this.authService.userEmail).subscribe(
+      (data: { teamId: string }) => {
+        this.teamListPanelTemplate.fetchTeams();
+        this.teamCreationSuccessTextLines[0] = this.successfulTeamCreationText.replace('{id}', `${data.id}`);
+        this.openModal(this.teamCreationSuccessTemplate);
       },
       (err: HttpErrorResponse) => {
         const response = err.error;
@@ -62,11 +64,7 @@ export class TeamsComponent implements OnInit {
     return 'id' in data && data.id === ErrorResponseType.ERR_STUDENT_HAVE_TEAM;
   }
 
-  onCorrectTeamCreationResponse(data: { id: string }): void {
-    this.teamListPanelTemplate.fetchTeams();
-    this.teamCreationSuccessTextLines[0] = this.successfulTeamCreationText.replace('{id}', `${data.id}`);
-    this.openModal(this.teamCreationSuccessTemplate);
-  }
+  onCorrectTeamCreationResponse(data: { id: string }): void {}
 
   incorrectTeamCreationResponse(response: { id: string; teamId: string }): void {
     this.teamCreationErrHaveTeamLines[0] = this.alreadyAMemberOfTeamText.replace('{id}', `${response.teamId}`);

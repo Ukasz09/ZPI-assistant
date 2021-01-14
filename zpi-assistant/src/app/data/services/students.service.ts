@@ -25,7 +25,7 @@ export class StudentsService {
     return this.http.get<StudentSchema>(url);
   }
 
-  leaveTeam(userEmail: string): Observable<any> {
+  leaveTeam(studentEmail: string): Observable<any> {
     // const rawSlug = '/students/leaveTeam?email={email}';
     // const slug = rawSlug.replace('{email}',userEmail);
     // const url = environment.API_URL + rawSlug;

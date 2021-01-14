@@ -27,8 +27,8 @@ export class TeamsService {
     return this.http.get<TeamSchema>(url);
   }
 
-  createTeam(): Observable<object> {
-    // const rawSlug = '/teams';
+  createTeam(studentEmail: string): Observable<{ teamId: string }> {
+    // const rawSlug = '/teams/{studentEmail}';
     // const url = environment.API_URL + rawSlug;
 
     return this.errorResponse(
@@ -50,17 +50,8 @@ export class TeamsService {
     // return this.putErrorResponse({});
   }
 
-  leaveTeam(teamId: string, userEmail: string): Observable<any> {
-    // const rawSlug = '/teams/leaveTeam?teamId={teamId}&email={email}';
-    // const slug = rawSlug.replace('{teamId}', teamId).replace('{email}', userEmail);
-    // const url = environment.API_URL + slug;
-    // return this.http.put(url, {});
-
-    return new BehaviorSubject({});
-  }
-
   removeTeam(teamId: string): Observable<any> {
-    // const rawSlug = '/teams/removeTeam?teamId={teamId}';
+    // const rawSlug = '/teams/{teamId}';
     // const slug = rawSlug.replace('{teamId}', teamId);
     // const url = environment.API_URL + slug;
     // return this.http.delete(url, {});

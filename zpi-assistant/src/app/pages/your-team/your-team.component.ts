@@ -21,7 +21,6 @@ export class YourTeamComponent implements OnInit {
   @ViewChild('successfulRemoveTeamTemplate') successfulRemoveTeamTemplate: TemplateRef<any>;
   @ViewChild('successfulLeftFromTeamTemplate') successfulLeftFromTeamTemplate: TemplateRef<any>;
   @ViewChild('otherErrorTemplate') otherErrorTemplate: TemplateRef<any>;
-  @Input() teamId: string;
 
   modalRef: BsModalRef;
   team: TeamSchema;
@@ -116,7 +115,7 @@ export class YourTeamComponent implements OnInit {
     const studentEmail = this.authService.userEmail;
     this.authService.confirmPassword(studentEmail, this.passwordControl.value).subscribe(
       (_) => {
-        this.teamsService.leaveTeam(this.teamId, studentEmail).subscribe(
+        this.studentService.leaveTeam(studentEmail).subscribe(
           (_) => {
             this.showIncorrectPasswordAlert = false;
             this.initPasswordControl();
@@ -148,7 +147,7 @@ export class YourTeamComponent implements OnInit {
     const studentEmail = this.authService.userEmail;
     this.authService.confirmPassword(studentEmail, this.passwordControl.value).subscribe(
       (_) => {
-        this.teamsService.removeTeam(this.teamId).subscribe(
+        this.teamsService.removeTeam(this.team.id).subscribe(
           (_) => {
             this.showIncorrectPasswordAlert = false;
             this.initPasswordControl();
