@@ -18,8 +18,8 @@ export class AuthService {
   constructor(private http: HttpClient, private navbarService: NavbarService) {}
 
   logonUser(email: string, accountType: AccountTypes): void {
-    this.userEmail = 'danek.dundersztyc@pwr.edu.pl'; //TODO: tmp
-    // this.userEmail = email;
+    //this.userEmail = 'danek.dundersztyc@pwr.edu.pl'; //TODO: tmp
+    this.userEmail = email;
     this.userAccountType = accountType;
     this.userIsLogged = true;
     this.navbarService.updateUnreadMsgQty(email);
@@ -31,12 +31,14 @@ export class AuthService {
   }
 
   confirmPassword(email: string, password: string): Observable<{ accountType: AccountTypes }> {
-    // const rawSlug = '/auth?email={email}&password={password}';
-    // const slug = rawSlug.replace('{email}', email).replace('{password}', password);
-    // const url = environment.API_URL + slug;
-    // return this.http.get<{ accountType: AccountTypes }>(url);
+    // działa 
 
-    return new BehaviorSubject({ accountType: AccountTypes.STUDENT });
+    const rawSlug = '/auth?email={email}&password={password}';
+    const slug = rawSlug.replace('{email}', email).replace('{password}', password);
+    const url = environment.API_URL + slug;
+    return this.http.get<{ accountType: AccountTypes }>(url);
+
+    //return new BehaviorSubject({ accountType: AccountTypes.STUDENT });
     // return this.errorResponse({ id: ErrorResponseType.INCORRECT_PASSWORD });
   }
 

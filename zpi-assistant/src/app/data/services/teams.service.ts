@@ -12,23 +12,31 @@ export class TeamsService {
   constructor(private http: HttpClient) {}
 
   getAllTeams(): Observable<TeamSchema[]> {
-    // const rawSlug = '/teams';
-    // const url = environment.API_URL + rawSlug;
-    const url = 'assets/mocks/teams.json';
+    //działa
+
+    const rawSlug = '/teams';
+    const url = environment.API_URL + rawSlug;
+    //const url = 'assets/mocks/teams.json';
     return this.http.get<TeamSchema[]>(url);
   }
 
   getTeam(teamId = 'Z2'): Observable<TeamSchema> {
-    // const rawSlug = '/teams/{id}';
-    // const slug = rawSlug.replace('{id}', teamId);
-    // const url = environment.API_URL + slug;
+    //konieczny / na końcu rawSlug
+    //działa gdy student ma zespół, gdy nie ma, wyświetla pustą stronę
+    //(nie powinno być jakiegoś alertu, że nie ma teamu ? albo zablokowany ten przycisk?)
 
-    const url = 'assets/mocks/team.json';
+    const rawSlug = '/teams/{id}/';
+    const slug = rawSlug.replace('{id}', teamId);
+    const url = environment.API_URL + slug;
+
+    //const url = 'assets/mocks/team.json';
     return this.http.get<TeamSchema>(url);
   }
 
   createTeam(studentEmail: string): Observable<{ teamId: string }> {
-    // const rawSlug = '/teams/{studentEmail}';
+    // trochę nie wiem jak to powinno być odmockowane
+
+    // const rawSlug = '/teams/{studentEmail}'; // raczej: '/teams/{studentEmail}/'
     // const url = environment.API_URL + rawSlug;
 
     return this.errorResponse(
@@ -41,6 +49,9 @@ export class TeamsService {
   }
 
   addTeamLecturer(teamId: string, email: string): Observable<any> {
+    // chyba nie wiem jak powinno być odmockowane
+    // bo jest 'func not implemented' pod tym przyciskiem w UI
+
     // const rawSlug = '/teams/addLecturer?teamId={teamId}&email={email}';
     // const slug = rawSlug.replace('{teamId}', teamId).replace('{email', email);
     // const endpoint = environment.API_URL + slug;
@@ -51,11 +62,13 @@ export class TeamsService {
   }
 
   removeTeam(teamId: string): Observable<any> {
-    // const rawSlug = '/teams/{teamId}';
-    // const slug = rawSlug.replace('{teamId}', teamId);
-    // const url = environment.API_URL + slug;
-    // return this.http.delete(url, {});
-    return new BehaviorSubject({});
+    //działa
+
+    const rawSlug = '/teams/{teamId}/';
+    const slug = rawSlug.replace('{teamId}', teamId);
+    const url = environment.API_URL + slug;
+    return this.http.delete(url, {});
+    //return new BehaviorSubject({});
   }
 
   /* ------------------------------------------- TMP ------------------------------------------- */
