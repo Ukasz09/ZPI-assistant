@@ -21,13 +21,14 @@ export class MailboxService {
   }
 
   markMessageAsReaded(userEmail: string, messageId: string): Observable<any> {
-    //nie testowane
+    //nie do końca, nie odznacza tej pierwszej wiadomości
+    // tej która się pokazuje po włączeniu skrzynki
 
-    // const rawSlug = '/mailbox/markReaded?email={email}&messageId={messageId}';
-    // const slug = rawSlug.replace('{email}', userEmail).replace('{messageId}', messageId);
-    // const url = environment.API_URL + slug;
-    // return this.http.put<Message[]>(url, {});
-    return new BehaviorSubject({});
+    const rawSlug = '/mailbox/markReaded?email={email}&messageId={messageId}';
+    const slug = rawSlug.replace('{email}', userEmail).replace('{messageId}', messageId);
+    const url = environment.API_URL + slug;
+    return this.http.put<Message[]>(url, {});
+    // return new BehaviorSubject({});
   }
 
   deleteMessage(userEmail: string, messageId: string): Observable<any> {
