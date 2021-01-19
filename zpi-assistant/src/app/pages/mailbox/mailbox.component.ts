@@ -47,7 +47,7 @@ export class MailboxComponent implements OnInit {
   }
 
   private fetchMails(): void {
-    const userEmail = this.authService.userEmail;
+    const userEmail = this.authService.user.email;
     this.mailboxService.getMessages(userEmail).subscribe(
       (data: Message[]) => {
         this.mails = data;
@@ -79,8 +79,9 @@ export class MailboxComponent implements OnInit {
 
   private changeIsReadStateOfMsg(message: Message): void {
     message.isRead = true;
-    this.mailboxService.markMessageAsReaded(this.authService.userEmail, message.id).subscribe(
-      (_) => this.navbarService.updateUnreadMsgQty(this.authService.userEmail),
+    const userEmail = this.authService.user.email;
+    this.mailboxService.markMessageAsReaded(userEmail, message.id).subscribe(
+      (_) => this.navbarService.updateUnreadMsgQty(userEmail),
       (err: HttpErrorResponse) => {
         this.alertService.error('Update message status failed');
         throw err;
@@ -93,7 +94,8 @@ export class MailboxComponent implements OnInit {
   }
 
   onAcceptInvitation(): void {
-    this.studentService.acceptInvitation(this.authService.userEmail, this.actualDisplayedMsg.id).subscribe(
+    const userEmail = this.authService.user.email;
+    this.studentService.acceptInvitation(userEmail, this.actualDisplayedMsg.id).subscribe(
       (response: { teamId: string }) => {
         this.onAcceptInvitationCorrectResponse(response.teamId);
       },
@@ -128,7 +130,8 @@ export class MailboxComponent implements OnInit {
   }
 
   leaveTeam(): void {
-    this.studentService.leaveTeam(this.authService.userEmail).subscribe(
+    const userEmail = this.authService.user.email;
+    this.studentService.leaveTeam(userEmail).subscribe(
       (_) => {
         // this.onAcceptInvitation();
         this.modalRef.hide();
@@ -143,7 +146,8 @@ export class MailboxComponent implements OnInit {
 
   dismissInvitation(): void {
     this.modalRef.hide();
-    this.mailboxService.deleteMessage(this.authService.userEmail, this.actualDisplayedMsg.id).subscribe(
+    const userEmail = this.authService.user.email;
+    this.mailboxService.deleteMessage(userEmail, this.actualDisplayedMsg.id).subscribe(
       () => {
         this.openModal(this.correctInvitationDismissTemplate);
         this.fetchMails();

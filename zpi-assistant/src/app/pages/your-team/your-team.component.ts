@@ -49,8 +49,7 @@ export class YourTeamComponent implements OnInit {
   }
 
   private fetchData(): void {
-    const studentId = this.authService.userEmail;
-    this.studentService.getStudent(studentId).subscribe(
+    this.studentService.getStudent(this.loggedUserEmail).subscribe(
       (data: StudentSchema) => {
         this.fetchTeam(data.teamId);
       },
@@ -63,7 +62,8 @@ export class YourTeamComponent implements OnInit {
   }
 
   private fetchTeam(teamId: string): void {
-    this.teamsService.getTeam(this.authService.userEmail).subscribe(
+    const userEmail = this.authService.user.email;
+    this.teamsService.getTeam(userEmail).subscribe(
       (data: TeamSchema) => {
         this.team = data;
         this.dataReady = true;
@@ -100,11 +100,12 @@ export class YourTeamComponent implements OnInit {
   }
 
   get userIsTeamAdmin(): boolean {
-    return this.authService.userEmail === this.team.adminEmail;
+    return this.loggedUserEmail === this.team.adminEmail;
   }
 
   get loggedUserEmail(): string {
-    return this.authService.userEmail;
+    const userEmail = this.authService.user.email;
+    return userEmail;
   }
 
   openModal(template: TemplateRef<any>): void {
@@ -112,7 +113,7 @@ export class YourTeamComponent implements OnInit {
   }
 
   leaveTeam(): void {
-    const studentEmail = this.authService.userEmail;
+    const studentEmail = this.loggedUserEmail;
     this.authService.confirmPassword(studentEmail, this.passwordControl.value).subscribe(
       (_) => {
         this.studentService.leaveTeam(studentEmail).subscribe(
@@ -144,7 +145,7 @@ export class YourTeamComponent implements OnInit {
   }
 
   removeTeam(): void {
-    const studentEmail = this.authService.userEmail;
+    const studentEmail = this.loggedUserEmail;
     this.authService.confirmPassword(studentEmail, this.passwordControl.value).subscribe(
       (_) => {
         this.teamsService.removeTeam(this.team.id).subscribe(

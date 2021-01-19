@@ -30,8 +30,10 @@ export class SigninComponent implements OnInit {
           this.alertService.success('Successful logon');
         },
         (err: HttpErrorResponse) => {
-          if (err.error?.id) {
-            this.alertService.error(err.message);
+          if (err.error?.message) {
+            this.alertService.error(`${err.status} - ${err.error.message}`);
+          } else {
+            this.alertService.error(`${err.status} - Other error`);
           }
         }
       );

@@ -40,11 +40,17 @@
             (mouseenter)="accountDropdown.show()"
             (mouseleave)="accountDropdown.hide()"
           >
-            Łukasz Gajerski <span class="caret"></span>
+            <span class="mr-2">{{ user.name }}</span>
+            <span>{{ user.surname }}</span>
+            <span class="caret"></span>
           </button>
           <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="button-basic">
-            <li role="menuitem"><a class="dropdown-item" href="#">Student</a></li>
-            <li role="menuitem"><a class="dropdown-item" href="#">246703</a></li>
+            <li role="menuitem">
+              <a class="dropdown-item">{{ accountType }}</a>
+            </li>
+            <li *ngIf="userIsStudent" role="menuitem">
+              <a class="dropdown-item">{{ studentIndexNumber }}</a>
+            </li>
           </ul>
         </div>
         <button class="btn btn-outline-danger" (click)="logoutUser()" routerLink="/teams">Sign out</button>

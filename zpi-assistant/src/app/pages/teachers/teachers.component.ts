@@ -63,7 +63,8 @@ export class TeachersComponent implements OnInit {
   }
 
   private fetchStudentInfo(): void {
-    this.studentService.getStudent(this.authService.userEmail).subscribe(
+    const userEmail = this.authService.user.email;
+    this.studentService.getStudent(userEmail).subscribe(
       (student: StudentSchema) => {
         this.userIsTeamAdmin = student.isTeamAdmin;
       },
@@ -75,7 +76,8 @@ export class TeachersComponent implements OnInit {
   }
 
   private initTeamIdOfLoggedUser(): void {
-    this.studentService.getStudent(this.authService.userEmail).subscribe(
+    const userEmail = this.authService.user.email;
+    this.studentService.getStudent(userEmail).subscribe(
       (response: StudentSchema) => {
         this.teamIdOfLoggedUser = response.teamId;
       },

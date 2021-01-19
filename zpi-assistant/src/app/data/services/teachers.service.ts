@@ -18,4 +18,11 @@ export class TeachersService {
     //const url = 'assets/mocks/teachers.json';
     return this.http.get<TeacherSchema[]>(url);
   }
+
+  getTeacher(email: string): Observable<TeacherSchema> {
+    const rawSlug = '/teachers/{email}/';
+    const slug = rawSlug.replace('{email}', email);
+    const url = environment.API_URL + slug;
+    return this.http.get<TeacherSchema>(url);
+  }
 }

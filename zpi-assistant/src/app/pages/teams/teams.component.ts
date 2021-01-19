@@ -42,7 +42,8 @@ export class TeamsComponent implements OnInit {
   }
 
   onCreateTeamClick(): void {
-    this.teamsService.createTeam(this.authService.userEmail).subscribe(
+    const userEmail = this.authService.user.email;
+    this.teamsService.createTeam(userEmail).subscribe(
       (data: { teamId: string }) => {
         this.teamListPanelTemplate.fetchTeams();
         this.teamCreationSuccessTextLines[0] = this.successfulTeamCreationText.replace('{id}', `${data.teamId}`);
@@ -72,7 +73,8 @@ export class TeamsComponent implements OnInit {
   }
 
   leaveTeam(): void {
-    this.studentService.leaveTeam(this.authService.userEmail).subscribe(
+    const userEmail = this.authService.user.email;
+    this.studentService.leaveTeam(userEmail).subscribe(
       (_) => {
         // this.onCreateTeamClick();
         this.modalRef.hide();

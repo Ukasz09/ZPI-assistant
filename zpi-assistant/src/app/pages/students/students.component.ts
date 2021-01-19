@@ -48,7 +48,8 @@ export class StudentsComponent implements OnInit {
         this.filteredStudents = this.students;
         this.dataReady = true;
         if (this.userIsStudent) {
-          const student = this.students.find((s) => s.email === this.authService.userEmail);
+          const userEmail = this.authService.user.email;
+          const student = this.students.find((s) => s.email === userEmail);
           this.userIsTeamAdmin = student?.isTeamAdmin ?? false;
         }
       },
@@ -61,7 +62,8 @@ export class StudentsComponent implements OnInit {
   }
 
   private initTeamIdOfLoggedUser(): void {
-    this.studentsService.getStudent(this.authService.userEmail).subscribe(
+    const userEmail = this.authService.user.email;
+    this.studentsService.getStudent(userEmail).subscribe(
       (response: StudentSchema) => {
         this.teamIdOfLoggedUser = response.teamId;
       },
