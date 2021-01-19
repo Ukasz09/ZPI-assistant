@@ -76,12 +76,12 @@ export class TeamsComponent implements OnInit {
     const userEmail = this.authService.user.email;
     this.studentService.leaveTeam(userEmail).subscribe(
       (_) => {
-        // this.onCreateTeamClick();
+        this.onCreateTeamClick();
         this.modalRef.hide();
-        this.onCorrectTeamCreationResponse({ id: 'Z40' }); //TODO: tmp
       },
       (err: HttpErrorResponse) => {
-        this.otherErrorText = err.message;
+        this.modalRef.hide();
+        this.otherErrorText = err.error?.message;
         this.openModal(this.otherErrorTemplate);
       }
     );
