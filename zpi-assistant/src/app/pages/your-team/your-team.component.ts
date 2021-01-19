@@ -40,7 +40,7 @@ export class YourTeamComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.fetchData();
+    this.fetchTeam();
     this.initPasswordControl();
   }
 
@@ -48,20 +48,7 @@ export class YourTeamComponent implements OnInit {
     this.passwordControl = new FormControl('', [Validators.required, Validators.minLength(4)]);
   }
 
-  private fetchData(): void {
-    this.studentService.getStudent(this.loggedUserEmail).subscribe(
-      (data: StudentSchema) => {
-        this.fetchTeam(data.teamId);
-      },
-      (e: HttpErrorResponse) =>
-        (this.httpError = {
-          statusCode: e.status,
-          msg: `User's data fetching error: ${e.statusText}`,
-        })
-    );
-  }
-
-  private fetchTeam(teamId: string): void {
+  private fetchTeam(): void {
     const userEmail = this.authService.user.email;
     this.teamsService.getTeam(userEmail).subscribe(
       (data: TeamSchema) => {

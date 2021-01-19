@@ -15,9 +15,9 @@ export class TeamsService {
     return this.http.get<TeamSchema[]>(url);
   }
 
-  getTeam(teamId = 'Z2'): Observable<TeamSchema> {
-    const rawSlug = '/teams/{id}/';
-    const slug = rawSlug.replace('{id}', teamId);
+  getTeam(studentEmail: string): Observable<TeamSchema> {
+    const rawSlug = '/teams/{studentEmail}/';
+    const slug = rawSlug.replace('{studentEmail}', studentEmail);
     const url = environment.API_URL + slug;
     return this.http.get<TeamSchema>(url);
   }
@@ -31,7 +31,7 @@ export class TeamsService {
 
   addTeamLecturer(teamId: string, email: string): Observable<any> {
     const rawSlug = '/teams/addLecturer?teamId={teamId}&email={email}';
-    const slug = rawSlug.replace('{teamId}', teamId).replace('{email', email);
+    const slug = rawSlug.replace('{teamId}', teamId).replace('{email}', email);
     const endpoint = environment.API_URL + slug;
     return this.http.put(endpoint, {});
   }

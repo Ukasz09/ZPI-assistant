@@ -25,10 +25,11 @@ export class TeachersComponent implements OnInit {
   httpError: { statusCode: number; msg: string };
   displayedFieldsInList = ['title', 'name', 'surname'];
   teamIdOfLoggedUser: string;
-  private successfulLecturerInvitationText = '{name} otrzymał prośbę dotyczącą objęcia opieki nad zespołem';
+  private successfulLecturerInvitationText = '{name} został dodany jako opiekun Twojego zespołu';
   lecturerInvitationSuccessTextLines = [this.successfulLecturerInvitationText];
   modalRef: BsModalRef;
   userIsTeamAdmin = false;
+  teamHasLecturer = true;
 
   constructor(
     private teachersService: TeachersService,
@@ -44,7 +45,7 @@ export class TeachersComponent implements OnInit {
     if (this.authService.userIsLogged) {
       this.initTeamIdOfLoggedUser();
       if (this.userIsStudent) {
-        this.fetchStudentInfo();
+        this.fetchStudentAndHisTeamInfo();
       }
     }
   }
@@ -64,11 +65,21 @@ export class TeachersComponent implements OnInit {
     );
   }
 
-  private fetchStudentInfo(): void {
+  private fetchStudentAndHisTeamInfo(): void {
     const userEmail = this.authService.user.email;
     this.studentService.getStudent(userEmail).subscribe(
       (student: StudentSchema) => {
         this.userIsTeamAdmin = student.isTeamAdmin;
+        if (student.isTeamAdmin) {
+          this.teamsService.getTeam(this.authService.user.email).subscribe(
+            (team) => {
+              this.teamHasLecturer = team.lecturer ? true : false;
+            },
+            (err: HttpErrorResponse) => {
+              this.alertsService.error("Student's team fetching error");
+            }
+          );
+        }
       },
       (err: HttpErrorResponse) => {
         this.alertsService.error(err.message);
@@ -90,7 +101,7 @@ export class TeachersComponent implements OnInit {
   }
 
   get addBtnVisible(): boolean {
-    return this.authService.userIsLogged && this.userIsStudent && this.userIsTeamAdmin;
+    return this.authService.userIsLogged && this.userIsStudent && this.userIsTeamAdmin && !this.teamHasLecturer;
   }
 
   get msgBtnVisible(): boolean {
@@ -124,6 +135,7 @@ export class TeachersComponent implements OnInit {
     );
     this.lecturerInvitationSuccessTextLines[0] = newModalText;
     this.openModal(this.lecturerInvitationSuccessTemplate);
+    this.teamHasLecturer = true;
   }
 
   openModal(template: TemplateRef<any>): void {

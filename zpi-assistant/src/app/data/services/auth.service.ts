@@ -9,7 +9,6 @@ import { NavbarService } from 'src/app/shared/services/navbar.service';
 import { environment } from 'src/environments/environment';
 import { StudentSchema } from '../schema/student';
 import { TeacherSchema } from '../schema/teacher';
-import { UserSchema } from '../schema/user';
 import { StudentsService } from './students.service';
 import { TeachersService } from './teachers.service';
 

@@ -25,7 +25,7 @@
           Edytuj temat
         </button>
         <ng-template #addSubjectBtn>
-          <button *ngIf="teamHasLecturer" class="btn btn-dark btn-block">Dodaj temat</button>
+          <button *ngIf="teamHasLecturer" class="btn btn-dark btn-block" (click)="showNotImplementedError()">Dodaj temat</button>
         </ng-template>
       </div>
     </div>

@@ -10,7 +10,7 @@ export class AlertsService {
 
   constructor() {}
 
-  success(message: string, id?: string, dismissible?: boolean, dismissTimeout?: number, sticky?: boolean): void {
+  success(message: string, id?: string, dismissible?: boolean, dismissTimeout?: number, sticky?: boolean, unique?: boolean): void {
     const alert = new AlertModel(
       id ?? AlertModel.DEFAULT_SUCCESS_ALERT_ID,
       AlertType.SUCCESS,
@@ -19,10 +19,10 @@ export class AlertsService {
       dismissTimeout ?? 4000,
       sticky ?? true
     );
-    this.alerts.push(alert);
+    this.addAlert(unique ?? true, alert);
   }
 
-  error(message: string, id?: string, dismissible?: boolean, dismissTimeout?: number, sticky?: boolean): void {
+  error(message: string, id?: string, dismissible?: boolean, dismissTimeout?: number, sticky?: boolean, unique?: boolean): void {
     const alert = new AlertModel(
       id ?? AlertModel.DEFAULT_ERROR_ALERT_ID,
       AlertType.DANGER,
@@ -31,10 +31,10 @@ export class AlertsService {
       dismissTimeout ?? 5000,
       sticky ?? true
     );
-    this.alerts.push(alert);
+    this.addAlert(unique ?? true, alert);
   }
 
-  warning(message: string, id?: string, dismissible?: boolean, dismissTimeout?: number, sticky?: boolean): void {
+  warning(message: string, id?: string, dismissible?: boolean, dismissTimeout?: number, sticky?: boolean, unique?: boolean): void {
     const alert = new AlertModel(
       id ?? AlertModel.DEFAULT_WARNING_ALERT_ID,
       AlertType.WARNING,
@@ -43,10 +43,10 @@ export class AlertsService {
       dismissTimeout ?? 3000,
       sticky ?? true
     );
-    this.alerts.push(alert);
+    this.addAlert(unique ?? true, alert);
   }
 
-  info(message: string, id?: string, dismissible?: boolean, dismissTimeout?: number, sticky?: boolean): void {
+  info(message: string, id?: string, dismissible?: boolean, dismissTimeout?: number, sticky?: boolean, unique?: boolean): void {
     const alert = new AlertModel(
       id ?? AlertModel.DEFAULT_INFO_ALERT_ID,
       AlertType.INFO,
@@ -55,27 +55,27 @@ export class AlertsService {
       dismissTimeout ?? 2000,
       sticky ?? true
     );
-    this.alerts.push(alert);
+    this.addAlert(unique ?? true, alert);
   }
 
   remove(alert: AlertModel): void {
-    this.alerts = this.alerts.filter((a) => a != alert);
+    this.alerts = this.alerts.filter((a) => a !== alert);
   }
 
   removeAllWithId(id: string): void {
-    this.alerts = this.alerts.filter((a) => a.id != id);
+    this.alerts = this.alerts.filter((a) => a.id !== id);
   }
 
   removeAllExceptId(id: string): void {
-    this.alerts = this.alerts.filter((a) => a.id == id);
+    this.alerts = this.alerts.filter((a) => a.id === id);
   }
 
   removeAllWithType(type: string): void {
-    this.alerts = this.alerts.filter((a) => a.type != type);
+    this.alerts = this.alerts.filter((a) => a.type !== type);
   }
 
   removeAllExceptType(type: string): void {
-    this.alerts = this.alerts.filter((a) => a.type == type);
+    this.alerts = this.alerts.filter((a) => a.type === type);
   }
 
   clear(): void {
@@ -84,5 +84,15 @@ export class AlertsService {
 
   contain(id: string): boolean {
     return this.alerts.find((a) => a.id === id) !== undefined;
+  }
+
+  private addAlert(unique: boolean, alert: AlertModel): void {
+    if (unique) {
+      if (!this.contain(alert.id)) {
+        this.alerts.push(alert);
+      }
+    } else {
+      this.alerts.push(alert);
+    }
   }
 }
