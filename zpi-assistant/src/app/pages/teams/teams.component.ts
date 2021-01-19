@@ -8,6 +8,7 @@ import { TeamsService } from 'src/app/data/services/teams.service';
 import { AccountTypes } from 'src/app/shared/logic/account-types';
 import { TeamsListPanelComponent } from './teams-list-panel/teams-list-panel.component';
 import { AlertsService } from 'src/app/shared/services/alert.service';
+import { StudentSchema } from 'src/app/data/schema/student';
 
 @Component({
   selector: 'app-teams',
@@ -37,6 +38,14 @@ export class TeamsComponent implements OnInit {
 
   ngOnInit(): void {}
 
+  get isStudentAndHaveTeam(): boolean {
+    if (this.authService.userIsLogged && this.authService.userAccountType === AccountTypes.STUDENT) {
+      const student = this.authService.user as StudentSchema;
+      return student.teamId ? true : false;
+    }
+    return false;
+  }
+
   openModal(template: TemplateRef<any>): void {
     this.modalRef = this.modalService.show(template);
   }
@@ -45,6 +54,7 @@ export class TeamsComponent implements OnInit {
     const userEmail = this.authService.user.email;
     this.teamsService.createTeam(userEmail).subscribe(
       (data: { teamId: string }) => {
+        this.authService.logonUser(this.authService.user.email, this.authService.userAccountType); // in order to refresh data
         this.teamListPanelTemplate.fetchTeams();
         this.teamCreationSuccessTextLines[0] = this.successfulTeamCreationText.replace('{id}', `${data.teamId}`);
         this.openModal(this.teamCreationSuccessTemplate);
@@ -72,7 +82,7 @@ export class TeamsComponent implements OnInit {
     this.openModal(this.teamCreationErrHasTeamTemplate);
   }
 
-  leaveTeam(): void {
+  changeTeam(): void {
     const userEmail = this.authService.user.email;
     this.studentService.leaveTeam(userEmail).subscribe(
       (_) => {

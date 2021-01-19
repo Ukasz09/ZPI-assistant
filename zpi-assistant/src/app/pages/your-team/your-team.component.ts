@@ -118,6 +118,7 @@ export class YourTeamComponent implements OnInit {
       (_) => {
         this.studentService.leaveTeam(studentEmail).subscribe(
           (_) => {
+            this.authService.logonUser(this.authService.user.email, this.authService.userAccountType); // in order to refresh data
             this.showIncorrectPasswordAlert = false;
             this.initPasswordControl();
             this.modalRef.hide();
@@ -150,6 +151,7 @@ export class YourTeamComponent implements OnInit {
       (_) => {
         this.teamsService.removeTeam(this.team.id).subscribe(
           (_) => {
+            this.authService.logonUser(this.authService.user.email, this.authService.userAccountType); // in order to refresh data
             this.showIncorrectPasswordAlert = false;
             this.initPasswordControl();
             this.modalRef.hide();

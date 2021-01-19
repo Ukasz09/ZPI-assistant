@@ -92,7 +92,7 @@ export class MailboxComponent implements OnInit {
   }
 
   messageClass(message: Message): string {
-    return this.actualDisplayedMsg === message ? 'btn-dark' : 'btn-outline-secondary';
+    return this.actualDisplayedMsg === message ? 'btn-success' : 'btn-outline-secondary';
   }
 
   onAcceptInvitation(): void {
@@ -117,6 +117,7 @@ export class MailboxComponent implements OnInit {
   }
 
   private onAcceptInvitationCorrectResponse(teamId: string): void {
+    this.authService.logonUser(this.authService.user.email, this.authService.userAccountType); // in order to refresh data
     this.successTeamJoinTextLines[0] = this.successTeamJoinText.replace('{teamId}', teamId);
     this.openModal(this.successTeamJoinTemplate);
     this.fetchMails();
