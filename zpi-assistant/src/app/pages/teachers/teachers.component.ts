@@ -41,9 +41,11 @@ export class TeachersComponent implements OnInit {
 
   ngOnInit(): void {
     this.fetchTeachers();
-    this.initTeamIdOfLoggedUser();
-    if (this.userIsStudent) {
-      this.fetchStudentInfo();
+    if (this.authService.userIsLogged) {
+      this.initTeamIdOfLoggedUser();
+      if (this.userIsStudent) {
+        this.fetchStudentInfo();
+      }
     }
   }
 

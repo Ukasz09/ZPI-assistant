@@ -34,32 +34,16 @@ export class TeamsService {
   }
 
   createTeam(studentEmail: string): Observable<any> {
-     //trochę nie wiem jak to powinno być odmockowane
-    //ale w takiej formie chyba działa (tzn. dla scenariusza głównego)
-    const rawSlug = '/teams/{studentEmail}/'; // raczej: '/teams/{studentEmail}/'
+    const rawSlug = '/teams/{studentEmail}/';
     const slug = rawSlug.replace('{studentEmail}', studentEmail);
     const url = environment.API_URL + slug;
-    return this.http.put(url, {})
-    /*return this.errorResponse(
-      {
-        id: ErrorResponseType.ERR_STUDENT_HAVE_TEAM,
-        teamId: 'Z02',
-      },
-      403
-    );*/
+    return this.http.put(url, {});
   }
-  // Przycisk edycji opiekuna pojawia się dopiero jak już jest opiekun dodany
   addTeamLecturer(teamId: string, email: string): Observable<any> {
-    // chyba nie wiem jak powinno być odmockowane
-    // bo jest 'func not implemented' pod tym przyciskiem w UI
-
-    // const rawSlug = '/teams/addLecturer?teamId={teamId}&email={email}';
-    // const slug = rawSlug.replace('{teamId}', teamId).replace('{email', email);
-    // const endpoint = environment.API_URL + slug;
-    // return this.http.put(endpoint,{});
-
-    return new BehaviorSubject<any>({});
-    // return this.putErrorResponse({});
+    const rawSlug = '/teams/addLecturer?teamId={teamId}&email={email}';
+    const slug = rawSlug.replace('{teamId}', teamId).replace('{email', email);
+    const endpoint = environment.API_URL + slug;
+    return this.http.put(endpoint, {});
   }
 
   removeTeam(teamId: string): Observable<any> {

@@ -38,7 +38,9 @@ export class StudentsComponent implements OnInit {
 
   ngOnInit(): void {
     this.fetchStudents();
-    this.initTeamIdOfLoggedUser();
+    if (this.authService.userIsLogged) {
+      this.initTeamIdOfLoggedUser();
+    }
   }
 
   private fetchStudents(): void {

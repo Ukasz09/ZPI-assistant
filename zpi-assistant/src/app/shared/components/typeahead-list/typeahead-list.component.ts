@@ -74,6 +74,9 @@ export class TypeaheadListComponent implements OnInit, OnChanges {
   }
 
   otherThanActualUser(email: string): boolean {
+    if (!this.userIsLogged) {
+      return true;
+    }
     const userEmail = this.authService.user.email;
     return userEmail !== email;
   }

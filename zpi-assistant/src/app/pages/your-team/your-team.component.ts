@@ -84,7 +84,7 @@ export class YourTeamComponent implements OnInit {
   }
 
   get teamHasLecturer(): boolean {
-    return Object.keys(this.team.lecturer).length !== 0;
+    return this.team.lecturer && Object.keys(this.team.lecturer).length !== 0;
   }
 
   get topicText(): string {

@@ -94,7 +94,7 @@
 <!-- ----------------------- TEMPLATES ---------------------- -->
 <ng-template #dataNotYetFetchedTemplate>
   <ng-container *ngIf="httpError !== undefined; else dataLoadingTemplate">
-    <div class="w-50 py-5 mx-auto d-flex h-100">
+    <div class="w-50 py-5 mx-auto d-flex h-75">
       <div class="mx-auto w-75">
         <app-error-response
           [errorCode]="httpError.statusCode"

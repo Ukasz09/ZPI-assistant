@@ -20,7 +20,6 @@ export class StudentsService {
   }
 
   getStudent(userEmail: string): Observable<StudentSchema> {
-
     const rawSlug = '/students/{email}/';
     const slug = rawSlug.replace('{email}', userEmail);
     const url = environment.API_URL + slug;
@@ -29,15 +28,10 @@ export class StudentsService {
   }
 
   leaveTeam(studentEmail: string): Observable<any> {
-    // jak nie udało się opuścić zespołu to i tak wyświetla że się udało
-    // ale jak się da to opuszcza
-
     const rawSlug = '/students/leaveTeam?email={email}';
     const slug = rawSlug.replace('{email}', studentEmail);
     const url = environment.API_URL + slug;
-
     return this.http.put(url, {});
-    //return new BehaviorSubject<any>({});
   }
   //DODAWANIE STUDENTÓW
   //przycisk 'dodaj studentów' widzę tylko gdy zespół ma jakichś członków?
