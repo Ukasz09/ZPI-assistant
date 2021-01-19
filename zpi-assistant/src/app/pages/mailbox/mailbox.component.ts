@@ -53,7 +53,9 @@ export class MailboxComponent implements OnInit {
         this.mails = data;
         if (this.mails.length > 0) {
           this.actualDisplayedMsg = this.mails[0];
-          this.actualDisplayedMsg.isRead = true;
+          if (!this.actualDisplayedMsg.isRead) {
+            this.changeIsReadStateOfMsg(this.actualDisplayedMsg);
+          }
         }
         this.dataReady = true;
       },
@@ -133,9 +135,8 @@ export class MailboxComponent implements OnInit {
     const userEmail = this.authService.user.email;
     this.studentService.leaveTeam(userEmail).subscribe(
       (_) => {
-        // this.onAcceptInvitation();
+        this.onAcceptInvitation();
         this.modalRef.hide();
-        this.onAcceptInvitationCorrectResponse('Z40'); //TODO: tmp
       },
       (err: HttpErrorResponse) => {
         this.otherErrorText = err.message;

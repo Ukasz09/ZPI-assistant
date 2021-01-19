@@ -1,8 +1,7 @@
-import { HttpErrorResponse } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Subscription, timer } from 'rxjs';
 import { StudentSchema } from 'src/app/data/schema/student';
 import { TeacherSchema } from 'src/app/data/schema/teacher';
-import { UserSchema } from 'src/app/data/schema/user';
 import { AuthService } from 'src/app/data/services/auth.service';
 import { AccountTypes } from '../../logic/account-types';
 import { AlertsService } from '../../services/alert.service';
@@ -12,10 +11,36 @@ import { NavbarService } from '../../services/navbar.service';
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.scss'],
 })
-export class NavbarComponent implements OnInit {
+export class NavbarComponent implements OnInit, OnDestroy {
+  readonly poolingDueTime = 1000;
+  readonly poolingRefreshPeriod = 2000;
+  mailboxPoolingSubscription: Subscription;
+
   constructor(private navbarService: NavbarService, private authService: AuthService, private alertService: AlertsService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.initMailboxPooling();
+  }
+
+  private initMailboxPooling(): void {
+    const source = timer(this.poolingDueTime, this.poolingRefreshPeriod);
+    this.unsubscribeMailboxPooling();
+    this.mailboxPoolingSubscription = source.subscribe((_) => {
+      if (this.isLogged) {
+        this.navbarService.updateUnreadMsgQty(this.user.email);
+      }
+    });
+  }
+
+  ngOnDestroy(): void {
+    this.unsubscribeMailboxPooling();
+  }
+
+  private unsubscribeMailboxPooling(): void {
+    if (this.mailboxPoolingSubscription) {
+      this.mailboxPoolingSubscription.unsubscribe();
+    }
+  }
 
   get unreadMsgQty(): number {
     return this.navbarService.unreadMsgQty;
