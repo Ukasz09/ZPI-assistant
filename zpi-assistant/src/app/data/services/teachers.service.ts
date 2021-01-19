@@ -11,11 +11,8 @@ export class TeachersService {
   constructor(private http: HttpClient) {}
 
   getTeachers(): Observable<TeacherSchema[]> {
-    //działa
-
     const rawSlug = '/teachers';
     const url = environment.API_URL + rawSlug;
-    //const url = 'assets/mocks/teachers.json';
     return this.http.get<TeacherSchema[]>(url);
   }
 
