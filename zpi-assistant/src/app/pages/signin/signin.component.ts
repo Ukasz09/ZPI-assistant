@@ -27,7 +27,7 @@ export class SigninComponent implements OnInit {
         (response: { accountType: AccountTypes }) => {
           this.authService.logonUser(this.email, response.accountType);
           this.router.navigateByUrl('/teams');
-          this.alertService.success('Successful logon');
+          this.alertService.success('Pomyślnie zalogowano');
         },
         (err: HttpErrorResponse) => {
           if (err.error?.message) {

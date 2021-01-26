@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { Message } from '../schema/mailbox-message';
 
@@ -20,7 +21,7 @@ export class MailboxService {
     const rawSlug = '/mailbox?email={email}';
     const slug = rawSlug.replace('{email}', userEmail);
     const url = environment.API_URL + slug;
-    return this.http.get<Message[]>(url);
+    return this.http.get<Message[]>(url).pipe(map((msgs) => msgs.sort((a, b) => +b.id - +a.id)));
   }
 
   /**

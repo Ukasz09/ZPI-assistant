@@ -61,6 +61,20 @@ export class TeamsService {
   }
 
   /**
+   * Request to add student with given email to team with given id
+   *
+   * @param teamId Id of team
+   * @param email Email of student whose need to be added to team
+   * @returns  An `Observable` of empty object
+   */
+  inviteStudent(teamId: string, email: string): Observable<{}> {
+    const rawSlug = '/teams/invite?teamId={teamId}&studentEmail={email}';
+    const slug = rawSlug.replace('{teamId}', teamId).replace('{email}', email);
+    const endpoint = environment.API_URL + slug;
+    return this.http.post(endpoint, {});
+  }
+
+  /**
    * Request to remove team with given id
    *
    * @param teamId Id of team to remove

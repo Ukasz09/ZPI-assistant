@@ -22,7 +22,7 @@ export class MailboxComponent implements OnInit {
   @ViewChild('correctInvitationDismissTemplate') correctInvitationDismissTemplate: TemplateRef<any>;
 
   private successTeamJoinText = 'Pomyślnie dołączono do zespołu: {teamId}';
-  private alreadyAMemberOfTeamText = 'Jesteś członkiem zespołu: {id}';
+  private alreadyAMemberOfTeamText = 'Posiadasz już zespół';
   teamJoinErrHaveTeamLines = [this.alreadyAMemberOfTeamText, 'Czy chcesz opuścić zespół?'];
   otherErrorText: string;
   successTeamJoinTextLines = [this.successTeamJoinText];
@@ -124,7 +124,7 @@ export class MailboxComponent implements OnInit {
   }
 
   private onIncorrectTeamJoinHasTeamResponse(response: { id: string; teamId: string }): void {
-    this.teamJoinErrHaveTeamLines[0] = this.alreadyAMemberOfTeamText.replace('{id}', `${response.teamId}`);
+    this.teamJoinErrHaveTeamLines[0] = this.alreadyAMemberOfTeamText;
     this.openModal(this.teamJoinErrHasTeamTemplate);
   }
 
@@ -152,6 +152,19 @@ export class MailboxComponent implements OnInit {
     this.mailboxService.deleteMessage(userEmail, this.actualDisplayedMsg.id).subscribe(
       () => {
         this.openModal(this.correctInvitationDismissTemplate);
+        this.fetchMails();
+      },
+      (err: HttpErrorResponse) => {
+        this.otherErrorText = err.message;
+        this.openModal(this.otherErrorTemplate);
+      }
+    );
+  }
+
+  deleteMessage(): void {
+    const userEmail = this.authService.user.email;
+    this.mailboxService.deleteMessage(userEmail, this.actualDisplayedMsg.id).subscribe(
+      () => {
         this.fetchMails();
       },
       (err: HttpErrorResponse) => {

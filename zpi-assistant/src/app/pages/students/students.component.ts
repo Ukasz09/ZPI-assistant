@@ -88,28 +88,24 @@ export class StudentsComponent implements OnInit {
   }
 
   onAddBtnClick(student: StudentSchema): void {
-    this.addTeamMember(this.teamIdOfLoggedUser, student.index);
+    this.addTeamMember(this.teamIdOfLoggedUser, student.email);
   }
 
-  addTeamMember(teamId: string, studentIndex: string): void {
-    this.teamsService.addTeamLecturer(teamId, studentIndex).subscribe(
+  addTeamMember(teamId: string, studentEmail: string): void {
+    this.teamsService.inviteStudent(teamId, studentEmail).subscribe(
       (_) => {
-        this.onCorrectTeamLecturerAdd(studentIndex);
+        const studentModel = this.students.find((s) => s.email === studentEmail);
+        const newModalText = this.successfulLecturerInvitationText.replace(
+          '{name}',
+          `${studentModel.name} ${studentModel.surname} (${studentModel.index})`
+        );
+        this.studentInvitationSuccessTextLines[0] = newModalText;
+        this.openModal(this.studentInvitationSuccessTemplate);
       },
       (err: HttpErrorResponse) => {
         this.alertsService.error(`Invitation not send: ${err.message}`);
       }
     );
-  }
-
-  private onCorrectTeamLecturerAdd(studentIndex: string): void {
-    const studentModel = this.students.find((s) => s.index === studentIndex);
-    const newModalText = this.successfulLecturerInvitationText.replace(
-      '{name}',
-      `${studentModel.name} ${studentModel.surname} (${studentModel.index})`
-    );
-    this.studentInvitationSuccessTextLines[0] = newModalText;
-    this.openModal(this.studentInvitationSuccessTemplate);
   }
 
   openModal(template: TemplateRef<any>): void {

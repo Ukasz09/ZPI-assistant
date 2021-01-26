@@ -148,7 +148,7 @@ export class YourTeamComponent implements OnInit {
           (err: HttpErrorResponse) => {
             this.modalRef.hide();
             this.showIncorrectPasswordAlert = false;
-            this.otherErrorTextLines = [err.message];
+            this.otherErrorTextLines = [err.error.message];
             this.openModal(this.otherErrorTemplate);
           }
         );
